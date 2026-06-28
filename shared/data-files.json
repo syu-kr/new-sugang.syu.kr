@@ -1,0 +1,19 @@
+{
+  "directories": {
+    "terms": "data/terms",
+    "catalog": "data/catalog",
+    "snapshots": "data/snapshots"
+  },
+  "catalog": {
+    "liberalArts": "data/catalog/liberal-arts.json",
+    "courseRate": "data/catalog/course-rate.json"
+  },
+  "snapshots": {
+    "basket": "data/snapshots/basket.json",
+    "closed": "data/snapshots/closed.json",
+    "warning": "data/snapshots/warning.json"
+  },
+  "external": {
+    "liveResponse": "../sugang-api/response/convert1.json"
+  }
+}

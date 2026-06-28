@@ -1,0 +1,1310 @@
+/**
+ * @component				WebSquare.uiplugin.editor		
+ * @id						editor
+ * @studioOriginalID		editor
+ * @category            Forms
+ * @namespaceURI			http://www.inswave.com/websquare
+ * @studioDefaultStyleClass	
+ * @studioRender			
+ * @studioDisplay 			Editor
+ * @studioVisible 			true
+ * @studioExcludeStyles		
+ * @isContainer
+ * @notSupportBrowser   
+ * @developer       Inswave
+ * @summary					Editor 컴포넌트는 웹에서 사용할 수 있는 웹에디터를 의미합니다. Editor 컴포넌트는 WebSquare에서 제작된 컴포넌트는 아니며 CKeditor를 제공 하고 있습니다.  
+ * @description				editor 컴포넌트를 생성하고 옵션을 통해서 다양한 기능을 지원합니다. 
+ * @param   				<String:Y>	 id			editor 컴포넌트의 ID
+ * @param   				<Object:N>	 options	editor 속성 Object
+ * @param   				<Document:N> element	editor xml element
+ * @return
+ * @exception  				
+ * @parent
+ * @deprecated
+ *
+ * @cdate   20091211
+ * @version  2.0
+ * @author  남궁혁
+ * @sample   
+ * @skin 
+ * @hidden   false
+ */
+WebSquare.uiplugin.editor = function(id, options ,/*optional*/element) {
+	["WebSquare.uiplugin.editor"];
+	// extend xfControl
+	WebSquare.xfControl.call(this, id, options, element);
+	try {
+		if(!window["CKEDITOR"]) {
+			if(this.options.version){
+				if(this.options.version == "4.5.11"){
+					if(window["CKEDITOR_BASEPATH"] === undefined){
+						window["CKEDITOR_BASEPATH"] = WebSquare.baseURI+"externalJS/editor4.5.11/";
+					}
+					imports("externalJS/editor4.5.11/ckeditor.js");
+				} else if(this.options.version == "4.5.1"){
+					if(window["CKEDITOR_BASEPATH"] === undefined){
+						window["CKEDITOR_BASEPATH"] = WebSquare.baseURI+"externalJS/editor4.5.1/";
+					}
+					imports("externalJS/editor4.5.1/ckeditor.js");
+				} else if(this.options.version == "4.3"){
+					if(window["CKEDITOR_BASEPATH"] === undefined){
+						window["CKEDITOR_BASEPATH"] = WebSquare.baseURI+"externalJS/editor4.3/";
+					}
+					imports("externalJS/editor4.3/ckeditor.js");
+				} else {
+					if(window["CKEDITOR_BASEPATH"] === undefined){
+						window["CKEDITOR_BASEPATH"] = WebSquare.baseURI+"externalJS/editor/";
+					}
+					imports("externalJS/editor/ckeditor.js");
+				}
+			} else {
+				if( WebSquare.util.isSpartan() ) {
+					// MS Edge
+					if(window["CKEDITOR_BASEPATH"] === undefined){
+						window["CKEDITOR_BASEPATH"] = WebSquare.baseURI+"externalJS/editor4.5.1/";
+					}
+					imports("externalJS/editor4.5.1/ckeditor.js");
+				} else if( WebSquare.util.isIEAllVersion(9) || WebSquare.util.isIEAllVersion(11) || WebSquare.util.isIEAllVersion(10) || WebSquare.core.browserCheck.ipad ){
+					// IE10,11
+					if(window["CKEDITOR_BASEPATH"] === undefined){
+						window["CKEDITOR_BASEPATH"] = WebSquare.baseURI+"externalJS/editor4.3/";
+					}
+					imports("externalJS/editor4.3/ckeditor.js");
+				} else {
+					// IE6,7,8,9
+					if(window["CKEDITOR_BASEPATH"] === undefined){
+						window["CKEDITOR_BASEPATH"] = WebSquare.baseURI+"externalJS/editor/";
+					}
+					imports("externalJS/editor/ckeditor.js");
+				}
+			}
+		}
+	} catch (e) {
+			WebSquare.exception.printStackTrace( e );
+	}
+};
+
+WebSquare.extend(WebSquare.uiplugin.editor.prototype, WebSquare.xfControl.prototype); // @inherit:WebSquare.uiplugin.editor @extend:WebSquare.xfControl @filePath:uiplugin/control/xfControl.js @noExtendAPI: true
+
+
+/**
+ * @event		WebSquare.uiplugin.editor
+ * @name		onload
+ * @type		user
+ * @description	editor의 load가 끝난 경우에 발생
+ * @param
+ * @return
+ * @sample
+ */
+
+/**
+ * @property	WebSquare.uiplugin.editor
+ * @name		id
+ * @default		
+ * @type		string
+ * @option		
+ * @necessary	Y
+ * @hidden		N
+ * @description	컴포넌트 id
+ */
+/**
+ * @property	WebSquare.uiplugin.editor
+ * @name		menubar
+ * @default		
+ * @type		combobox
+ * @option		[default, simple]
+ * @necessary	N
+ * @hidden		N
+ * @description	editor의 toolbar의 종류
+ */
+/**
+ * @property	WebSquare.uiplugin.editor
+ * @name		editorType
+ * @default		
+ * @type		combobox
+ * @option		[3.0, 2.0]
+ * @necessary	N
+ * @hidden		Y
+ * @description	2.0은 iframe을 사용한 방법, 3.0은 externalJS 사용
+ */
+/**
+ * @property	WebSquare.uiplugin.editor
+ * @name		absolutePath
+ * @default		
+ * @type		combobox
+ * @option		[true, false]
+ * @necessary	N
+ * @hidden		Y
+ * @description	이미지 업로드시에 절대경로 사용여부
+ */
+/**
+ * @property	WebSquare.uiplugin.editor
+ * @name		imageLoadURL
+ * @default		
+ * @type		string
+ * @option		
+ * @necessary	N
+ * @hidden		N
+ * @description	업로드된 이미지를 조회하는 URL(servlet), 조회하는 Servlet은 "fileName"을 parameter로 받아서 처리하도록 해야한다.
+ */
+/**
+ * @property	WebSquare.uiplugin.editor
+ * @name		subDir
+ * @default		
+ * @type		string
+ * @option		
+ * @necessary	N
+ * @hidden		N
+ * @description	subDir="test1"라고 하면, websquare.xml(//upload/imgUpload/test1/@value)에 정의되어 있는 경로 업로드 한다.
+ */
+/**
+ * @property	WebSquare.uiplugin.editor
+ * @name		language
+ * @default		
+ * @type		string
+ * @option		
+ * @necessary	N
+ * @hidden		N
+ * @description	언어셋을 설정한다. en: 영문, ko : 국문
+ */
+ /**
+ * @property	WebSquare.uiplugin.editor
+ * @name		transParentDisabled
+ * @default		
+ * @type		boolean
+ * @option		
+ * @necessary	N
+ * @hidden		N
+ * @description	disabled시 색이 변하지 않습니다.
+ */
+WebSquare.uiplugin.editor.prototype.defaultOptions = {
+	pluginType : "uiplugin.editor", 
+	pluginName : "editor",
+	userEvents : ["onload"],
+	menubar: "simple", // @type:combobox @option:[simple, default] @necessary:N @hidden:N @description: editor의 toolbar의 종류
+	editorType : "3.0", // @type:combobox @option:[3.0, 2.0] @necessary:N @hidden:Y @description: 2.0은 iframe을 사용한 방법 3.0은 externalJS사용
+//	rootUrl: "",  // @type:string @necessary:N @hidden:Y @description: 서버의 root까지의 절대 경로
+//	serverUrl : "", // @type:string @necessary:N @hidden:Y @description: 서버의 url
+	useConfig : true, // @type:combobox @option:[true, false] @necessary:N @hidden:Y @description:config.xml의 옵션 사용여부
+	absolutePath : false, // @type:combobox @option:[true, false] @necessary:N @hidden:N @description: 이미지 업로드시에 절대경로 사용여부
+	imageUploadURL : "", // @type:string @necessary:N @hidden:Y @description: editor가 사용할 imageUpload URL
+	imageLoadURL : "", // @type:string @necessary:N @hidden:Y @description: editor가 업로드한 image파일을 loadg하는 URL
+	subDir : "", // @type:string @necessary:N @hidden:N @description: 사용자 정의 폴더 지정
+	language : "en",// @type:string @necessary:N @hidden:N @description: 언어셋
+	transParentDisabled : false,
+	resizable: false, // @type:combobox option:[true, false] @necessary:N @hidden:N @description: resizer설정
+	version: "" // @type:string @necessary:N @hidden:Y @description: 불러올 ckeditor의 버전입니다.
+};
+
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		initialize
+ * @cdate		20091211
+ * @version		2.0 
+ * @author		남궁혁
+ * @description	컴포넌트를 초기화합니다.
+ * @param   	<XML Docuemnt:N> element 컴포넌트의 xml Doc
+ * @see
+ * @return
+ * @exception
+ * @sample
+ * @hidden		true
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.initialize = function(/*optional*/element){
+	this.options.imageUploadURL = this.options.imageUploadURL || WebSquare.baseServletURI + "imageupload.wq";
+	this.options.imageLoadURL = this.options.imageLoadURL || WebSquare.baseURI + "externalJS/editor/loadImg.wq";
+	this.loaded = false;
+	this.startText = "";
+	this.startHtml = "";
+};
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		toHTML
+ * @cdate		20091211
+ * @version		2.0 
+ * @author		남궁혁
+ * @description	컴포넌트의 HTML string을 구성합니다.
+ * @param
+ * @see
+ * @return
+ * @exception
+ * @sample
+ * @hidden		true
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.toHTML = function(){
+	["WebSquare.uiplugin.editor.toHTML"];
+		var htmlStr = [];
+		var styleStr ;//style
+		//alert(WebSquare.baseURI);
+		if(this.options.editorType == "2.0") {
+			styleStr = (this.options.style == "") ? "style='display : none;'" : "style='display : none;"+ this.options.style +"'"; 
+			htmlStr.push("<iframe id='"+ this.id +"' "+ styleStr +" src= 'editor_res2.0/index.jsp?editorID="+ this.id +"&toolbarType="+ this.options.menubar +"'>");
+			htmlStr.push("</iframe>");
+		} else {
+			styleStr = (this.options.style == "") ? "" : "style='"+ this.options.style +"'";
+			htmlStr.push("<div id='"+ this.id +"' "+ styleStr +" class='w2editor "+ this.options.className +"'>");
+			htmlStr.push("<div id='"+ this.id +"_'>");
+			htmlStr.push("</div>");
+			htmlStr.push("</div>");
+		}
+		return htmlStr.join("");
+};
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		setAction
+ * @cdate		20091211
+ * @version		2.0 
+ * @author		남궁혁
+ * @description	컴포넌트의 기본 동작을 설정합니다.
+ * @param
+ * @see
+ * @return
+ * @exception
+ * @sample
+ * @hidden		true
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.setAction = function(){
+	try {
+		
+		//WebSquare.core.setTimeout(this,textareaToEditor,10000);
+		//function textareaToEditor() { 
+		//CKEDITOR.basePath = CKEDITOR.basePath+'uiplugin/editor/';
+		//var editor = CKEDITOR.replace(this.id);
+		/*
+		var editor; 
+		var html = document.getElementById( 'editorcontents' ).innerHTML;
+			// Create a new editor inside the <div id="editor">
+		editor = CKEDITOR.appendTo( this.id );
+		editor.setData( html );
+		*/
+		if(this.options.version){
+			if(this.options.version == "4.5.11"){
+				if( CKEDITOR.basePath.indexOf('externalJS/editor4.5.11/') == -1 ) {
+					CKEDITOR.config.skin = 'moono,' + CKEDITOR.basePath+'externalJS/editor4.5.11/skins/moono/';
+					CKEDITOR.basePath = CKEDITOR.basePath+'externalJS/editor4.5.11/';
+					CKEDITOR.config.contentsCss = CKEDITOR.basePath + 'contents.css' + WebSquare.BootLoader.getEngineCachePostfix("");
+				}
+				
+				var editor_height;
+
+				if( this.options.menubar == "simple" ) {
+					editor_height = parseInt(this.render.style.height)-55 +'px';
+				} else {
+					if( parseInt(this.render.offsetWidth)<771 ) {
+						editor_height = parseInt(this.render.style.height)-111+'px';
+					} else {
+						editor_height = parseInt(this.render.style.height)-83+'px';
+					}
+				}
+
+				this.filebrowserUploadBaseUrl = this.options.imageUploadURL + "?callbackFunction="+this.id+".callback&subDir=" + this.options.subDir;
+				
+				CKEDITOR.replace( this.id+"_",{ //event에서 체크 할수 있도록 전역 변수로
+					id : this.id + "_",
+					customConfig : 'config_3.js',
+					//fullPage : false,
+					resize_enabled : this.options.resizable,
+					//enterMode : CKEDITOR.ENTER_BR,
+					width: '100%',
+					height : editor_height,
+					toolbarCanCollapse : false,
+					toolbar : this.options.menubar,
+					language : this.options.language,		//ko:korean
+					filebrowserUploadUrl : this.filebrowserUploadBaseUrl
+				});
+				//window.opener.CKEDITOR.tools.callFunction(CKEditorFuncNum, url)
+				var this_ = this;
+
+				CKEDITOR.instances[this.id+"_"].setData(' ');
+				CKEDITOR.instances[this.id+"_"].on( 'instanceReady', 
+						function(e)
+						{ 	
+							this_.handleOnLoadEvent();
+							this_.handleOtherClick(e);
+						}
+				);
+			} else if(this.options.version == "4.5.1"){
+				if( CKEDITOR.basePath.indexOf('externalJS/editor4.5.1/') == -1 ) {
+					CKEDITOR.config.skin = 'office2013,' + CKEDITOR.basePath+'externalJS/editor4.5.1/skins/office2013/';
+					CKEDITOR.basePath = CKEDITOR.basePath+'externalJS/editor4.5.1/';
+					CKEDITOR.config.contentsCss = CKEDITOR.basePath + 'contents.css' + WebSquare.BootLoader.getEngineCachePostfix("");
+				}
+				
+				var editor_height;
+
+				if( this.options.menubar == "simple" ) {
+					editor_height = parseInt(this.render.style.height)-55 +'px';
+				} else {
+					if( parseInt(this.render.offsetWidth)<771 ) {
+						editor_height = parseInt(this.render.style.height)-111+'px';
+					} else {
+						editor_height = parseInt(this.render.style.height)-83+'px';
+					}
+				}
+
+				this.filebrowserUploadBaseUrl = this.options.imageUploadURL + "?callbackFunction="+this.id+".callback&subDir=" + this.options.subDir;
+				
+				CKEDITOR.replace( this.id+"_",{ //event에서 체크 할수 있도록 전역 변수로
+					id : this.id + "_",
+					customConfig : 'config_3.js',
+					//fullPage : false,
+					resize_enabled : this.options.resizable,
+					//enterMode : CKEDITOR.ENTER_BR,
+					width: '100%',
+					height : editor_height,
+					toolbarCanCollapse : false,
+					toolbar : this.options.menubar,
+					language : this.options.language,		//ko:korean
+					filebrowserUploadUrl : this.filebrowserUploadBaseUrl
+				});
+				//window.opener.CKEDITOR.tools.callFunction(CKEditorFuncNum, url)
+				var this_ = this;
+
+				CKEDITOR.instances[this.id+"_"].setData(' ');
+				CKEDITOR.instances[this.id+"_"].on( 'instanceReady', 
+						function(e)
+						{ 	
+							this_.handleOnLoadEvent();
+							this_.handleOtherClick(e);
+						}
+				);
+			} else if(this.options.version == "4.3"){
+				if( CKEDITOR.basePath.indexOf('externalJS/editor4.3/') == -1 ) {
+					CKEDITOR.config.skin = 'office2003,' + CKEDITOR.basePath+'externalJS/editor4.3/skins/office2003/';
+					CKEDITOR.basePath = CKEDITOR.basePath+'externalJS/editor4.3/';
+					CKEDITOR.config.contentsCss = CKEDITOR.basePath + 'contents.css' + WebSquare.BootLoader.getEngineCachePostfix("");
+				}
+				
+				var editor_height;
+
+				if( this.options.menubar == "simple" ) {
+					editor_height = parseInt(this.render.style.height)-55 +'px';
+				} else {
+					if( parseInt(this.render.offsetWidth)<771 ) {
+						editor_height = parseInt(this.render.style.height)-111+'px';
+					} else {
+						editor_height = parseInt(this.render.style.height)-83+'px';
+					}
+				}
+
+				this.filebrowserUploadBaseUrl = this.options.imageUploadURL + "?callbackFunction="+this.id+".callback&subDir=" + this.options.subDir;
+				
+				CKEDITOR.replace( this.id+"_",{ //event에서 체크 할수 있도록 전역 변수로
+					id : this.id + "_",
+					customConfig : 'config_3.js',
+					//fullPage : false,
+					resize_enabled : this.options.resizable,
+					//enterMode : CKEDITOR.ENTER_BR,
+					width: '100%',
+					height : editor_height,
+					toolbarCanCollapse : false,
+					toolbar : this.options.menubar,
+					language : this.options.language,		//ko:korean
+					filebrowserUploadUrl : this.filebrowserUploadBaseUrl
+				});
+				//window.opener.CKEDITOR.tools.callFunction(CKEditorFuncNum, url)
+				var this_ = this;
+				CKEDITOR.instances[this.id+"_"].setData(' ');
+				CKEDITOR.instances[this.id+"_"].on( 'instanceReady', 
+						function(e)
+						{ 	
+							this_.handleOnLoadEvent();
+							this_.handleOtherClick(e);
+						}
+				);
+			} else {
+				if(CKEDITOR.basePath.indexOf('externalJS/editor/') == -1) {
+					CKEDITOR.config.skin = 'office2003,' + CKEDITOR.basePath+'externalJS/editor/office2003/';
+					CKEDITOR.basePath = CKEDITOR.basePath+'externalJS/editor/';
+					CKEDITOR.config.contentsCss = CKEDITOR.basePath + 'contents.css' + WebSquare.BootLoader.getEngineCachePostfix("");
+				} else {
+					CKEDITOR.config.skin = 'office2003,' + CKEDITOR.basePath+'/office2003/';
+					CKEDITOR.config.contentsCss = CKEDITOR.basePath + 'contents.css' + WebSquare.BootLoader.getEngineCachePostfix("");
+				}
+
+				var editor_height=null;
+
+				if(this.options.menubar == "simple") {
+					editor_height = parseInt(this.render.style.height)-55 +'px';
+				} else {
+					if(parseInt(this.render.offsetWidth)<771) {
+						editor_height = parseInt(this.render.style.height)-111+'px';
+					} else {
+						editor_height = parseInt(this.render.style.height)-83+'px';
+					}
+				}
+				this.filebrowserUploadBaseUrl = this.options.imageUploadURL + "?callbackFunction="+this.id+".callback&subDir=" + this.options.subDir;
+				CKEDITOR.replace( this.id+"_",{ //event에서 체크 할수 있도록 전역 변수로
+					customConfig : 'config_3.js',
+					//fullPage : false,
+					resize_enabled : this.options.resizable,
+					//enterMode : CKEDITOR.ENTER_BR,
+					width: '100%',
+					height : editor_height,
+					toolbarCanCollapse : false,
+					toolbar : this.options.menubar,
+					language : this.options.language,		//ko:korean
+					filebrowserUploadUrl : this.filebrowserUploadBaseUrl
+				});
+				
+				
+				//window.opener.CKEDITOR.tools.callFunction(CKEditorFuncNum, url)
+				var this_ = this;
+				CKEDITOR.instances[this.id+"_"].setData(' ');
+				CKEDITOR.instances[this.id+"_"].on( 'instanceReady', 
+						function(e)
+						{ 	
+							this_.handleOnLoadEvent();
+							this_.handleOtherClick(e);
+						}
+				);
+			}
+		} else {
+			if(this.options.editorType == "2.0") {
+				/*if(WebSquare.core.browserCheck.moz) {
+					//window.setTimeout("iframeElement.style.display='block';",1000);
+					var iframeElement = document.getElementById(this.id);
+					//alert(iframeElement)
+					iframeElement.contentWindow.document.body.children[0].style.height = "100%";
+				}*/
+			} else if( WebSquare.util.isIEAllVersion(9) || WebSquare.util.isIEAllVersion(11) || WebSquare.util.isIEAllVersion(10) || WebSquare.core.browserCheck.ipad ){
+					//brower가 IE10,11일 경우 경로를 달리하여 기본동작을 설정합니다.
+					if( CKEDITOR.basePath.indexOf('externalJS/editor4.3/') == -1 ) {
+						CKEDITOR.config.skin = 'office2003,' + CKEDITOR.basePath+'externalJS/editor4.3/skins/office2003/';
+						CKEDITOR.basePath = CKEDITOR.basePath+'externalJS/editor4.3/';
+						CKEDITOR.config.contentsCss = CKEDITOR.basePath + 'contents.css' + WebSquare.BootLoader.getEngineCachePostfix("");
+					}
+					
+					var editor_height;
+
+					if( this.options.menubar == "simple" ) {
+						editor_height = parseInt(this.render.style.height)-55 +'px';
+					} else {
+						if( parseInt(this.render.offsetWidth)<771 ) {
+							editor_height = parseInt(this.render.style.height)-111+'px';
+						} else {
+							editor_height = parseInt(this.render.style.height)-83+'px';
+						}
+					}
+
+					this.filebrowserUploadBaseUrl = this.options.imageUploadURL + "?callbackFunction="+this.id+".callback&subDir=" + this.options.subDir;
+					
+					CKEDITOR.replace( this.id+"_",{ //event에서 체크 할수 있도록 전역 변수로
+						id : this.id + "_",
+						customConfig : 'config_3.js',
+						//fullPage : false,
+						resize_enabled : this.options.resizable,
+						//enterMode : CKEDITOR.ENTER_BR,
+						width: '100%',
+						height : editor_height,
+						toolbarCanCollapse : false,
+						toolbar : this.options.menubar,
+						language : this.options.language,		//ko:korean
+						filebrowserUploadUrl : this.filebrowserUploadBaseUrl
+					});
+					//window.opener.CKEDITOR.tools.callFunction(CKEditorFuncNum, url)
+					var this_ = this;
+					CKEDITOR.instances[this.id+"_"].setData(' ');
+					CKEDITOR.instances[this.id+"_"].on( 'instanceReady', 
+							function(e)
+							{ 	
+								this_.handleOnLoadEvent();
+								this_.handleOtherClick(e);
+							}
+					);
+			} else if( WebSquare.util.isSpartan() ){
+				if( CKEDITOR.basePath.indexOf('externalJS/editor4.5.1/') == -1 ) {
+					CKEDITOR.config.skin = 'office2013,' + CKEDITOR.basePath+'externalJS/editor4.5.1/skins/office2013/';
+					CKEDITOR.basePath = CKEDITOR.basePath+'externalJS/editor4.5.1/';
+					CKEDITOR.config.contentsCss = CKEDITOR.basePath + 'contents.css' + WebSquare.BootLoader.getEngineCachePostfix("");
+				}
+				
+				var editor_height;
+
+				if( this.options.menubar == "simple" ) {
+					editor_height = parseInt(this.render.style.height)-55 +'px';
+				} else {
+					if( parseInt(this.render.offsetWidth)<771 ) {
+						editor_height = parseInt(this.render.style.height)-111+'px';
+					} else {
+						editor_height = parseInt(this.render.style.height)-83+'px';
+					}
+				}
+
+				this.filebrowserUploadBaseUrl = this.options.imageUploadURL + "?callbackFunction="+this.id+".callback&subDir=" + this.options.subDir;
+				
+				CKEDITOR.replace( this.id+"_",{ //event에서 체크 할수 있도록 전역 변수로
+					id : this.id + "_",
+					customConfig : 'config_3.js',
+					//fullPage : false,
+					resize_enabled : this.options.resizable,
+					//enterMode : CKEDITOR.ENTER_BR,
+					width: '100%',
+					height : editor_height,
+					toolbarCanCollapse : false,
+					toolbar : this.options.menubar,
+					language : this.options.language,		//ko:korean
+					filebrowserUploadUrl : this.filebrowserUploadBaseUrl
+				});
+				//window.opener.CKEDITOR.tools.callFunction(CKEditorFuncNum, url)
+				var this_ = this;
+
+				CKEDITOR.instances[this.id+"_"].setData(' ');
+				CKEDITOR.instances[this.id+"_"].on( 'instanceReady', 
+						function(e)
+						{ 	
+							this_.handleOnLoadEvent();
+							this_.handleOtherClick(e);
+						}
+				);
+			} else {
+				//IE 6,7,8,9
+				//CKEDITOR.basePath를 특정 URL로 지정하기 위해서는 websquare.html 에 CKEDITOR_BASEPATH 변수에 URL을 지정하면 됨.
+				//ex) var CKEDITOR_BASEPATH = WebSquareExternal.baseURI
+				if(CKEDITOR.basePath.indexOf('externalJS/editor/') == -1) {
+					CKEDITOR.config.skin = 'office2003,' + CKEDITOR.basePath+'externalJS/editor/office2003/';
+					CKEDITOR.basePath = CKEDITOR.basePath+'externalJS/editor/';
+					CKEDITOR.config.contentsCss = CKEDITOR.basePath + 'contents.css' + WebSquare.BootLoader.getEngineCachePostfix("");
+				} else {
+					CKEDITOR.config.skin = 'office2003,' + CKEDITOR.basePath+'/office2003/';
+					CKEDITOR.config.contentsCss = CKEDITOR.basePath + 'contents.css' + WebSquare.BootLoader.getEngineCachePostfix("");
+				}
+
+				var editor_height=null;
+
+				if(this.options.menubar == "simple") {
+					editor_height = parseInt(this.render.style.height)-55 +'px';
+				} else {
+					if(parseInt(this.render.offsetWidth)<771) {
+						editor_height = parseInt(this.render.style.height)-111+'px';
+					} else {
+						editor_height = parseInt(this.render.style.height)-83+'px';
+					}
+				}
+				this.filebrowserUploadBaseUrl = this.options.imageUploadURL + "?callbackFunction="+this.id+".callback&subDir=" + this.options.subDir;
+				CKEDITOR.replace( this.id+"_",{ //event에서 체크 할수 있도록 전역 변수로
+					customConfig : 'config_3.js',
+					//fullPage : false,
+					resize_enabled : this.options.resizable,
+					//enterMode : CKEDITOR.ENTER_BR,
+					width: '100%',
+					height : editor_height,
+					toolbarCanCollapse : false,
+					toolbar : this.options.menubar,
+					language : this.options.language,		//ko:korean
+					filebrowserUploadUrl : this.filebrowserUploadBaseUrl
+				});
+				
+				
+				//window.opener.CKEDITOR.tools.callFunction(CKEditorFuncNum, url)
+				var this_ = this;
+				CKEDITOR.instances[this.id+"_"].setData(' ');
+				CKEDITOR.instances[this.id+"_"].on( 'instanceReady', 
+						function(e)
+						{ 	
+							this_.handleOnLoadEvent();
+							this_.handleOtherClick(e);
+						}
+				);
+			} 
+		}
+
+	} catch (e) {
+		WebSquare.exception.printStackTrace( e );
+	}
+};
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		finalize
+ * @cdate		20110708
+ * @version		2.0 
+ * @author		seamelody
+ * @description	editor 메모리 정리
+ * @param
+ * @see
+ * @return
+ * @exception
+ * @sample
+ * @hidden		true
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.finalize = function(){	// remove child && this
+	["WebSquare.uiplugin.editor.finalize"];
+	try {
+		WebSquare.xfControl.prototype.finalize.call(this);
+		if(CKEDITOR.instances[this.id+"_"]) {
+			CKEDITOR.instances[this.id+"_"].destroy(true);
+		}
+		$("#"+this.id).find('iframe').contents().off("mousedown");
+	} catch(e) {WebSquare.exception.printStackTrace(e, null , this);}
+};
+//-----------------------------------------------------------------------------
+// <Model>
+
+//-----------------------------------------------------------------------------
+// <API>
+
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		setText
+ * @cdate		20091211
+ * @version		2.0 
+ * @author		남궁혁
+ * @description	value를 editor에 textarea에 입력합니다.(html태그를 text로 입력합니다.)
+ * @param		<String:Y> value editor에 입력하려는 값
+ * @see
+ * @return
+ * @exception
+ * @sample
+ * |editor1.setText("editor\n setText(value) API.");
+ * |editor
+ * |setText(value) API.
+ * |위와 같이 에디터에 표시된다.
+ * @hidden		false
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.setText = function(value){
+	["WebSquare.uiplugin.editor.setText"];
+	try {
+		var readOnly = this.getReadOnly();
+		var disabled = this.getDisabled();
+		if(readOnly || disabled){
+			// insertText는 disabled 되어있을 경우 올바로 작동하지 않는다. 따라서 우선 disabled를 해제한 후에 데이터를 세팅한 후, applyReadOnlyDisabled함수를 통해 다시 disabled 또는 readonly를 적용시킨다.
+			this.setDisabled(false);
+			this.options.disabled = disabled;
+		}
+		if(this.options.editorType == "2.0") {
+			var oEditor = this.render.contentWindow.W2editorAPI.GetInstance('content');
+			var text = value.replace( /<[^>]*>/ig, '');
+			oEditor.SetHTML(text);
+		} else if( WebSquare.util.isIEAllVersion(9) || WebSquare.util.isIEAllVersion(11) || WebSquare.util.isIEAllVersion(10) || WebSquare.util.isSpartan() || WebSquare.core.browserCheck.ipad ) {
+			var _this = this;
+
+			if(!this.loaded) {
+				this.startText = value;
+				return;
+			}
+			
+			CKEDITOR.instances[this.id+"_"].setData('',
+			    	function(){ this.insertText(value);
+					_this.applyReadOnlyDisabled();
+			});
+		} else {
+			var _this = this;
+			CKEDITOR.instances[this.id+"_"].setData('',
+				function(){ this.insertText(value);
+				_this.applyReadOnlyDisabled();
+			});
+		} 
+	} catch (e) {WebSquare.exception.printStackTrace( e );}
+};
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		getText
+ * @cdate		20091211
+ * @version		2.0 
+ * @author		남궁혁
+ * @description	editor의 textarea에서 html태그를 무시하고 text만 반환합니다.
+ * @param
+ * @see
+ * @return 		<String:Y> textarea의 text부분
+ * @exception
+ * @sample
+ * |var returnValue = editor1.getText();
+ * |returnValue는 에디터에 입력된 문자열이다. 
+ * @hidden		false
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.getText = function(){
+	["WebSquare.uiplugin.editor.getText"];
+	try {
+		if(this.options.editorType == "2.0") {
+	        var oEditor = this.render.contentWindow.W2editorAPI.GetInstance('content');
+	       	return oEditor.GetXHTML().replace( /<[^>]*>/ig, '');
+		} else {
+			return CKEDITOR.instances[this.id+"_"].document.getBody().getText();
+		}
+	} catch (e ) {WebSquare.exception.printStackTrace( e );}
+};
+
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		setHTML
+ * @cdate		20091211
+ * @version		2.0 
+ * @author		남궁혁
+ * @description	html을 editor에 textarea에 입력합니다.(html태그를 해석하여 입력합니다.)
+ * @param		<String:Y> html editor에 입력하려는 html소스
+ * @see
+ * @return
+ * @exception
+ * @sample		
+ * |editor1.setHTML('<em><span style="font-size:14px;">editor setHTML(html) API.</span></em>');
+ * |폰트크기가 14px이고 이탤릭체로 "editor setHTML(html) API" 문자열이 표시된다.
+ * @hidden		false
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.setHTML = function(html){
+	["WebSquare.uiplugin.editor.setHTML"];
+	try {
+		var readOnly = this.getReadOnly();
+		var disabled = this.getDisabled();
+
+		if (readOnly || disabled) {
+			this.setDisabled(false);
+			this.options.disabled = disabled;
+		}
+
+		var _this = this;
+		var editor_instance = CKEDITOR.instances[this.id+"_"];
+		if (this.options.editorType == "2.0") {
+			var oEditor = this.render.contentWindow.W2editorAPI.GetInstance('content');
+			oEditor.SetHTML(html);
+		} else if( WebSquare.util.isIEAllVersion(9) || WebSquare.util.isIEAllVersion(11) || WebSquare.util.isIEAllVersion(10) || WebSquare.util.isSpartan() || WebSquare.core.browserCheck.ipad ) { 
+			if(!this.loaded) {
+				this.startHtml = html;
+				return;
+			}
+			editor_instance.editable().setData(html,
+				function(){ 
+					_this.applyReadOnlyDisabled();
+				}
+			);
+		} else {
+			editor_instance.setData(html,
+			    	function(){ 
+					_this.applyReadOnlyDisabled();
+			});
+		}
+	} catch (e ) {WebSquare.exception.printStackTrace( e );}
+};
+
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		getHTML
+ * @cdate		20091211
+ * @version		2.0 
+ * @author		남궁혁
+ * @description	editor의 textarea에서 html태그를 포함하여 모두 반환합니다.
+ * @param	
+ * @see
+ * @return		<String:Y> textarea에 입력된 html소스
+ * @exception
+ * @sample		
+ * |var returnValue = editor1.getHTML();
+ * |returnValue는 입력된 문자열의 html 소스이다.
+ * |예) <strong><span style="color:#ff0000;">editor API<br />
+ * |	1. getHTML()<br />
+ * |	2. getText()</span></strong>
+ * @hidden		false
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.getHTML = function(){
+	["WebSquare.uiplugin.editor.getHTML"];
+	try {
+		if (this.options.editorType == "2.0") {
+			var oEditor = this.render.contentWindow.W2editorAPI.GetInstance('content');
+			var htmlString = oEditor.GetXHTML();
+			htmlString = htmlString.wq_replaceAll('src="','src="'+this.options.src);
+			return htmlString;
+		} else {
+			return CKEDITOR.instances[this.id+"_"].getData();
+		}
+	} catch (e) {WebSquare.exception.printStackTrace( e );}
+};
+
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		focus
+ * @cdate		20091211
+ * @version		2.0 
+ * @author		남궁혁
+ * @description	컴포넌트의 기본 동작을 설정합니다.
+ * @param
+ * @see
+ * @return
+ * @exception
+ * @sample
+ * @hidden		true
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.focus = function(){
+	["WebSquare.uiplugin.editor.focus"];
+	try {
+		if (this.options.editorType == "2.0") {
+			var oEditor = this.render.contentWindow.W2editorAPI.GetInstance('content');
+			oEditor.Focus();
+		} else {
+			return CKEDITOR.instances[this.id+"_"].focus();
+		}
+	} catch (e ) {WebSquare.exception.printStackTrace( e );}
+};
+
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		callback
+ * @cdate		20091211
+ * @version		2.0 
+ * @author		남궁혁
+ * @description	upload시에 호출되는 콜백 함수입니다.
+ * @param	
+ * @see
+ * @return
+ * @exception
+ * @sample
+ * @hidden		true
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.callback = function(str){
+	["WebSquare.uiplugin.editor.callback"];
+	//<ret><key>C://folderName_540c9969-0d0d-499d-96d4-6caab2b7d7cb</key><storedFileList>sccaterChart_sample.bmp</storedFileList><localfileList>sccaterChart_sample.bmp</localfileList><deniedList></deniedList></ret>
+	var doc = WebSquare.xml.parse(str);
+	var fileURL;
+	var fileName;
+	var funcNum;
+	var deniedCode;
+	fileURL = WebSquare.xml.getValue(doc,"ret/key");
+	fileURL = WebSquare.xml.decode(fileURL);
+	fileName = WebSquare.xml.getValue(doc,"ret/storedFileList");
+//	fileName = WebSquare.xml.decode(fileName);
+	funcNum = WebSquare.xml.getValue(doc,"ret/funcNum"); //기본적인 ckeditor 스펙 파일 업로드시 넘긴 funcNum을  다시 받아서 호출해야함(정대순 코딩)
+	deniedCode = WebSquare.xml.getValue(doc,"ret/deniedCodeList");
+
+	if( fileName && fileName.length > 0 ) {
+		if(this.options.absolutePath == true) {
+			fileURL = fileURL.wq_replaceAll('/','\\');
+			CKEDITOR.tools.callFunction(funcNum,fileURL+"\\"+fileName+"" );	
+		} else {
+			if(this.options.imageLoadURL.indexOf("?") > -1) {
+				CKEDITOR.tools.callFunction(funcNum, this.options.imageLoadURL + "&subDir=" + this.options.subDir + "&fileName="+escape(encodeURIComponent(fileName)));			
+			} else {
+				CKEDITOR.tools.callFunction(funcNum, this.options.imageLoadURL + "?subDir=" + this.options.subDir + "&fileName="+escape(encodeURIComponent(fileName)));			
+			}
+		}
+	} else {
+		var deniedMessage = "";
+		if(deniedCode == '101') {
+			deniedMessage = "Invalid file extension.";
+		} else if(deniedCode == '102') {
+			deniedMessage = "File Size has been exceed.";
+		} else {
+			deniedMessage = "Unknown server error.";
+		}
+		CKEDITOR.tools.callFunction(funcNum,'', deniedMessage);
+
+	}
+};
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		setDisabled
+ * @cdate		20120423
+ * @version		2.0 
+ * @author		전병진
+ * @description	editor를 disabled 처리 한다.
+ * @param		<Boolean:N>	disabled Disabled 속성을 활성화 시키려면 true 비활성화 시키려면 false 
+ * @see
+ * @return
+ * @exception
+ * @sample
+ * @hidden		false
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.setDisabled = function( disabled ) {
+	["WebSquare.uiplugin.editor.setDisabled"];
+
+	try {
+		if( this.options.editorType === "2.0" ) {
+			return;
+		}
+		
+		disabled = WebSquare.util.getBoolean(disabled);
+		this.options.disabled = disabled;
+		var editorTop = null;
+		var editor = null;
+		var editorBottom = null;
+
+		if( WebSquare.util.isIEAllVersion(9) || WebSquare.util.isIEAllVersion(11) || WebSquare.util.isIEAllVersion(10)  || WebSquare.util.isSpartan() || WebSquare.core.browserCheck.ipad ) {
+			var disabledDiv = document.getElementById( this.id + "_disabled_div" );
+			editorTop = document.getElementById(CKEDITOR.instances[this.id+"_"].id + "_top");
+			editor = document.getElementById(CKEDITOR.instances[this.id+"_"].id + "_contents");
+		} else {
+			var disabledDiv = document.getElementById( this.id + "_disabled_div" );
+			editorTop = document.getElementById("cke_top_" + this.id + "_");
+			editor = document.getElementById("cke_contents_" + this.id + "_");
+		}
+
+		if( !editorTop && !editor ) {
+			return;
+		}
+
+		var iframe = editor.getElementsByTagName("iframe")[0];
+		var editorFrame = iframe.contentWindow;
+
+		if( disabled == false && disabledDiv ) {
+			//this.render.removeChild( disabledDiv );
+			disabledDiv.style.visibility = "hidden";
+			disabledDiv.style.display = "none";
+			disabledDiv.hidden=true;
+
+			if( editorFrame && !this.getReadOnly()) {
+				editorFrame.document.documentElement.contentEditable = true;
+				editorFrame.document.body.contentEditable = true;
+			}
+		} else if( disabled == true && !disabledDiv ) {
+			var disabled_div = document.createElement("div");
+			disabled_div.setAttribute("id", this.id + "_disabled_div" );
+			var gheigth=null;
+			if( WebSquare.util.isIEAllVersion(11) || WebSquare.util.isIEAllVersion(10) || WebSquare.util.isSpartan() ) {
+				var editorTop_height = document.getElementById(CKEDITOR.instances[this.id+"_"].id + "_top").offsetHeight;
+				var editorContents_height = document.getElementById(CKEDITOR.instances[this.id+"_"].id + "_contents").offsetHeight;
+				var editorBottom_height = document.getElementById(CKEDITOR.instances[this.id+"_"].id + "_bottom").offsetHeight;
+				gheigth = editorTop_height+editorContents_height+editorBottom_height;
+			} else {
+				var editorTop_height = document.getElementById("cke_top_" + this.id + "_").offsetHeight;
+				var editorContents_height = document.getElementById("cke_contents_" + this.id + "_").offsetHeight;
+				var editorBottom_height = document.getElementById("cke_bottom_"+this.id+"_").offsetHeight;
+				gheigth = editorTop_height+editorContents_height+editorBottom_height;
+			}
+			var style=null;
+
+			if( this.options.transParentDisabled == true ){
+				style = "background-color: black; position: absolute; left:0px; top:0px; height:" + gheigth + "px; width: 100%; filter : alpha(opacity=0); opacity : 0.0;";
+			} else {
+				if( WebSquare.util.isSpartan() ){
+					style = "background-color: black; position: absolute; left:0px; top:0px; height:" + gheigth + "px; width: 100%; filter : alpha(opacity=30); opacity : 0.3; border:1px solid black;";
+				} else {
+					style = "background-color: black; position: absolute; left:0px; top:0px; height:" + gheigth + "px; width: 100%; filter : alpha(opacity=30); opacity : 0.3;";
+				}
+				
+			}
+			
+			disabled_div.style.cssText = style;
+			this.render.appendChild( disabled_div );
+
+			// contents 쪽은 다음과 같이 할 수 있다.
+			editorFrame.document.documentElement.contentEditable = false;
+			editorFrame.document.body.contentEditable = false;
+
+		} else if(disabled == true && disabledDiv){
+			editorFrame.document.documentElement.contentEditable = true;
+			editorFrame.document.body.contentEditable = true;
+
+			disabledDiv.hidden = false;
+			disabledDiv.style.visibility = "visible";
+			disabledDiv.style.display = "block";
+		}
+		return disabled;
+
+	} catch (e) {
+		WebSquare.exception.printStackTrace( e );
+	}
+};
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		setReadOnly
+ * @cdate		20120423
+ * @version		2.0 
+ * @author		전병진
+ * @description	editor를 readOnly 처리 한다.
+ * @param		<Boolean:N>	readOnly readOnly 속성을 활성화 시키려면 true 비활성화 시키려면 false
+ * @see
+ * @return
+ * @exception
+ * @sample
+ * @hidden		false
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.setReadOnly = function( readOnly ) {
+	["WebSquare.uiplugin.editor.doReadOnly"];
+
+	try {
+		if( this.options.editorType === "2.0" ) {
+			return;
+		}
+
+		readOnly = WebSquare.util.getBoolean(readOnly);
+		this.options.readOnly = readOnly;
+		if(this.options.version == "4.5.11") {
+			if (CKEDITOR.instances[this.id+"_"].editable()) {
+				CKEDITOR.instances[this.id+"_"].setReadOnly(readOnly);
+			}	
+		} else {
+			CKEDITOR.instances[this.id+"_"].setReadOnly(readOnly);
+		}
+		
+		// if( !WebSquare.util.isIEAllVersion(11) && !WebSquare.util.isIEAllVersion(10)) {
+		// 	var editor = document.getElementById("cke_contents_" + this.id + "_");
+		// } else {
+		// 	// editor4.3의 id생성방법이 달라져서 수정하였습니다.
+		// 	var editor = document.getElementById(CKEDITOR.instances[this.id+"_"].id + "_contents");
+		// }
+
+		// if( !editor ) {
+		// 	return;
+		// }
+		
+		
+
+		// var iframe = editor.getElementsByTagName("iframe")[0];
+		// var editorFrame = iframe.contentWindow;
+
+		// if( readOnly == false ) {
+		// 	if( editorFrame ) {
+		// 		// if(WebSquare.util.isChrome()){
+		// 		// 	editorFrame.document.documentElement.contentEditable = true;
+		// 		// }
+		// 		// editorFrame.document.body.contentEditable = true;
+		// 		CKEDITOR.instances[this.id+"_"].setReadOnly(readOnly);
+		// 	}
+		// } else if( readOnly == true ) {
+		// 	// contents 쪽은 다음과 같이 할 수 있다.
+		// 	if( editorFrame ) {
+		// 		// if(WebSquare.util.isChrome()){
+		// 		// 	editorFrame.document.documentElement.contentEditable = false;
+		// 		// }
+		// 		// editorFrame.document.body.contentEditable = false;
+		// 		CKEDITOR.instances[this.id+"_"].setReadOnly(readOnly);
+		// 	}
+		// }	
+		return readOnly;
+	} catch (e) {
+		WebSquare.exception.printStackTrace( e );
+	}
+};
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		setDomain
+ * @cdate		2012.06.01
+ * @version		2.0 
+ * @author		seamelody
+ * @description	CrossDomain 처리를 위해 Editor에 domain을 셋팅합니다.
+ * @param   	<String:N> domain domain 값이 없으면 WebSquare.util.setDomain으로 셋팅된 domain이 셋팅됩니다.
+ * @see
+ * @return
+ * @exception
+ * @sample
+ * @hidden		false
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.setDomain = function(domain){
+	if(! domain ) domain = WebSquare.domain;
+	if( domain && domain.wq_trim().length > 0 ) {
+		var uploadUrl = this.filebrowserUploadBaseUrl;
+		if( uploadUrl.indexOf("?") > -1 ) {
+			uploadUrl += "&";
+		} else {
+			uploadUrl += "?";
+		}
+		uploadUrl += "domain=" + WebSquare.text.URLEncoder(domain);
+		CKEDITOR.instances[this.id+"_"].config.filebrowserUploadUrl = uploadUrl;
+	} else{
+		CKEDITOR.instances[this.id+"_"].config.filebrowserUploadUrl = this.filebrowserUploadBaseUrl;
+	}
+};
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		getDomain
+ * @cdate		2013.03.56
+ * @version		2.0 
+ * @author		신상훈
+ * @description	Editor에 세팅된 domain값을 가져옵니다.
+ * @see
+ * @return		<String:Y> editor에 설정된 domain값.
+ * @exception
+ * @sample
+ * @hidden		false
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.getDomain = function(){
+	return CKEDITOR.instances[this.id+"_"].config.filebrowserUploadUrl;
+};
+
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		getImageLoadURL
+ * @cdate		2012.09.14
+ * @version		2.0 
+ * @author		seamelody
+ * @description	imageLoadURL을 얻어옵니다.
+ * @see
+ * @return		<String:Y> editor에 설정된 imageLoadURL
+ * @exception
+ * @sample
+ * @hidden		false
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.getImageLoadURL = function(){
+	return this.options.imageLoadURL;
+};
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		setImageLoadURL
+ * @cdate		2012.09.14
+ * @version		2.0 
+ * @author		seamelody
+ * @description	imageLoadURL을 셋팅합니다.
+ * @param   	<String:N> imageLoadURL imageLoadURL
+ * @see
+ * @return
+ * @exception
+ * @sample
+ * @hidden		false
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.setImageLoadURL = function(imageLoadURL){
+	if(!imageLoadURL) return;
+	this.options.imageLoadURL = imageLoadURL;
+};
+//-----------------------------------------------------------------------------
+// <Event>
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		handleOnLoadEvent
+ * @cdate		20091211
+ * @version		2.0 
+ * @author		남궁혁
+ * @description	editor의 로드가 끝났을 때의 동작을 설정합니다.
+ * @param
+ * @see
+ * @return
+ * @exception
+ * @sample
+ * @hidden		true
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.handleOnLoadEvent = function(){
+	["WebSquare.uiplugin.editor.handleOnLoadEvent"];
+	if(this.options.editorType == "2.0") {
+		var iframeElement = document.getElementById(this.id);
+		//alert(this.id)
+		iframeElement.style.display='block';
+		if(WebSquare.core.browserCheck.moz) {
+			//window.setTimeout("iframeElement.style.display='block';",1000);
+			
+			//alert(iframeElement)
+			iframeElement.contentWindow.document.body.children[0].style.height = "100%";
+		}
+		
+	}
+
+	if( WebSquare.core.browserCheck.ipad ){ 
+		var contentsDiv = document.getElementById(CKEDITOR.instances[this.id+"_"].id + "_contents");
+		var style = contentsDiv.getAttribute("style");
+		contentsDiv.setAttribute("style",style+"overflow-y: auto;-webkit-overflow-scrolling: touch");
+	}
+
+	this.applyReadOnlyDisabled();
+
+	this.loaded = true;
+	
+	if(this.startText != "") {
+		this.setText(this.startText);
+	}
+	if(this.startHtml != "") {
+		this.setHTML(this.startHtml);
+	}
+	
+	WebSquare.event.fireEvent(this, "onload");
+	
+};
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		applyReadOnlyDisabled
+ * @cdate		20130322
+ * @version		2.0 
+ * @author		신상훈
+ * @description	editor의 readOnly, disabled속성을 적용합니다.
+ * @param
+ * @see
+ * @return
+ * @exception
+ * @sample
+ * @hidden		true
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.applyReadOnlyDisabled = function(){
+	["WebSquare.uiplugin.editor.applyReadOnlyDisabled"];
+	if(this.getDisabled()){
+		this.setDisabled(true);
+	} else if(this.getReadOnly()){
+		this.setReadOnly(true);
+	}
+};
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		resize
+ * @cdate		20130322
+ * @version		5.0 
+ * @author		김창옥
+ * @description	editor의 resize를  적용합니다.
+ * @param 		<Number:Y> editor width 값 
+ * @param 		<Number:Y> editor height 값 
+ * @exception		
+ * @sample
+ * @hidden		false
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.resize = function(width,height){
+	try {
+		if(this.options.resizable){
+			CKEDITOR.instances[this.id+"_"].resize( width , height ,true);
+		} else {
+			WebSquare.logger.printLog( "Set configuration resize true");
+		}
+	} catch (e) {
+		WebSquare.exception.printStackTrace( e );
+	}
+}
+
+/**
+ * @method		WebSquare.uiplugin.editor
+ * @name		handleOtherClick
+ * @cdate		20150907
+ * @version		5.0 
+ * @author		김창옥
+ * @description	
+ * @exception		
+ * @sample
+ * @hidden		true
+ * @deprecated
+ */
+WebSquare.uiplugin.editor.prototype.handleOtherClick = function(e){
+	try {
+		$("#"+this.id).find('iframe').contents().on(
+			{
+				mousedown: function(e) {
+	    				WebSquare.getBody().getLayerListener().hideAll();
+ 				}
+ 			}
+		);
+	} catch (e) {
+		WebSquare.exception.printStackTrace( e );
+	}
+}
+
+
+WebSquare.BootLoader.browserCheck.spartan = /Edge/.test(navigator.userAgent);
+
+WebSquare.util.isSpartan = function (){try{return WebSquare.BootLoader.browserCheck.spartan;}catch(e){WebSquare.exception.printStackTrace(e);}};

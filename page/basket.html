@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>삼육대학교 수강신청 장바구니 경쟁률 현황</title>
+    <meta name="viewport" content="user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,width=device-width" />
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="삼육대학교, 수강신청, 장바구니, 경쟁률, 실시간" />
+    <meta name="description" content="삼육대학교 수강신청 장바구니 경쟁률을 실시간으로 확인할 수 있습니다." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="삼육대학교 수강신청 장바구니 경쟁률 현황" />
+    <meta property="og:image" content="https://www.syu.kr/assets/img/banner.png" />
+    <meta property="og:url" content="https://sugang.syu.kr/basket" />
+    <meta property="og:description" content="삼육대학교 수강신청 장바구니 경쟁률을 실시간으로 확인할 수 있습니다." />
+    <link rel="icon" href="https://sugang.syu.kr/favicon.ico" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13FLHMGH10"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+
+      gtag('config', 'G-13FLHMGH10')
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <script type="text/javascript" src="/js/basket.js"></script>
+    <style>
+      @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+      body {
+        font-size: 17px;
+        font-family: 'NanumSquare', sans-serif;
+        /* overflow-y: scroll; */
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .dropdown-menu {
+        left: 50% !important;
+        right: auto !important;
+        transform: translate(-50%, 0) !important;
+      }
+      .title {
+        font-size: 24pt;
+      }
+      .drag {
+        padding: 0px 0px 10px 0px;
+        font-size: 9px;
+        color: #ff6262;
+        display: none;
+      }
+      .table-dark {
+        margin: 0;
+      }
+      table {
+        table-layout: fixed;
+        width: 100%;
+      }
+      .hidden-col {
+        display: none;
+        width: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+      }
+      .col-rank,
+      .col-courseNo {
+        width: 20% !important;
+      }
+      .col-subject {
+        width: 99% !important;
+      }
+      .col-courseNo,
+      .col-count,
+      .col-rate {
+        width: auto;
+      }
+      .update-time {
+        padding-block: 5px;
+        font-size: 9px;
+        color: #999;
+      }
+      .update-time #time {
+        color: #666;
+      }
+      @media (max-width: 992px) {
+        /* .table-size {
+          height: 1705px;
+        } */
+        .title {
+          font-size: 20pt;
+        }
+        table {
+          font-size: 15px;
+        }
+        #professor {
+          font-size: 13pt;
+        }
+        .table > :not(caption) > * > * {
+          /* padding: 60px; */
+          /* font-size: 14px; */
+          padding: 0.3rem 0.3rem;
+        }
+        .rank {
+          width: 23px;
+        }
+      }
+      @media (max-width: 768px) {
+        /* .table-size {
+          height: 1250px;
+        } */
+        .drag {
+          display: inline-block;
+        }
+        .title {
+          font-size: 18pt;
+        }
+        table {
+          font-size: 11px;
+        }
+        #professor {
+          font-size: 9pt;
+        }
+        .table > :not(caption) > * > * {
+          padding: 0.2rem 0.2rem;
+          /* padding: 60px; */
+          /* font-size: 11px; */
+        }
+        .rank {
+          width: 16px;
+        }
+      }
+      @media (max-width: 550px) {
+        /* .table-size {
+          height: 918px;
+        } */
+        .drag {
+          display: inline-block;
+        }
+        .title {
+          font-size: 13pt;
+        }
+        table {
+          font-size: 10px !important;
+        }
+        #professor {
+          font-size: 5pt;
+        }
+        .table > :not(caption) > * > * {
+          padding: 0.1rem 0.1rem;
+          /* padding: 60px; */
+          /* font-size: 8px; */
+        }
+        .rank {
+          width: 13px;
+        }
+        label,
+        .search-btn {
+          font-size: 7pt;
+        }
+        .search-label input[type='search'] {
+          width: 130px !important;
+        }
+
+        .search-icon {
+          width: 12px !important;
+          height: 12px !important;
+          padding: 0 !important;
+          box-sizing: content-box !important;
+          margin-left: 6px !important;
+          line-height: 0 !important;
+        }
+
+        @media (max-width: 550px) {
+          #number-button-wrapper {
+            gap: 4px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+          }
+
+          #number-button-wrapper .page,
+          #number-button-wrapper .nav,
+          #number-button-wrapper .dots {
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            font-size: 14px;
+            text-align: center;
+          }
+
+          #number-button-wrapper .dots {
+            line-height: 28px;
+            font-size: 14px;
+          }
+        }
+      }
+    </style>
+    <style>
+      .col-toggle-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin: 10px 0;
+        font-size: 17px;
+        font-weight: bold;
+      }
+
+      .col-toggle-wrapper label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 8px;
+        background: #f5f5f5;
+        border-radius: 6px;
+        cursor: pointer;
+
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
+
+      .col-toggle-wrapper label:hover {
+        background: #e0e0e0;
+      }
+
+      .col-toggle-wrapper input[type='checkbox'] {
+        accent-color: #9c9c9c;
+        width: 14px;
+        height: 14px;
+      }
+    </style>
+    <style>
+      input[type='radio'] {
+        display: none;
+      }
+
+      .col-radio-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        margin: 10px 0;
+        font-size: 17px;
+        font-weight: bold;
+      }
+
+      .semester-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 8px;
+        background: #f5f5f5;
+        border-radius: 6px;
+        cursor: pointer;
+
+        white-space: nowrap;
+
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
+
+      input[type='radio']:checked + .semester-btn {
+        background-color: #777777;
+        color: white;
+      }
+
+      .semester-btn:hover {
+        background: #e0e0e0;
+      }
+    </style>
+    <style>
+      .header {
+        padding-top: 1.5rem;
+        text-align: center;
+      }
+
+      .title {
+        padding: 0.75rem 0;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .notice-box {
+        margin: 0.75rem 0;
+        padding: 12px 14px;
+        text-align: center;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        background: #fafafa;
+      }
+
+      .notice-title {
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+
+      .notice-link {
+        font-size: 13px;
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .notice-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+    <style>
+      .search-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        margin: 10px 0;
+        font-size: 17px;
+      }
+
+      .search-label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 3px 10px;
+        background: #f5f5f5;
+        border-radius: 6px;
+        cursor: text;
+        font-weight: bold;
+      }
+
+      .search-label:hover {
+        background: #e0e0e0;
+      }
+
+      .search-icon {
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        vertical-align: middle;
+        color: #666666;
+        cursor: pointer;
+        padding: 0;
+        box-sizing: content-box;
+        border-radius: 4px;
+        transition:
+          background-color 0.15s ease,
+          color 0.15s ease,
+          transform 0.06s ease;
+        flex-shrink: 0;
+        margin-left: 8px;
+        line-height: 0; /* inline 요소의 추가 높이 제거 */
+      }
+
+      .search-icon:hover {
+        background: #eaeaea;
+        color: #222222;
+      }
+
+      .search-icon:active {
+        transform: scale(0.98);
+      }
+
+      .search-label input[type='search'] {
+        border: none;
+        outline: none;
+        background: transparent;
+        box-sizing: border-box;
+      }
+      .search-label input[type='search']::placeholder {
+        color: #888888;
+      }
+
+      .search-btn {
+        padding: 4px 8px;
+        background: #f5f5f5;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+    </style>
+    <style>
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin: 25px 0 35px;
+        flex-wrap: wrap;
+
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
+
+      .pagination div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 36px;
+
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        background: #fff;
+        color: #666;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .pagination div:hover {
+        background: #e0e0e0;
+      }
+
+      .pagination div.active {
+        background: #777777;
+        color: #fff;
+        border-color: #777777;
+      }
+
+      #number-button-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .nav {
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .page,
+      .nav {
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 6px;
+      }
+
+      .page.active {
+        background: #222;
+        color: #fff;
+      }
+
+      .dots {
+        padding: 0 6px;
+        line-height: 36px;
+        color: #999;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand" aria-label="Tenth navbar example">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse justify-content-center" id="dropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">MENU</a>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown">
+                <li><a class="dropdown-item" href="/testLogin">모의 수강신청 해보기</a></li>
+                <li><a class="dropdown-item" href="/liberalarts">NEW. 교양 경쟁률 확인하기</a></li>
+                <li><a class="dropdown-item" href="/closed">수강신청 폐강위기 확인하기</a></li>
+                <li><a class="dropdown-item" href="https://www.syu.kr">다양한 서비스 더보기</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <header>
+      <div style="text-align: center">
+        <div class="header">
+          <img src="https://www.syu.ac.kr/wp-content/uploads/2018/05/pg_logo3.png" height="60" alt="삼육대학교" />
+        </div>
+        <div class="title">수강신청 장바구니 경쟁률 현황</div>
+        <div class="update-time" id="time"></div>
+        <div class="notice-box">
+          <div class="notice-title">
+            <strong id="status-text" class="status-open">실시간 집계중</strong> 입니다.
+            <span id="countdown" class="countdown-badge" role="status" aria-live="polite" aria-atomic="true" title="오늘 오후 5시에 집계가 마감됩니다."></span>
+          </div>
+          <!-- <div id="time"></div> -->
+          <a href="/testLogin" class="notice-link"> 모의 수강신청 바로가기 → </a>
+        </div>
+        <div style="margin-block: 25px">
+          <div class="col-radio-wrapper" id="semester-list"></div>
+          <div class="col-toggle-wrapper">
+            <label><input type="checkbox" class="col-toggle" data-col="courseNo" checked /> 강좌번호</label>
+            <label><input type="checkbox" class="col-toggle" data-col="professor" checked /> 교수명</label>
+            <label><input type="checkbox" class="col-toggle" data-col="count" checked /> 수강인원</label>
+            <label><input type="checkbox" class="col-toggle" data-col="rate" checked /> 경쟁률</label>
+          </div>
+          <div class="search-wrapper">
+            <label class="search-label">
+              <input type="search" id="search" placeholder="강좌번호, 교과목, 교수명" aria-label="검색 입력" />
+              <svg class="search-icon" role="button" tabindex="0" aria-label="검색" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M20 20L15.8033 15.8033C15.8033 15.8033 14 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5C18 11.0137 17.9484 11.5153 17.85 12"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </label>
+            <label id="search-btn" class="search-btn" role="button" tabindex="0" aria-label="검색">검색</label>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="table-size">
+      <div class="table-responsive">
+        <!--<div class="drag"> > 표가 짤린 경우 표를 옆으로 드래그 하세요.</div>-->
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="col-rank" style="text-align: center" scope="col" nowrap>순위</th>
+              <th class="col-courseNo" style="text-align: center" scope="col" style="color: #5f6062" nowrap>강좌번호</th>
+              <!--<th scope="col" style="color: #5f6062" nowrap>학부(과)</th>-->
+              <th class="col-subject" scope="col" nowrap>교과목</th>
+              <!--<th scope="col" style="color: #5f6062;" nowrap>교수명</th>-->
+              <th class="col-count" scope="col" nowrap>수강인원</th>
+              <!--<th scope="col" nowrap>제한인원</th>
+              <th scope="col" nowrap>담은인원</th>-->
+              <th class="col-rate" style="text-align: center" scope="col" nowrap>경쟁률</th>
+            </tr>
+          </thead>
+          <tbody id="info"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="pagination" id="number-button-wrapper"></div>
+    <footer class="page-footer">
+      <div class="footer-inner">
+        <div class="brand"><strong>SYU KR</strong></div>
+        <div class="copy">© 2023 - 2026 SYU KR (KIM SANG YUN) · All rights reserved.</div>
+      </div>
+      <div class="footer-disclaimer">해당 사이트는 <strong>삼육대학교(학교법인 삼육학원)</strong>와 무관한 웹 사이트입니다.</div>
+    </footer>
+
+    <style>
+      .page-footer {
+        margin-top: 28px;
+        padding: 14px 10px;
+        border-top: 1px solid #ececec;
+        background: linear-gradient(90deg, #fafafa, #ffffff);
+      }
+      .page-footer .footer-inner {
+        display: flex;
+        gap: 18px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        color: #6b6b6b;
+        font-size: 13px;
+      }
+      .page-footer .brand strong {
+        letter-spacing: 1px;
+        color: #222;
+        font-weight: 700;
+      }
+      .page-footer .footer-disclaimer {
+        width: 100%;
+        text-align: center;
+        color: #999;
+        font-size: 12px;
+        margin-top: 8px;
+      }
+      @media (max-width: 768px) {
+        .page-footer .footer-inner {
+          font-size: 12px;
+          gap: 10px;
+        }
+        .page-footer {
+          padding: 10px;
+        }
+        .page-footer .footer-disclaimer {
+          font-size: 11px;
+        }
+      }
+
+      .countdown-badge {
+        display: inline-block;
+        background: #ff3b30;
+        color: #fff;
+        font-weight: 700;
+        padding: 5px 10px;
+        border-radius: 14px;
+        margin-left: 8px;
+        font-size: 14px;
+        line-height: 1;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      }
+
+      .countdown-badge.urgent {
+        animation: pulse 1s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.04);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .status-closed {
+        color: #ff3b30 !important;
+        font-weight: 800;
+      }
+    </style>
+    <script>
+      function adjustColumnWidths() {
+        const table = document.querySelector('table')
+        const visibleCols = table.querySelectorAll('th:not(.hidden-col)')
+        const widthPerCol = 100 / visibleCols.length
+        visibleCols.forEach((th) => (th.style.width = widthPerCol + '%'))
+      }
+
+      document.querySelectorAll('.col-toggle').forEach((checkbox) => {
+        checkbox.addEventListener('change', function () {
+          const colClass = 'col-' + this.dataset.col
+          document.querySelectorAll('.' + colClass).forEach((el) => {
+            el.classList.toggle('hidden-col', !checkbox.checked)
+          })
+          adjustColumnWidths() // 숨김 후 폭 재조정
+        })
+      })
+
+      adjustColumnWidths()
+    </script>
+    <script>
+      const colStates = {
+        courseNo: true,
+        professor: true,
+        count: true,
+        rate: true,
+      }
+
+      document.querySelectorAll('.col-toggle').forEach((checkbox) => {
+        colStates[checkbox.dataset.col] = checkbox.checked
+
+        checkbox.addEventListener('change', function () {
+          colStates[this.dataset.col] = this.checked
+        })
+      })
+    </script>
+    <script>
+      const input = document.getElementById('search')
+      // URL에서 search 파라미터를 읽어 입력창에 채워넣기
+      const searchParams = new URLSearchParams(window.location.search)
+      const initialSearch = searchParams.get('search') || ''
+      if (input && initialSearch) {
+        input.value = initialSearch
+      }
+
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          const keyword = this.value.trim()
+          const url = new URL(window.location.href)
+          if (keyword) {
+            url.searchParams.set('search', keyword)
+          } else {
+            url.searchParams.delete('search')
+          }
+          window.location.href = url.toString()
+        }
+      })
+
+      const searchIcon = document.querySelector('.search-icon')
+      function doSearch() {
+        const keyword = input.value.trim()
+        const url = new URL(window.location.href)
+        if (keyword) {
+          url.searchParams.set('search', keyword)
+        } else {
+          url.searchParams.delete('search')
+        }
+        window.location.href = url.toString()
+      }
+
+      if (searchIcon) {
+        searchIcon.addEventListener('click', doSearch)
+        searchIcon.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            doSearch()
+          }
+        })
+      }
+
+      const searchBtn = document.getElementById('search-btn')
+      if (searchBtn) {
+        searchBtn.addEventListener('click', doSearch)
+        searchBtn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            doSearch()
+          }
+        })
+      }
+    </script>
+    <script>
+      ;(function () {
+        const countdownEl = document.getElementById('countdown')
+        const statusEl = document.getElementById('status-text')
+        const URGENT_THRESHOLD_MS = 30 * 60 * 1000 // 30 minutes
+
+        function getTodayTarget(ref) {
+          return new Date(ref.getFullYear(), ref.getMonth(), ref.getDate(), 17, 0, 0, 0)
+        }
+
+        function formatTime(ms) {
+          const hours = Math.floor(ms / (1000 * 60 * 60))
+          const mins = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60))
+          const secs = Math.floor((ms % (1000 * 60)) / 1000)
+          return `${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
+        }
+
+        function updateCountdown() {
+          const now = new Date()
+
+          if (!countdownEl) return
+
+          // 2026-01-28 17:00
+          const FINAL_DEADLINE = new Date(2026, 0, 28, 17, 0, 0)
+
+          if (now >= FINAL_DEADLINE) {
+            countdownEl.textContent = '마감되었습니다.'
+            countdownEl.classList.remove('urgent')
+            if (statusEl) {
+              statusEl.textContent = '최종 경쟁률'
+              statusEl.classList.add('status-closed')
+            }
+            return
+          }
+
+          const diff = FINAL_DEADLINE - now
+          countdownEl.textContent = `마감까지 ${formatTime(diff)}`
+
+          if (diff <= URGENT_THRESHOLD_MS) {
+            countdownEl.classList.add('urgent')
+            countdownEl.title = '마감까지 30분 이내입니다.'
+          } else {
+            countdownEl.classList.remove('urgent')
+            countdownEl.title = '오늘 오후 5시에 집계가 마감됩니다.'
+          }
+
+          if (statusEl) {
+            statusEl.textContent = '실시간 집계중'
+            statusEl.classList.remove('status-closed')
+          }
+        }
+
+        updateCountdown()
+        setInterval(updateCountdown, 1000)
+      })()
+    </script>
+  </body>
+</html>

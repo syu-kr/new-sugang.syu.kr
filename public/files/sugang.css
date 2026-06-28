@@ -1,0 +1,4236 @@
+/*externalCSSText*/
+font_searchtitlehtml {
+	height: 100%; 
+	*overflow-y: auto;
+}
+/*박진우 수정 폰트 색상 0401 S*/
+body {
+	margin: 0px;
+	font:normal 12px "Dotum", "tahoma";
+	color: #595959;
+}
+
+img {
+	border: 0px;
+}
+
+.bg_top {
+	background: url(https://suwings.syu.ac.kr/img/top/top_bg.jpg) repeat-x 0 0;
+	height: 103px;
+}
+/*박진우 수정 폰트 색상 0401 S*/
+.logo {
+	background: url(https://suwings.syu.ac.kr/img/top/logo.gif) no-repeat 0 0;
+	height:22px;
+	width:515px;	
+}
+
+/************************************************************************
+autoComplete
+************************************************************************/
+
+.w2autoComplete_label {
+	text-align:left; padding-left:3px;
+}
+.w2input_table_sb_col {
+	text-align:left;
+}
+
+/************************************************************************
+image
+************************************************************************/
+
+img_search {
+	background: url(https://suwings.syu.ac.kr/img/contents/search_btn.gif) no-repeat 0 0;
+}
+
+/************************************************************************
+  tabcontainer
+************************************************************************/
+.tabstyle01 .w2tabContainer {
+	background: transparent;
+	font-size: 12px;
+}
+.tabstyle01 .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tabnav_off_left.gif) no-repeat 0 0;
+	width: 0px;
+	height: 32px;
+}
+
+.tabstyle01 .w2tabContainer_tab_center {
+	text-align: center;
+	vertical-align: middle;
+	padding-top: 0px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tabnav_off_center) repeat-x 0 0;
+	height: 32px;
+	font: normal 12px "Dotum", "tahoma";
+	color: #ffffff;
+}
+
+.tabstyle01 .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tabnav_off_right.gif) no-repeat 0 0;
+	width: 0px;
+	height: 32px;
+}
+
+.tabstyle01 .w2tabContainer_tab_selected .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tabnav_on_left.gif) no-repeat;
+	width: 0px;
+	height: 32px;
+}
+
+.tabstyle01 .w2tabContainer_tab_selected .w2tabContainer_tab_center {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tabnav_on_center) repeat-x;
+	color: #ffffff;
+	font: bold 12px "Dotum", "tahoma";
+	text-align: center;
+	height: 32px;
+}
+
+.tabstyle01 .w2tabContainer_tab_selected .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tabnav_on_right.gif) no-repeat;
+	width: 0px;
+	height: 32px;
+}
+
+
+.tabstyle01 .w2tabContainer_tab_deselected .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tabnav_off_left.gif) no-repeat;
+	width: 0px;
+	height: 32px;
+}
+
+.tabstyle01 .w2tabContainer_tab_deselected .w2tabContainer_tab_center {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tabnav_off_center.gif) no-repeat;
+	width: 0px;
+	height: 32px;
+}
+
+.tabstyle01 .w2tabContainer_tab_deselected .w2tabContainer_tab_del {
+	background-image : url(uiplugin/tabContainer/images/btn_del_off.gif);
+}
+
+.tabstyle01 .w2tabContainer_tab_deselected .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tabnav_off_right.gif) no-repeat;
+	width: 0px;
+	height: 32px;
+}
+
+/* over */
+.tabstyle01 .w2tabContainer_tab_over .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tabnav_on_center.gif) no-repeat;
+	width: 0px;
+	height: 32px;
+}
+
+.tabstyle01 .w2tabContainer_tab_over .w2tabContainer_tab_center {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tabnav_on_center.gif) no-repeat;
+	width: 0px;
+	height: 32px;
+}
+
+.tabstyle01 .w2tabContainer_tab_over .w2tabContainer_tab_del {
+	background-image : url(uiplugin/tabContainer/images/btn_del_on.gif);
+}
+
+.tabstyle01 .w2tabContainer_tab_over .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tabnav_on_right.gif) no-repeat;
+	width: 0px;
+	height: 32px;
+}
+
+
+.tabnav1 {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_1.gif) no-repeat 0 0;
+	width: 89px;
+}
+.tabnav1_on {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_1.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.tabnav2 {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_2.gif) no-repeat 0 0;
+	width: 89px;
+}
+.tabnav2_on {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_2.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.tabnav3 {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_3.gif) no-repeat 0 0;
+	width: 89px;
+}
+.tabnav3_on {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_3.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.tabnav3 {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_3.gif) no-repeat 0 0;
+	width: 89px;
+}
+.tabnav3_on {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_3.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.tabnav4 {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_4.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.tabnav4_on {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_4.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.tabnav5 {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_5.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.tabnav5_on {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_5.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.tabnav6 {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_6.gif) no-repeat 0 0;
+	width: 89px;
+}
+.tabnav6_on {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_6.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.tabnav7 {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_7.gif) no-repeat 0 0;
+	width: 99px;
+}
+
+.tabnav7_on {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_7.gif) no-repeat 0 0;
+	width: 99px;
+}
+
+.bg_tab2depth {
+	background: url(https://suwings.syu.ac.kr/img/img_arrow.gif) no-repeat 0 3px;
+}
+
+.tabstyle01 .w2tabContainer_contents_layer{
+ 	border: 0;
+	background: transparent;
+}
+
+.content_tran {
+	border: 0;
+	background: transparent;
+}
+	
+.w2tabContainer {
+ 	border: none;
+	background: transparent;
+}
+/*박진우 수정 0401 S*/
+.sub2_text{
+ 	font: normal 12px dotum;
+	text-decoration: none;
+	color: #ffffff;
+	background: transparent;
+}
+
+.sub2_text_can{
+ 	font: normal 11px dotum;
+ 	text-align:center;
+	text-decoration: none;
+	color: #c9c9c9;
+}
+
+.sub2_text_on{
+ 	font: bold 12px dotum;
+	text-decoration: none;
+	color: #0182c6;
+	background: transparent;
+}
+
+.myinfo{	
+	float:right;
+	background: url(https://suwings.syu.ac.kr/img/top/top_mnc_bg.gif) repeat-x 0 3px;
+	z-index:0;
+}
+
+
+.myinfo_left{	
+	float:right;
+	background: url(https://suwings.syu.ac.kr/img/top/top_mnl_bg.gif) no-repeat left;
+	width: 11px;
+	height:24px;
+	z-index:1;
+	
+}
+
+.myinfo_right{	
+	float:right;
+	background: url(https://suwings.syu.ac.kr/img/top/top_mnr_bg.gif) no-repeat right;
+	width: 6px;
+	height:24px;
+	z-index:1;
+	
+}
+.myinfo .name{
+	font: bold 12px dotum;
+	text-decoration: none;
+	color: #dedede;
+	text-align:center;	
+}
+
+.myinfo .pw_modi{
+	font: normal 12px dotum;
+	text-decoration: none;
+	color: #dedede;
+}
+
+
+
+
+/************************************************************************
+ top_navi
+ ************************************************************************/
+
+#top_navigation {
+	background: transparent;
+}
+	
+.topnav1 .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_1.gif) no-repeat 0 0;
+	width: 89px;
+	height: 32px;
+}
+
+.topnav1 .w2trigger_over .w2trigger_center {	
+	width: 0;
+}
+
+.topnav1 .w2trigger_over .w2trigger_right {	
+	width: 0;
+}
+
+.topnav1 .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_1.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.topnav1 .w2trigger_right {
+	width: 0;
+}
+
+.topnav1 .w2trigger_center {	
+	width: 0;
+}
+
+.topnav2 .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_2.gif) no-repeat 0 0;
+	width: 89px;
+	height: 32px;
+}
+
+.topnav2 .w2trigger_over .w2trigger_right {	
+	width: 0;
+}
+
+.topnav2 .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_2.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.topnav2 .w2trigger_right {
+	width: 0px;
+}
+
+
+.topnav3 .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_3.gif) no-repeat 0 0;
+	width: 89px;
+	height: 32px;
+}
+
+.topnav3 .w2trigger_over .w2trigger_right {	
+	width: 0;
+}
+
+.topnav3 .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_3.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.topnav3 .w2trigger_right {
+	width: 0px;
+}
+
+
+.topnav4 .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_4.gif) no-repeat 0 0;
+	width: 89px;
+	height: 32px;
+}
+
+.topnav4 .w2trigger_over .w2trigger_right {	
+	width: 0;
+}
+
+.topnav4 .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_4.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.topnav4 .w2trigger_right {
+	width: 0px;
+}
+
+
+.topnav5 .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_5.gif) no-repeat 0 0;
+	width: 89px;
+	height: 32px;
+}
+
+.topnav5 .w2trigger_over .w2trigger_right {	
+	width: 0;
+}
+
+.topnav5 .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_5.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.topnav5 .w2trigger_right {
+	width: 0px;
+}
+
+
+.topnav6 .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_6.gif) no-repeat 0 0;
+	width: 89px;
+	height: 32px;
+}
+
+.topnav6 .w2trigger_over .w2trigger_right {	
+	width: 0;
+}
+
+.topnav6 .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_6.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.topnav6 .w2trigger_right {
+	width: 0px;
+}
+
+
+.topnav7 .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_7.gif) no-repeat 0 0;
+	width: 99px;
+	height: 32px;
+}
+
+.topnav7 .w2trigger_over .w2trigger_right {	
+	width: 0;
+}
+
+.topnav7 .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_7.gif) no-repeat 0 0;
+	width: 99px;
+}
+
+.topnav7 .w2trigger_right {
+	width: 0px;
+}
+
+
+.topnav8 .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_on_8.gif) no-repeat 0 0;
+	width: 89px;
+	height: 32px;
+}
+
+.topnav8 .w2trigger_over .w2trigger_right {	
+	width: 0;
+}
+
+.topnav8 .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/top/tn_off_8.gif) no-repeat 0 0;
+	width: 89px;
+}
+
+.topnav8 .w2trigger_right {
+	width: 0px;
+}
+
+
+/************************************************************************
+  subtab2_1
+************************************************************************/
+.subtab2_1 .w2tabContainer {
+	background: transparent;
+	font-size: 12px;
+}
+.subtab2_1 .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tab1_off_left.gif) no-repeat 0 0;
+	width: 10px;
+	height: 27px;
+}
+
+.subtab2_1 .w2tabContainer_tab_center {
+	text-align: center;
+	vertical-align: middle;
+	padding-top: 0px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tab1_off_center.gif) repeat-x 0 0;
+	height: 27px;
+	font: normal 12px "Dotum", "tahoma";
+	color: #292929;
+}
+.subtab2_1 .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tab1_off_right.gif) no-repeat 0 0;
+	width: 10px;
+	height: 27px;
+}
+
+.subtab2_1 .w2tabContainer_tab_selected .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_left.gif) no-repeat;
+	width: 10px;
+	height: 27px;
+}
+
+.subtab2_1 .w2tabContainer_tab_selected .w2tabContainer_tab_center {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_center.gif) repeat-x;
+	color: #ffffff;
+	font: bold 12px "Dotum", "tahoma";
+	text-align: center;
+	height: 27px;
+}
+
+.subtab2_1 .w2tabContainer_tab_selected .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_right.gif) no-repeat;
+	width: 10px;
+	height: 27px;
+}
+
+
+.subtab2_1 .w2tabContainer_tab_deselected .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tab1_off_left.gif) no-repeat;
+	width: 10px;
+	height: 27px;
+}
+
+.subtab2_1 .w2tabContainer_tab_deselected .w2tabContainer_tab_center {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tab1_off_center.gif) repeat-x;
+	color: #292929;
+	font: normal 12px "Dotum", "tahoma";
+	text-align: center;
+	height: 27px;
+	text-align: center;
+}
+
+.subtab2_1 .w2tabContainer_tab_deselected .w2tabContainer_tab_del {
+	background-image : url(uiplugin/tabContainer/images/btn_del_off.gif);
+}
+
+.subtab2_1 .w2tabContainer_tab_deselected .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tab1_off_right.gif) no-repeat;
+	width: 10px;
+	height: 27px;
+}
+
+/* over */
+.subtab2_1 .w2tabContainer_tab_over .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_left.gif) no-repeat;
+	width: 10px;
+	height: 27px;
+}
+
+.subtab2_1 .w2tabContainer_tab_over .w2tabContainer_tab_center {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_center.gif)  repeat-x;
+	height: 27px;
+	color: #ffffff;
+	font: bold 12px "Dotum", "tahoma";
+	text-align: center;
+	
+}
+
+.subtab2_1 .w2tabContainer_tab_over .w2tabContainer_tab_del {
+	background-image : url(uiplugin/tabContainer/images/btn_del_on.gif);
+}
+
+.subtab2_1 .w2tabContainer_tab_over .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_right.gif) no-repeat;
+	width: 10px;
+	height: 27px;
+}
+
+
+.subtab2_1 .w2tabContainer_contents_layer{
+ 	border: 0; 
+	background: transparent;
+}
+
+.subtab2_1 .content_tran {
+	border-right: 2px solid #255fb3;
+ 	border-left: 2px solid #255fb3;
+	background: transparent;
+}
+
+.road_text {
+	color: #6a6a6a;
+	font: normal 12px "Dotum", "tahoma";
+	text-align: left;
+}
+
+.road_text_on {
+	color: #000000;
+	font: bold 12px "Dotum";
+	text-align: left;
+}
+
+.road_dot {
+	background: url(https://suwings.syu.ac.kr/img/contents/dot_hwa.gif) no-repeat;
+}
+
+.con_title { 
+	background: url(https://suwings.syu.ac.kr/img/contents/con_ba.gif) repeat-x;
+}
+
+.bg_search {
+	background-color: #e5e5e5 ;
+}
+
+.detail_box {
+	background: url(https://suwings.syu.ac.kr/img/contents/detail_bg.gif)  repeat-y top left;
+	background-position:center;
+	border-top:2px solid #266094;
+}
+	
+.detail_title {
+	background: url(https://suwings.syu.ac.kr/img/contents/detail_title_bg.gif) repeat-y top left;	
+}
+	
+/*박진우 수정 0401 S*/
+.box_top_line{
+	border-top:2px solid #266094;
+}	
+	
+/************************************************************************
+  radio and check 
+************************************************************************/
+
+.ra .w2radio_label{
+	font-family:dotum;
+	font-size:12px;
+	cursor:pointer;
+}
+
+.ra .w2radio_label_over{
+	font-family:dotum;
+	font-size:12px;
+	cursor:pointer;
+	font-weight:bold;
+}
+
+.ra .w2radio_disabled {
+	color : #cdcdcd;
+}
+
+.cbox .w2checkbox_label{
+	font-family:dotum;
+	font-size:12px;
+	cursor:pointer;
+}
+
+.cbox .w2checkbox_label_over{
+	font-family:dotum;
+	font-size:12px;
+	cursor:pointer;
+	font-weight:bold;
+}
+
+.cbox .w2checkbox_disabled {
+	color : #cdcdcd;
+}
+
+
+/************************************************************************
+  subtab3_1
+************************************************************************/
+.subtab3_1 .w2tabContainer {
+	background: url(https://suwings.syu.ac.kr/img/contents/nocon_th.gif) repeat-x top left;
+	font-size: 12px;
+	margin-top:10px;
+}
+.subtab3_1 .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_l_off.gif) no-repeat 0 0;
+	width: 10px;
+	height: 23px;
+}
+
+.subtab3_1 .w2tabContainer_tab_center {
+	text-align: center;
+	vertical-align: middle;	
+	overflow: hidden;
+	text-overflow: ellipsis;
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_c_off.gif) repeat-x 0 0;
+	height: 23px;
+	font: normal 12px "Dotum", "tahoma";
+	color: #6d6d6d;
+	height: 23px;
+}
+.subtab3_1 .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_r_off.gif) no-repeat 0 0;
+	width: 10px;
+	height: 23px;
+}
+
+.subtab3_1 .w2tabContainer_tab_selected .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_l_on.gif) no-repeat;
+	width: 10px;
+	height: 23px;
+}
+
+
+
+.subtab3_1 .w2tabContainer_tab_col_center .w2tabContainer_tab_center {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_c_on.gif) repeat-x;
+	color: #2161a8;
+	font: bold 12px "Dotum", "tahoma";
+	text-align: center;	
+	height: 23px;
+}
+
+
+
+.subtab3_1 .w2tabContainer_tab_selected .w2tabContainer_tab_center {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_c_on.gif) repeat-x;
+	color: #2161a8;
+	font: bold 12px "Dotum", "tahoma";
+	text-align: center;	
+	height: 23px;
+}
+
+.subtab3_1 .w2tabContainer_tab_selected .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_r_on.gif) no-repeat;
+	width: 10px;
+	height: 23px;
+}
+
+
+.subtab3_1 .w2tabContainer_tab_deselected .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_l_off.gif) no-repeat;
+	width: 10px;
+	height: 23px;
+}
+
+.subtab3_1 .w2tabContainer_tab_deselected .w2tabContainer_tab_center {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_c_off.gif) repeat-x;
+	color: #6d6d6d;
+	font: bold 12px "Dotum", "tahoma";
+	text-align: center;	
+	vertical-align:absmiddle; 
+	height: 23px;
+}
+
+.subtab3_1 .w2tabContainer_tab_deselected .w2tabContainer_tab_del {
+	background-image : url(uiplugin/tabContainer/images/btn_del_off.gif);
+}
+
+.subtab3_1 .w2tabContainer_tab_deselected .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_r_off.gif) no-repeat;
+	width: 10px;
+	height: 23px;
+}
+
+/* over */
+.subtab3_1 .w2tabContainer_tab_over .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_l_on.gif) no-repeat;
+	width: 10px;
+	height: 23px;
+}
+
+.subtab3_1 .w2tabContainer_tab_over .w2tabContainer_tab_center {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_c_on.gif)  repeat-x;
+	height: 23px;
+	color: #2161a8;
+	vertical-align:absmiddle; 
+	font: bold 12px "Dotum", "tahoma";
+	text-align: center;
+	height: 23px;
+	
+}
+
+.subtab3_1 .w2tabContainer_tab_over .w2tabContainer_tab_del {
+	background-image : url(uiplugin/tabContainer/images/btn_del_on.gif);
+}
+
+.subtab3_1 .w2tabContainer_tab_over .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_r_on.gif) no-repeat;
+	width: 10px;
+	height: 23px;
+}
+
+
+.subtab3_1 .w2tabContainer_contents_layer{
+ 	border: 0; 
+	background: transparent;
+}
+
+.subtab3_1 .content_tran {		
+ 	border-top: 1px solid #787878; 
+ 	border-bottom: 1px solid #787878; 
+	background: transparent;
+}
+
+.road_text {
+	color: #6a6a6a;
+	font: normal 12px "Dotum", "tahoma";
+	text-align: left;
+}
+
+.road_text_on {
+	color: #000000;
+	font: bold 12px "Dotum";
+	text-align: left;
+}
+
+.bg_contents_3 {
+	background: url(https://suwings.syu.ac.kr/img/contents/nocon_th.gif) repeat-x top left;
+}
+
+
+
+
+
+/************************************************************************
+  tab_detail
+************************************************************************/
+
+
+.tab_detail.w2tabContainer {
+	background: url(https://suwings.syu.ac.kr/img/contents/detail_bg.gif) repeat-y top left;
+	font-size: 12px;
+	padding-left:6px;
+}
+.tab_detail .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_l_off.gif) no-repeat 0 0;
+	width: 10px;
+	height: 23px;
+}
+.tab_detail .w2tabContainer_tab_center {
+	text-align: center;
+	vertical-align: middle;	
+	overflow: hidden;
+	text-overflow: ellipsis;
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_c_off.gif) repeat-x 0 0;
+	height: 23px;
+	font: normal 12px "Dotum", "tahoma";
+	color: #6d6d6d;
+	height: 23px;
+}
+.tab_detail .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_r_off.gif) no-repeat 0 0;
+	width: 10px;
+	height: 23px;
+}
+
+.tab_detail .w2tabContainer_tab_selected .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_l_on.gif) no-repeat;
+	width: 10px;
+	height: 23px;
+}
+
+
+
+.tab_detail .w2tabContainer_tab_col_center .w2tabContainer_tab_center {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_c_on.gif) repeat-x;
+	color: #2161a8;
+	font: bold 12px "Dotum", "tahoma";
+	text-align: center;	
+	height: 23px;
+}
+
+
+
+.tab_detail .w2tabContainer_tab_selected .w2tabContainer_tab_center {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_c_on.gif) repeat-x;
+	color: #2161a8;
+	font: bold 12px "Dotum", "tahoma";
+	text-align: center;	
+	height: 23px;
+}
+
+.tab_detail .w2tabContainer_tab_selected .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_r_on.gif) no-repeat;
+	width: 10px;
+	height: 23px;
+}
+
+
+.tab_detail .w2tabContainer_tab_deselected .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_l_off.gif) no-repeat;
+	width: 10px;
+	height: 23px;
+}
+
+.tab_detail .w2tabContainer_tab_deselected .w2tabContainer_tab_center {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_c_off.gif) repeat-x;
+	color: #6d6d6d;
+	font: normal 12px "Dotum", "tahoma";
+	text-align: center;	
+	vertical-align:absmiddle; 
+	height: 23px;
+}
+
+.tab_detail .w2tabContainer_tab_deselected .w2tabContainer_tab_del {
+	background-image : url(uiplugin/tabContainer/images/btn_del_off.gif);
+}
+
+.tab_detail .w2tabContainer_tab_deselected .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_r_off.gif) no-repeat;
+	width: 10px;
+	height: 23px;
+}
+
+/* over */
+.tab_detail .w2tabContainer_tab_over .w2tabContainer_tab_left {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_l_on.gif) no-repeat;
+	width: 10px;
+	height: 23px;
+}
+
+.tab_detail .w2tabContainer_tab_over .w2tabContainer_tab_center {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_c_on.gif)  repeat-x;
+	height: 23px;
+	color: #565656;
+	vertical-align:absmiddle; 
+	font: bold 12px "Dotum", "tahoma";
+	text-align: center;
+	height: 23px;
+	
+}
+
+.tab_detail .w2tabContainer_tab_over .w2tabContainer_tab_del {
+	background-image : url(uiplugin/tabContainer/images/btn_del_on.gif);
+}
+
+.tab_detail .w2tabContainer_tab_over .w2tabContainer_tab_right {
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/stab_r_on.gif) no-repeat;
+	width: 10px;
+	height: 23px;
+}
+
+
+.tab_detail .w2tabContainer_contents_layer{
+ 	border: 0; 
+	background: transparent;
+	padding-left:6px;
+}
+
+.tab_detail .content_tran {		
+ 	border-top: 1px solid #787878; 
+ 	border-bottom: 1px solid #787878; 
+	background: transparent;
+	margin-left:6px;
+}
+
+.road_text {
+	color: #6a6a6a;
+	font: normal 12px "Dotum", "tahoma";
+	text-align: left;
+}
+
+.road_text_on {
+	color: #000000;
+	font: bold 12px "Dotum";
+	text-align: left;
+}
+
+.bg_contents_3 {
+	background: url(https://suwings.syu.ac.kr/img/contents/nocon_th.gif) repeat-x top left;
+}
+/************************************************************************
+  pageList
+************************************************************************/
+
+.page .w2pageList {
+}
+
+.page .w2pageList_table {
+	margin : 0px auto;
+	border-collapse : collapse;
+	height : 100%;
+	/*
+	table-layout : fixed;
+	width : 100%;
+	height : 100%;
+	*/
+}
+
+.page .w2pageList_col_prev {
+	width : 16px;
+	height : 11px;
+	background : url(uiplugin/pageList/images/b_prev.gif) no-repeat center center;
+	cursor : pointer;
+}
+
+.page .w2pageList_col_next {
+	width : 16px;
+	height : 11px;
+	background : url(uiplugin/pageList/images/b_next.gif) no-repeat center center;
+	cursor : pointer;
+}
+
+.page .w2pageList_col_prevPage {
+	width : 16px;
+	height : 11px;
+	background : url(uiplugin/pageList/images/b_first.gif) no-repeat center center;
+	cursor : pointer;
+}
+
+.page .w2pageList_col_nextPage {
+	width : 16px;
+	height : 11px;
+	background : url(uiplugin/pageList/images/b_end.gif) no-repeat center center;
+	cursor : pointer;
+}
+
+.page .w2pageList_col_label {
+	width : 25px;
+	text-align : center;
+	cursor : pointer;
+	font-family:Tahoma; 
+	font-size:11px; 
+}
+
+.page .w2pageList_label {
+	color : #5e5e5e;
+	cursor : pointer;
+	font-family:Tahoma; 
+	font-size:11px; 
+	text-decoration: none;
+	white-space : nowrap;
+}
+
+.page .w2pageList_label_over {
+	color : #0058a8;
+	font-weight : bold;
+	font-family:Tahoma; 
+	font-size:11px; 
+	text-decoration: none;
+	white-space : nowrap;
+}
+
+.page .w2pageList_label_selected {
+	color : #0058a8;
+	font-weight : bold;
+	font-family:Tahoma; 
+	font-size:11px; 
+	text-decoration: none;
+	white-space : nowrap;
+}
+
+.page .w2pageList_delimiter {
+	width : 5px;
+	height : 15px;
+	text-align : center;
+/*	background : url(uiplugin/pageList/images/v_line.gif) no-repeat center center; */
+}
+
+
+
+
+
+
+/************************************************************************
+  profile
+************************************************************************/
+
+
+.tb_profile{	
+	margin:0;
+	
+}
+
+
+.tb_profil {
+	border-bottom:1px solid #E1E1E1;
+	padding:5px 5px 5px 5px;
+	vertical-align:absmiddle; 
+	border-top:1px solid #E1E1E1;
+	border-left:1px solid #E1E1E1;
+	border-right:1px solid #E1E1E1;
+}
+/*박진우 수정 0401 S*/
+.td1 {
+	background:#cbdeef;
+	border:1px solid #E1E1E1;
+	padding-left:18px;
+	padding-top:5px;
+	color:#003b70;
+	font-weight:bold;
+	vertical-align:middle;
+	text-align:left;
+}
+
+/*박진우 수정 0401 S*/
+.td1_star {
+	background:url(https://suwings.syu.ac.kr/img/icon/star.gif) #cbdeef no-repeat 10px center;
+	border:1px solid #E1E1E1;
+	padding-left:18px;
+	padding-top:5px;
+	color:#003b70;
+	font-weight:bold;
+	vertical-align:middle; 
+	text-align:left;
+}
+
+.td1_2 {
+	border:1px solid #E1E1E1;
+	padding-left:18px;
+	padding-top:5px;
+	vertical-align:middle; 
+	text-align:left;
+}
+
+.photo_img {
+	background:url(https://suwings.syu.ac.kr/img/contents/photo.gif) no-repeat ;
+	border:1px solid #000000;
+}
+
+
+.secret_input .w2secret_input{
+	border:1px solid #d7d7d7;
+	font-size:12px;
+	padding : 0px 2px 0px 2px;
+	background-color: #ffffff;
+}
+
+.secret_focus {
+	border : solid 1px #7e9db9;
+	background-color: #f7f7f7;
+}
+
+.txtarea {
+	border : solid 1px #d7d7d7;
+	ime-mode:active;
+}
+
+.txtarea .textarea_focus {
+	border : solid 1px #7e9db9;
+	background-color: #f7f7f7;
+}
+
+
+.txtarea .textarea_disabled {
+	border : solid 1px #d7d7d7;
+	background-color: #f7f7f7;
+	color:#4f4f4f;	
+}
+
+	
+/************************************************************************
+  anchor
+************************************************************************/
+
+
+.linktext_bluetitle a {
+	font: normal 12px dotum;
+	text-decoration: none;
+	color: #074179;
+}
+
+.linktext_bluetitle a:hover {
+	font: bold 12px dotum;
+	text-decoration: none;
+	color: #0281c6;
+}
+
+.linktext_bluetitle a:active {
+	font: bold 12px dotum;
+	text-decoration: none;
+	color: #0281c6;
+}
+/************************************************************************
+  font
+************************************************************************/
+/*박진우 수정 0401 S*/
+.font_detail_title {
+	color: #003b70;
+	font: bold 12px dotum;
+}
+/*박진우 수정 0401 S*/
+.font_subtitle {
+	color: #003b70;
+	font: bold 12px "Dotum";
+	text-align: left;
+}
+/*박진우 수정 0401 S*/
+.font_searchtitle {
+	color: #003b70;
+	font: bold 12px "Dotum";
+	text-align: left;
+	height : 14px;
+	padding:3px 0px 3px 1px;
+}
+/*박진우 수정 0401 S*/
+.font_searchtitle_star {
+	background:url(https://suwings.syu.ac.kr/img/icon/star_title.gif) no-repeat 5px center;
+	padding-left: 13px;
+	font: bold 12px "Dotum";
+	text-align: left;
+	color: #003b70;
+	height : 14px;
+	padding:3px 0px 3px 14px;	
+}
+
+/************************************************************************
+  output/group bg
+************************************************************************/
+
+
+.bg_searchblue {
+	color: #444444;
+	background: url(https://suwings.syu.ac.kr/img/icon_essential.gif) no-repeat 5px 5px;
+	background-color:#eff4f7;
+	padding: 9px;
+	padding-left: 15px;
+	font: bold 12px "Dotum", "tahoma";
+	border-top:1px solid #e0e1e3;
+}
+.bg_searchwhite {
+	color: #444444;
+	background-color:#ffffff;
+	padding: 9px;
+	font: normal 12px "Dotum", "tahoma";
+	border-top:1px solid #e0e1e3;
+}
+
+/************************************************************************
+  message boxs
+************************************************************************/
+
+.m_top_l {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/m_top_l.gif) no-repeat top left;
+	width:16px;
+	height:35px;
+}
+
+.m_top_bg {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/m_top_bg.gif) repeat-x top left;
+	height:35px;
+}
+
+.m_top_r {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/m_top_r.gif) no-repeat top right;
+	width:14px;
+	height:35px;
+}
+
+
+.m_m_l {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/m_m_l.gif) repeat-y bottom left;
+	width:16px;
+}
+
+.m_m_c {
+	vertical-align:middle;	
+	text-align: left;
+	padding-bottom:10px;
+	background-color: #e5e5e5;
+	color:#3b520a;
+	padding:20px;
+}
+
+
+.m_text {
+	color:#3b520a;
+	text-align: left;
+	vertical-align:middle;
+}
+	
+
+
+.m_m_r {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/m_m_r.gif) repeat-y bottom left;
+	width:14px;
+}
+
+.m_f_l {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/m_f_l.gif) no-repeat bottom left;
+	width:16px;
+	height:47px;
+}
+
+.m_f_bg {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/m_f_bg.gif) repeat-x bottom left ;
+	vertical-align: middle;
+	padding-top:7px;
+	text-align: center;
+}
+
+.m_f_r {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/m_f_r.gif) no-repeat bottom left;
+	width:14px;
+	height:47px;
+}
+
+.m_f_bg img {	
+	padding:5px;
+	
+ } 
+
+
+.btn_m_close .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/m_close.gif) no-repeat 0 0;
+	width: 8px;
+	height:8px;
+}
+.btn_m_close .w2trigger_right {
+	width:0px;	
+}
+
+.btn_m_close .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/m_close_over.gif) no-repeat 0 0;
+	width: 8px;
+	height:8px;
+}
+.btn_m_close .w2trigger_over .w2trigger_right {
+	width:0px;	
+}
+
+.btn_m_yes .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_yes.gif) no-repeat 0 0;
+	height:20px;
+	width:48px;
+	
+}
+.btn_m_yes .w2trigger_right {
+	width:0px;	
+}
+
+
+.btn_m_yes .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_yes_over.gif) no-repeat 0 0;
+	height:20px;
+	width:48px;
+	
+}
+.btn_m_yes .w2trigger_over .w2trigger_right {
+	width:0px;	
+}
+
+
+.btn_m_no .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_no.gif) no-repeat 0 0;
+	height:20px;
+	width:60px;
+}
+.btn_m_no .w2trigger_right {
+	width:0px;	
+}
+
+.btn_m_no .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_no_over.gif) no-repeat 0 0;
+	height:20px;
+	width:60px;
+}
+.btn_m_no .w2trigger_over .w2trigger_right {
+	width:0px;	
+}
+
+.btn_m_cancle .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_cancle.gif) no-repeat 0 0;
+	height:20px;
+	width:50px;
+}
+.btn_m_cancle .w2trigger_right {
+	width:0px;	
+}
+
+.btn_m_cancle .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_cancle_over.gif) no-repeat 0 0;
+	height:20px;
+	width:50px;
+}
+.btn_m_cancle .w2trigger_over .w2trigger_right {
+	width:0px;	
+}
+
+
+.btn_m_ok .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_ok.gif) no-repeat 0 0;
+	height:20px;
+	width:50px;
+}
+.btn_m_ok .w2trigger_right {
+	width:0px;	
+}
+
+.btn_m_ok .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_ok_over.gif) no-repeat 0 0;
+	height:20px;
+	width:50px;
+}
+.btn_m_ok .w2trigger_over .w2trigger_right {
+	width:0px;	
+}
+
+
+/************************************************************************
+  popup boxs
+************************************************************************/
+
+.popup_top_l {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popup_top_l.gif) no-repeat top left;
+	width:17px;
+	height:61px;
+}
+
+.popup_top_bg {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popup_top_bg.gif) repeat-x top left;
+	height:61px;
+}
+
+.popup_top_r {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popup_top_r.gif) no-repeat top right;
+	width:17px;
+	height:61px;
+}
+
+
+.popup_m_l {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popup_m_l.gif) repeat-y bottom left;
+	width:17px;
+}
+
+.popup_m_c {
+	vertical-align:middle;	
+	text-align: left;
+	padding-bottom:10px;
+	background-color: #ffffff;	
+	padding:20px;
+	background:url(https://suwings.syu.ac.kr/img/pu_table/13x8_bg.gif) no-repeat bottom right ;
+}
+
+
+.popup_title {
+	color:#ffffff;
+	text-align: left;
+	font-weight:bold;
+}
+	
+.popup_contents {
+	font: 12px/2em #fff;
+	text-align: left;
+	
+}
+
+.popup_m_r {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popup_m_r.gif) repeat-y bottom left;
+	width:17px;
+}
+
+.popup_f_l {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popup_f_l.gif) no-repeat bottom left;
+	width:17px;
+	height:20px;
+}
+
+.popup_f_bg {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popup_f_bg.gif) repeat-x bottom left ;
+	vertical-align: middle;
+	padding-top:7px;
+	text-align: center;
+}
+
+.popup_f_r {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popup_f_r.gif) no-repeat bottom left;
+	width:17px;
+	height:20px;
+}
+
+.popup_f_bg img {	
+	padding:5px;
+	
+ } 
+
+
+
+.popupimg_f_l {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popupimg_f_l.gif) no-repeat bottom left;
+	width:17px;
+	height:49px;
+}
+
+.popupimg_f_bg {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popupimg_f_bg.gif) repeat-x bottom left ;
+	vertical-align: middle;
+	padding-top:7px;
+	text-align: center;
+}
+
+.popupimg_f_r {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popupimg_f_r.gif) no-repeat bottom left;
+	width:17px;
+	height:49px;
+}
+
+.popupimg_f_bg img {	
+	padding:5px;
+	
+ } 
+ 
+
+.btn_popup_close .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_close.gif) no-repeat 0 0;
+	width: 34px;
+	height:22px;
+}
+.btn_popup_close .w2trigger_right {
+	width:0px;	
+}
+
+
+
+.btn_imgclose .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_imgclose.gif) no-repeat 0 0;
+	height:28px;
+	width:57px;
+	
+}
+.btn_imgclose .w2trigger_right {
+	width:0px;	
+}
+
+
+.btn_imgclose .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_imgclose_over.gif) no-repeat 0 0;
+	height:28px;
+	width:57px;
+	
+}
+.btn_imgclose .w2trigger_over .w2trigger_right {
+	width:0px;	
+}
+
+
+.btn_zoom .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_zoom.gif) no-repeat 0 0;
+	height:28px;
+	width:57px;
+}
+.btn_zoom .w2trigger_right {
+	width:0px;	
+}
+
+.btn_zoom .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_zoom_over.gif) no-repeat 0 0;
+	height:28px;
+	width:57px;
+}
+.btn_zoom .w2trigger_over .w2trigger_right {
+	width:0px;	
+}
+
+.btn_zoomout .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_zoomout.gif) no-repeat 0 0;
+	height:28px;
+	width:57px;
+}
+.btn_zoomout .w2trigger_right {
+	width:0px;	
+}
+
+.btn_zoomout .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/btn_zoomout_over.gif) no-repeat 0 0;
+	height:28px;
+	width:57px;
+}
+.btn_zoomout .w2trigger_over .w2trigger_right {
+	width:0px;	
+}
+
+.popup_dot {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popup_dot.gif) no-repeat bottom left;
+	height:20px;
+	width:21px;
+}
+	
+
+/************************************************************************
+  notice_view
+************************************************************************/
+
+.notice_view_top_l {
+	background: url(https://suwings.syu.ac.kr/img/notice/n_t_l.gif) no-repeat top left;
+	width:16px;
+	height:75px;
+}
+
+.notice_view_top_bg {
+	background: url(https://suwings.syu.ac.kr/img/notice/n_t_c.gif) repeat-x top left;
+	height:75px;
+}
+.notice_view_top_r {	
+	background: url(https://suwings.syu.ac.kr/img/notice/n_t_r.gif) no-repeat top right;
+	width:16px;
+	height:75px;
+}
+
+
+.notice_view_m_l {
+	background: url(https://suwings.syu.ac.kr/img/notice/n_m_l.gif) repeat-y bottom left;
+	width:16px;
+}
+
+.notice_view_m_c {
+	vertical-align:middle;	
+	text-align: left;
+	padding-bottom:10px;
+	text-align: left;
+	color:#000;
+	font: 12px/em dotum, gulim, verdana, arial, sans-serif;
+	padding:20px;
+	background:url(https://suwings.syu.ac.kr/img/pu_table/13x8_bg.gif) no-repeat bottom right ;
+}
+
+
+.notice_view_title {
+	color:#000;
+	text-align: left;
+	font-weight:bold;
+}
+	
+.notice_view_contents {
+	font: 12px/2em #fff;
+	text-align: left;
+	
+}
+
+.notice_view_m_r {
+	background: url(https://suwings.syu.ac.kr/img/notice/n_m_r.gif) repeat-y bottom left;
+	width:16px;
+}
+
+.notice_view_f_l {
+	background: url(https://suwings.syu.ac.kr/img/notice/n_mf_l.gif) no-repeat bottom left;
+	width:16px;
+	height:11px;
+}
+
+.notice_view_f_bg {
+	background: url(https://suwings.syu.ac.kr/img/notice/n_mf_f.gif) repeat-x bottom left ;
+	vertical-align: middle;
+	padding-top:7px;
+	text-align: center;
+}
+
+.notice_view_f_r {
+	background: url(https://suwings.syu.ac.kr/img/notice/n_mf_r.gif) no-repeat bottom left;
+	width:16px;
+	height:11px;
+}
+
+.notice_view_f_bg img {	
+	padding:5px;
+	
+ } 
+
+.notice_titleimg {
+	background: url(https://suwings.syu.ac.kr/img/notice/notice_title.gif) no-repeat top left;
+	width:35px;
+	height:15px;
+}
+.h_img {
+	background:url(https://suwings.syu.ac.kr/img/notice/n_t_img.gif) no-repeat top right;	
+	height: 75px;
+	width:132px;
+}
+
+.down_g {
+	background-color:#fff;
+}
+
+.notice_btn_bg {	
+	background-color:#eeefed;
+}
+
+
+.btn_notice_ok .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/notice/btn_ok.gif) no-repeat 0 0;
+	height:31px;
+	width:72px;
+}
+.btn_notice_ok .w2trigger_right {
+	width:0px;	
+}
+
+
+/************************************************************************
+  treeview
+************************************************************************/
+.bg_leftmenu {
+	/*background: url(https://suwings.syu.ac.kr/img/menu/m_bottom_img.jpg) no-repeat bottom left;*/
+	/*border-right:1px solid #868a8d;*/
+}
+/* 수정 설춘경 
+.bg_leftmenu_group {
+	background: url(https://suwings.syu.ac.kr/img/menu/menu_bg_line.gif) repeat-y center left;
+}
+*/
+.bg_leftmenu_group {
+	background: url(https://suwings.syu.ac.kr/img/menu/menu_bg_line.gif) repeat-y center left;
+	border-right:1px solid #868a8d;
+	border-bottom:1px solid #868a8d;
+}
+
+.bg_slidetitle {
+	background: url(https://suwings.syu.ac.kr/img/menu/m_title_bg_04.gif) repeat-y 0 0;
+}
+.leftmenu_subtitle1 {
+	font: bold 12px dotum;
+	text-decoration: none;
+	color: #ffffff;
+}
+.leftmenu_subtitle2 {
+	font: bold 12px dotum;
+	text-decoration: none;
+	color: #ffffff;
+}	
+.mytree.w2treeview  {
+	background: transparent;
+}
+.mytree .w2treeview_guideline {
+	width : 16px;
+	background: transparent;
+}
+.mytree .w2treeview_select_node {
+	background: transparent;
+	color:#385b7d;
+	font-weight:bold;
+}
+
+
+.mytree .w2treeview_table_node {
+	table-layout : fixed;
+/*	table-layout : auto;	*/
+	border-collapse : collapse;
+}
+
+.mytree .w2treeview_table_node td {
+	padding : 0px 1px 0px 1px;
+	margin : 0px;
+}
+
+.mytree .w2treeview_col {
+/*	vertical-align : middle;	*/
+}
+
+.mytree .w2treeview_col_label {
+	word-wrap: normal; /*IE8때문에  있는 코드  IE8에서 (white-space : nowrap)이 상위에 word-wrap: break-word가 있는 경우 제대로 동작하지 않는다. */
+	overflow : visible;/*IE6때문에 있는 코드  기본적으로 developer로 찍어보면 td의 overflow는 visible이나 직접 명시해 주지 않으면 IE6에서는 동작하지 않는다.*/
+}
+
+.mytree .w2treeview_child {
+	margin-left : -15px;	 
+}
+
+.mytree .w2treeview_open_child {
+}
+
+.mytree .w2treeview_none {
+	display : none;
+}
+/*박진우 수정 0401 S*/
+.mytree .w2treeview_label {
+	position : relative;	/* relative, absolute 주면 min-width는 대신 display:block, none왔다갔다할때 위치를 td안에 잘 못찾음..*/
+/*	min-width : 75px;	*/
+	cursor : pointer;
+/*	background-color : #0080ff; */
+	white-space : nowrap;
+	font-size : 12px;
+	color:#595959;
+	padding : 1px ;
+}
+
+.mytree .w2treeview_col_icon_navi {
+	width : 25px;
+}
+
+.mytree .w2treeview_col_icon_checkbox {
+	width : 16px;
+}
+
+.mytree .w2treeview_col_icon_label {
+	width : 20px;
+}
+
+
+.mytree .w2treeview_checkbox {
+	height : 14px;
+	width : 14px;
+}
+
+.mytree .w2treeview_icon_navi {
+	width : 25px;
+	height : 20px;
+	text-align : center;
+}
+
+.mytree .w2treeview_icon_none {
+/* background 없이 크기만 차지 */
+	width : 16px;
+}
+
+.mytree .w2treeview_icon_label {
+/*	display : none;	*/
+	width : 18px;
+	height : 20px;
+	text-align : center;
+	background-repeat : no-repeat;
+	background-position : center center;
+}
+
+.mytree .w2treeview_icon_label_none {
+	display : none;
+}
+
+.mytree .w2treeview_tooltip {
+	display : none;
+	position : absolute;
+	border:2px solid #7BAFE4;
+	cursor : default;
+	font-size : 15px;
+}
+
+
+/* open */
+.mytree .w2treeview_open_child .w2treeview_icon_navi {
+	background : url(https://suwings.syu.ac.kr/img/icon/icn_file.gif) no-repeat center center;
+	font-weight:bold;
+}
+
+.mytree .w2treeview_open_child .w2treeview_icon_label {
+	background : url(https://suwings.syu.ac.kr/img/icon/icn_file.gif) no-repeat center center;	
+	font-weight:bold;
+}
+
+/* close */
+.mytree .w2treeview_close_child .w2treeview_icon_navi {
+	background : url(https://suwings.syu.ac.kr/img/icon/icn_file.gif) no-repeat center center;
+	font-weight:bold;
+}
+
+.mytree .w2treeview_close_child .w2treeview_icon_label {
+	background : url(https://suwings.syu.ac.kr/img/icon/icn_file.gif) no-repeat center center;	
+	
+}
+
+
+.mytree .w2treeview_leaf .w2treeview_icon_navi {
+	background : url(https://suwings.syu.ac.kr/img/icon/icn_file.gif) no-repeat center center;
+	font-weight:bold;
+}
+
+.mytree .w2treeview_last_leaf .w2treeview_icon_navi {
+	background : url(https://suwings.syu.ac.kr/img/icon/icn_file.gif) no-repeat center center;
+	font-weight:bold;
+}
+
+/*
+.w2treeview_leaf .w2treeview_icon_label {
+	width : 16px;
+	background : url(uiplugin/treeview/images/doc1.gif) no-repeat center center;
+}
+*/
+
+
+/************************************************************************
+  con_treeview
+************************************************************************/
+
+.con_treeview.w2treeview  {
+	background: transparent;
+}
+.con_treeview .w2treeview_guideline {
+	width : 16px;
+	background: transparent;
+}
+.con_treeview .w2treeview_select_node {
+	background: transparent;
+	color:#363636;
+	font-weight:bold;
+}
+
+
+.con_treeview .w2treeview_table_node {
+	table-layout : fixed;
+/*	table-layout : auto;	*/
+	border-collapse : collapse;
+}
+
+.con_treeview .w2treeview_table_node td {
+	padding : 0px 1px 0px 1px;
+	margin : 0px;
+}
+
+.con_treeview .w2treeview_col {
+/*	vertical-align : middle;	*/
+}
+
+.con_treeview .w2treeview_col_label {
+	word-wrap: normal; /*IE8때문에  있는 코드  IE8에서 (white-space : nowrap)이 상위에 word-wrap: break-word가 있는 경우 제대로 동작하지 않는다. */
+	overflow : visible;/*IE6때문에 있는 코드  기본적으로 developer로 찍어보면 td의 overflow는 visible이나 직접 명시해 주지 않으면 IE6에서는 동작하지 않는다.*/
+}
+
+.con_treeview .w2treeview_child {
+/*	margin-left : 20px; */
+}
+
+.con_treeview .w2treeview_open_child {
+}
+
+.con_treeview .w2treeview_none {
+	display : none;
+}
+
+.con_treeview .w2treeview_label {
+	position : relative;	/* relative, absolute 주면 min-width는 대신 display:block, none왔다갔다할때 위치를 td안에 잘 못찾음..*/
+/*	min-width : 75px;	*/
+	cursor : pointer;
+/*	background-color : #0080ff; */
+	white-space : nowrap;
+	font-size : 12px;
+	color:#5e5e5e;
+	padding : 1px ;
+}
+
+.con_treeview .w2treeview_col_icon_navi {
+	width : 16px;
+}
+
+.con_treeview .w2treeview_col_icon_checkbox {
+	width : 16px;
+}
+
+.con_treeview .w2treeview_col_icon_label {
+	width : 20px;
+}
+
+
+.con_treeview .w2treeview_checkbox {
+	height : 14px;
+	width : 14px;
+}
+
+.con_treeview .w2treeview_icon_navi {
+	width : 16px;
+	height : 20px;
+	text-align : center;
+}
+
+.con_treeview .w2treeview_icon_none {
+/* background 없이 크기만 차지 */
+	width : 16px;
+}
+
+.con_treeview .w2treeview_icon_label {
+/*	display : none;	*/
+	width : 18px;
+	height : 20px;
+	text-align : center;
+	background-repeat : no-repeat;
+	background-position : center center;
+}
+
+.con_treeview .w2treeview_icon_label_none {
+	display : none;
+}
+
+.con_treeview .w2treeview_tooltip {
+	display : none;
+	position : absolute;
+	border:2px solid #7BAFE4;
+	cursor : default;
+	font-size : 15px;
+}
+
+
+/* open */
+.con_treeview .w2treeview_open_child .w2treeview_icon_navi {
+	background : url(https://suwings.syu.ac.kr/img/icon/icn_fopen_s.gif) no-repeat center center;
+	font-weight:bold;
+}
+
+.con_treeview .w2treeview_open_child .w2treeview_icon_label {
+	background : url(https://suwings.syu.ac.kr/img/icon/icn_fopen_S.gif) no-repeat center center;	
+	font-weight:bold;
+}
+
+/* close */
+.con_treeview .w2treeview_close_child .w2treeview_icon_navi {
+	background : url(https://suwings.syu.ac.kr/img/icon/icn_fclose_s.gif) no-repeat center center;
+	font-weight:bold;
+}
+
+.con_treeview .w2treeview_close_child .w2treeview_icon_label {
+	background : url(https://suwings.syu.ac.kr/img/icon/icn_fclose_s.gif) no-repeat center center;	
+	
+}
+
+
+.con_treeview .w2treeview_leaf .w2treeview_icon_navi {
+	background : url(https://suwings.syu.ac.kr/img/icon/icn_file.gif) no-repeat center center;
+	font-weight:bold;
+}
+
+.con_treeview .w2treeview_last_leaf .w2treeview_icon_navi {
+	background : url(https://suwings.syu.ac.kr/img/icon/icn_file.gif) no-repeat center center;
+	font-weight:bold;
+}
+
+/*
+.w2treeview_leaf .w2treeview_icon_label {
+	width : 16px;
+	background : url(uiplugin/treeview/images/doc1.gif) no-repeat center center;
+}
+*/
+
+/************************************************************************
+  trigger
+************************************************************************/
+
+.btn_search .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/contents/search_btn.gif) no-repeat 0 0;
+	width:20px;
+	height:20px;
+}
+.btn_search .w2trigger_right {
+	width:0px;	
+}
+
+
+.btn_address .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/contents/btn_address.gif) no-repeat 0 0;
+	width: 65px;
+	height:18px;
+}
+.btn_address .w2trigger_right {
+	width:0px;	
+}
+
+
+.btn_photo .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_photo.gif) no-repeat 0 0;
+	width: 156px;
+	height:27px;
+}
+.btn_photo .w2trigger_right {
+	width:0px;	
+}
+
+
+.btn_profile .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_down.gif) no-repeat 0 0;
+	width: 156px;
+	height:27px;
+}
+.btn_profile .w2trigger_right {
+	width:0px;	
+}
+
+
+
+/*박진우 수정 0401 S*/
+.top_btn_search .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_search.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_search .w2trigger_right {
+	width:0px;	
+}
+
+.top_btn_search .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_search_over.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_search .w2trigger_over .w2trigger_right {
+	width:0px;	
+}
+
+.top_btn_search .w2trigger_disabled .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_search_off.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_search .w2trigger_disabled .w2trigger_right {
+	width:0px;	
+}
+
+
+
+
+.top_btn_new .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_new.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_new .w2trigger_right {
+	width:0px;	
+}
+
+
+.top_btn_new .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_new_over.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_new .w2trigger_over .w2trigger_right {
+	width:0px;	
+}
+
+
+.top_btn_new .w2trigger_disabled .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_new_off.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_new .w2trigger_disabled .w2trigger_right {
+	width:0px;	
+}
+
+
+
+
+.top_btn_del .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_del.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_del .w2trigger_right {
+	width:0px;	
+}
+
+
+.top_btn_del .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_del_over.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_del .w2trigger_over .w2trigger_right {
+	width:0px;	
+}
+
+
+.top_btn_del .w2trigger_disabled  .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_del_off.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_del .w2trigger_disabled  .w2trigger_right {
+	width:0px;	
+}
+
+
+
+
+.top_btn_save .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_save.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_save .w2trigger_right {
+	width:0px;	
+}
+
+
+.top_btn_save .w2trigger_over  .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_save_over.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_save .w2trigger_over  .w2trigger_right {
+	width:0px;	
+}
+
+
+.top_btn_save .w2trigger_disabled  .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_save_off.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_save .w2trigger_disabled  .w2trigger_right {
+	width:0px;	
+}
+
+
+
+
+.top_btn_help .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_help.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_help .w2trigger_right {
+	width:0px;	
+}
+
+
+.top_btn_help .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_help_over.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_help .w2trigger_over .w2trigger_right {
+	width:0px;	
+}
+
+
+.top_btn_help .w2trigger_disabled .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_help_off.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_help .w2trigger_disabled .w2trigger_right {
+	width:0px;	
+}
+
+
+
+.top_btn_print .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_print.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_print .w2trigger_right {
+	width:0px;	
+}
+
+
+.top_btn_print .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_print_over.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_print .w2trigger_over .w2trigger_right {
+	width:0px;	
+}
+
+
+.top_btn_print .w2trigger_disabled .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_print_off.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_print .w2trigger_disabled .w2trigger_right {
+	width:0px;	
+}
+
+
+
+.top_btn_tib .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_tib.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_tib .w2trigger_right {
+	width:0px;	
+}
+
+
+.top_btn_tib .w2trigger_over .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_tib_over.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_tib .w2trigger_over .w2trigger_right {
+	width:0px;	
+}
+
+
+.top_btn_tib .w2trigger_disabled .w2trigger_left {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_tib_off.gif) no-repeat 0 0;
+	width: 68px;
+	height:22px;
+}
+.top_btn_tib .w2trigger_disabled .w2trigger_right {
+	width:0px;	
+}
+
+/*박진우 수정 0401 E*/
+
+
+
+/************************************************************************
+  trigger - 상단 확장버튼
+************************************************************************/
+.top_btn_ext .w2trigger_left {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_3_l.gif) no-repeat 0 0; 
+	width: 10px;
+	height: 22px;
+}
+.top_btn_ext .w2trigger_center {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_3_c.gif) repeat-x; 
+	font: bold 12px "Dotum", "tahoma";
+	color:#000000;
+	padding-bottom: 1px;
+	text-align: center; 
+	padding:0px 3px;
+}
+.top_btn_ext .w2trigger_right {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_3_r.gif) no-repeat 0 0; 
+	width: 19px;
+	height: 22px;
+}
+
+.top_btn_ext .w2trigger_over .w2trigger_left {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_3over_l.gif) no-repeat 0 0; 
+	width: 10px;
+	height: 22px;
+}
+.top_btn_ext .w2trigger_over .w2trigger_center {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_3over_c.gif) repeat-x;
+	font: bold 12px "Dotum", "tahoma";
+	color:#000000;
+	padding-bottom: 1px;
+	text-align: center; 
+	padding:0px 3px;
+}
+.top_btn_ext .w2trigger_over .w2trigger_right {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_3over_r.gif) no-repeat 0 0; 
+	width: 19px;
+	height: 22px;
+}
+
+.top_btn_ext .w2trigger_disabled .w2trigger_left {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_3_l.gif) no-repeat 0 0; 
+	width: 10px;
+	height: 22px;
+}
+.top_btn_ext .w2trigger_disabled .w2trigger_center {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_3_c.gif) repeat-x; 
+	font: bold 12px "Dotum", "tahoma";
+	padding-bottom: 1px;
+	color:#4a4a4a;
+	font-style:none;
+	text-align: center;
+	padding:0px 3px;
+}
+.top_btn_ext .w2trigger_disabled .w2trigger_right {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_3_r.gif) no-repeat 0 0; 
+	width: 19px;
+	height: 22px;
+}
+
+
+/************************************************************************
+  input calender
+************************************************************************/
+
+.calen .w2calendar {
+	background-color : #ffffff;
+	border : 1px solid #d7d7d7;
+	z-index:5000;
+}
+
+.calen .w2calendar_wrap {
+	border :1px  solid  #d7d7d7;
+	
+}
+
+.calen .w2calendar_header {
+	height : 28px;
+}
+
+.calen .w2calendar_content {
+	font-size:12px; 
+	color:#666666;
+}
+
+.calen.w2inputCalendar_input {
+	border : 1px solid #d7d7d7;
+	height:17px;
+	font-size:12px;
+	text-align:center;
+	
+}
+
+
+.calen.w2inputCalendar_input_focus {
+	border : solid 1px #7e9db9;
+	font-size:12px;
+	background-color: #f7f7f7;
+	height:17px;
+}
+
+.calen .w2inputCalendar_input_disabled {	
+	font-size:12px;
+	padding : 0px 2px 0px 2px;
+	font-family: 'tahoma', 'dotum';
+	background-color: #e1e1e1;
+	border:1px solid #d7d7d7;
+	color:#bcbcbc;
+}
+
+.calen.w2inputCalendar_readOnly {	
+	border:1px solid #d7d7d7;
+	font-size:12px;
+	padding : 0px 2px 0px 2px;
+	font-family: 'tahoma', 'dotum';
+	background-color: #f7f7f7;
+}
+/************************************************************************
+  calender
+************************************************************************/
+.w2calendar_newcal_calendar {
+	background-color : #ecf4ff;
+	border : solid 1px #6788be;
+	z-index:5000;
+	width : 199px;
+	height : 191px;
+}
+.w2calendar_jinjin_calendar .w2selectbox_col_button {
+	background-image : url(https://suwings.syu.ac.kr/img/calendar/select_arrow2.png);
+}
+
+.w2calendar_newcal_calendar .w2selectbox_over .w2selectbox_col_button {
+ 	background-image : url(https://suwings.syu.ac.kr/img/calendar/select_arrow.png);
+}
+
+.w2calendar_newcal_calendar .w2calendar_header_last_year {
+	position : absolute;
+	left : 6px;
+	top : 4px;
+	width : 15px;
+	height : 22px;
+	cursor : pointer;
+	background-image : url(https://suwings.syu.ac.kr/img/calendar/last_year.gif);
+	background-position : center center;
+	background-repeat : no-repeat;
+}
+.w2calendar_newcal_calendar .w2selectbox_label {
+	overflow : hidden;
+	text-overflow : ellipsis;
+	text-align : center;
+	white-space : nowrap;
+	padding-top : 2px;
+	font-size:11px;	
+	color: #ffffff;
+	background-color: #82a2de;
+	font-family: 'tahoma' ;
+}
+.w2calendar_newcal_calendar .w2calendar_header_next_year {
+	position : absolute;
+	left : 176px;
+	top : 4px;
+	width : 15px;
+	height : 22px;
+	cursor : pointer;
+	background-image : url(https://suwings.syu.ac.kr/img/calendar/next_year.gif);
+	background-position : center center;
+	background-repeat : no-repeat;
+}
+.w2calendar_newcal_calendar .w2calendar_header_last_month {
+	position : absolute;
+	left : 21px;
+	top : 4px;
+	width : 17px;
+	height : 22px;
+	cursor : pointer;
+	background-image : url(https://suwings.syu.ac.kr/img/calendar/month_last.gif);
+	background-position : center center;
+	background-repeat : no-repeat;
+}
+
+.w2calendar_newcal_calendar .w2calendar_header_next_month {
+	position : absolute;
+	left : 160px;
+	top : 4px;
+	width : 17px;
+	height : 22px;
+	cursor : pointer;
+	background-image : url(https://suwings.syu.ac.kr/img/calendar/month_next.gif);
+	background-position : center center;
+	background-repeat : no-repeat;
+}
+
+.w2calendar_newcal_calendar .w2calendar_col_day {
+	height : 18px;
+	text-align : center;
+	font-size : 12px;
+	font-weight : bold;
+	color : #004080;
+	background-color : #ecf4ff;
+
+}
+.w2calendar_wrap {
+	border : solid 0px #6788be;
+	background-color : #ecf4ff;
+}
+.w2calendar_newcal_calendar .w2calendar_col_day .w2calendar_day0 {
+	background : url(https://suwings.syu.ac.kr/img/calendar/day_sun.gif) center center no-repeat;
+	border-bottom:1px solid #bcd2f1;
+}
+
+.w2calendar_newcal_calendar .w2calendar_col_day .w2calendar_day1 {
+	background : url(https://suwings.syu.ac.kr/img/calendar/day_mon.gif) center center no-repeat;
+	border-bottom:1px solid #bcd2f1;
+}
+
+.w2calendar_newcal_calendar .w2calendar_col_day .w2calendar_day2 {
+	background : url(https://suwings.syu.ac.kr/img/calendar/day_tue.gif) center center no-repeat;
+	border-bottom:1px solid #bcd2f1;
+}
+
+.w2calendar_newcal_calendar .w2calendar_col_day .w2calendar_day3 {
+	background : url(https://suwings.syu.ac.kr/img/calendar/day_wed.gif) center center no-repeat;
+	border-bottom:1px solid #bcd2f1;
+}
+
+.w2calendar_newcal_calendar .w2calendar_col_day .w2calendar_day4 {
+	background : url(https://suwings.syu.ac.kr/img/calendar/day_thu.gif) center center no-repeat;
+	border-bottom:1px solid #bcd2f1;
+}
+
+.w2calendar_newcal_calendar .w2calendar_col_day .w2calendar_day5 {
+	background : url(https://suwings.syu.ac.kr/img/calendar/day_fri.gif) center center no-repeat;
+	border-bottom:1px solid #bcd2f1;
+}
+
+.w2calendar_newcal_calendar .w2calendar_col_day .w2calendar_day6 {
+	background : url(https://suwings.syu.ac.kr/img/calendar/day_sat.gif) center center no-repeat;
+	border-bottom:1px solid #bcd2f1;
+}
+
+.w2calendar_newcal_calendar .w2calendar_col_date {
+	background-color : white;
+	height : 20px;
+	font-family: 'tahoma';
+	font-size: 11px;
+}
+
+.w2calendar_newcal_calendar .w2calendar_date_on {
+	text-align : center;
+}
+
+.w2calendar_newcal_calendar .w2calendar_date_off {
+	text-align : center;
+	color : #777777;
+}
+
+.w2calendar_newcal_calendar .w2calendar_date_over {
+	background-color :#d4ffbc;
+	border:0px solid #85c843;
+	color : #2b333c;;
+}
+
+.w2calendar_newcal_calendar .w2calendar_selected {
+	background-color :#e7f1ff;
+	border:0px solid #bcd2f1;
+	color : #2b333c;
+}
+
+/* sunday */
+.w2calendar_newcal_calendar .w2calendar_day_0 {	
+	color : #444444;
+}
+
+/* saturday */
+.w2calendar_newcal_calendar .w2calendar_day_6 {	
+	color : #444444;
+}
+
+/* holiday*/
+.w2calendar_newcal_calendar .w2calendar_holiday {	
+	color : 444444;
+}
+.w2calendar_newcal_calendar .w2inputCalendar_col_img {
+	width:26px;
+}
+.w2inputCalendar_col_img {
+	width:26px;
+}
+.w2calendar_newcal_calendar .w2calendar_header {
+	height : 28px;
+	background-image: url(https://suwings.syu.ac.kr/img/calendar/calendar_header_bg.gif);
+	background-repeat: repeat-x;
+}
+
+.w2calendar_newcal_calendar .w2selectbox_col_label {
+	background: transparent;
+}
+
+.w2calendar_newcal_calendar .w2calendar_selectbox_year {
+	position : absolute;
+	left : 39px;
+	top : 4px;
+	width : 57x;
+	height : 18px;
+	background-color: #8aa4d0;
+	border: 1px solid #6788be;
+
+}
+.w2calendar_newcal_calendar .w2calendar_selectbox_month {
+	position : absolute;
+	left : 106px;
+	top : 4px;
+	width : 50px;
+	height : 18px;
+	background-color: #8aa4d0;
+	border: 1px solid #6788be;
+
+}
+.w2calendar_newcal_calendar .w2calendar_go_today {
+	position : relative;
+	width : 36px;
+	height : 16px;
+	background-image : url(uiplugin/calendar/images/b_date.gif);
+	background-position : center center;
+	background-repeat : no-repeat;
+	margin-left:10px;
+}
+
+.w2calendar_newcal_calendar .w2calendar_go_today_over {
+	background-image : url(uiplugin/calendar/images/b_date_on.gif);
+}
+
+.w2calendar_newcal_calendar .w2calendar_footer_date {
+	/* border : solid 1px #cccccc; */
+	margin-left :5px;
+	font-family:'tahoma';
+	font-size: 11px;
+	position: relative;
+	top: -2px;
+	left:-40px;
+}
+.w2calendar_newcal_calendar .w2calendar_footer {	
+	border-bottom : solid 1px #6788be;
+	width : 100%;
+}
+.w2calendar_newcal_calendar .w2inputCalendar_input {
+	ime-mode : disabled;
+	border-left : solid 1px #b1b1b1;
+	border-top : solid 1px #b1b1b1;
+	border-bottom : solid 1px #b1b1b1;
+	border-right : solid 1px #b1b1b1;	
+	width : 100%;
+	background: url(https://suwings.syu.ac.kr/img/calendar/input_bg.gif) repeat-x;
+	font-family: '맑은 고딕', 'dotum';
+	font-size:12px;	
+}
+
+.w2selectbox_label_over {
+	background-color : yellow;
+}
+
+/************************************************************************
+  gird
+************************************************************************/
+/* grid */
+
+.gridstyle01 .w2grid { 
+	background-color:#ffffff;
+	border:1px solid #cbcbcb;
+	ime-mode:active;
+}
+
+.gridstyle01 .w2grid td {
+	padding-left:0px; padding-right:0px;
+	padding-top :0px; padding-bottom:0px;
+	ime-mode:active;
+}
+
+.gridstyle01 .w2grid th {
+	padding-left:0px; padding-right:0px;
+	padding-top :0px; padding-bottom:0px;
+	ime-mode:active;
+}
+
+.gridstyle01 .w2grid_plus {
+	background-image : url(uiplugin/grid/images/plus.gif);
+	background-position : center center;
+	background-repeat:no-repeat;
+	width:16px;
+	height:16px;
+}
+
+.gridstyle01 .w2grid_minus {
+	background-image : url(uiplugin/grid/images/minus.gif);
+	background-position : center center;
+	background-repeat:no-repeat;
+	width:16px;
+	height:16px;
+}
+
+.gridstyle01 .w2grid_leaf {
+	background-image : url(uiplugin/grid/images/leaf.gif);
+	background-position : center center;
+	background-repeat:no-repeat;
+	width:16px;
+	height:16px;
+}
+
+.gridstyle01 .w2grid nobr {
+	font-family:tahoma, dotum;
+}
+
+.gridstyle01 .w2grid_head_input {
+	border:1px solid #B1C5D5;
+}
+
+/*박진우 수정 0401 S*/
+.gridstyle01 .gridHeaderTDDefault{
+	text-align:center;
+	overflow:hidden;
+	border:1px solid #b5b5b5;
+	border-left:0px solid blue;
+	background-color:#cbdeef;
+	font-size:12px;
+	font-weight:bold;
+	vertical-align:middle;
+	color:#003b70;
+	white-space:nowrap;
+}
+/*박진우 수정 0401 S*/
+.gridstyle01 .gridHeaderTableDefault{ 
+	border-top:2px solid #266094; 
+	border-bottom:1px solid #cbcbcb; 
+	border-left:0px solid #B1C5D5; 
+	border-right:0px solid #B1C5D5 ; 	
+	cursor:default
+}
+
+
+.gridstyle01_headercolumn {
+	border-bottom: 1px solid #537590;
+	font: bold 12px "Dotum", "tahoma";
+	background-color:#e9e8e6;	
+	border:1px solid #B1C5D5;
+	border-left:0px solid blue;
+}
+
+/* .gridstyle01 .gridHeaderTRDefault{}
+.gridstyle01 .gridHeaderTDDefault{
+	text-align:center;
+	overflow:hidden;
+	border:1px solid #cbcbcb;
+	border-left:0px solid blue;
+	background-color:#e5edd8;
+	font-size:12px;
+	font-weight:bold;
+	vertical-align:middle;
+	color:#3b520a;
+	white-space:nowrap;
+} */
+.gridstyle01 .gridHeaderTDDefault_rowNumber{}
+.gridstyle01 .gridHeaderTDDefault_rowStatus{}
+.gridstyle01 .gridBodyDefault tr:nth-of-type(even){
+	background:#f9f9f9;
+}
+.gridstyle01 .gridBodyDefault tr:nth-of-type(odd){
+	background:#ffffff;
+}
+.gridstyle01 .gridBodyDefault{
+	cursor:default;
+	border:1px solid #d8d8d8;
+	border-left:0px solid blue;
+    border-bottom:none;
+	font-size:12px;
+	overflow:hidden;
+	font-family:tahoma, dotum;
+	text-align:center;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	height:20px;
+}
+.gridstyle01 .gridBodyTableDefault{border:0px solid #B1C5D6; border-right:0px solid #B1C5D6}
+.gridstyle01 .gridBodyDefault td{padding:0px 0px 0px 0px }
+.gridstyle01 .gridBodyTRDefault{
+	background-color:#f9f9f9;
+
+}
+
+
+.gridstyle01 .gridBodyDefault_select{
+	background-repeat:no-repeat;
+	background-position:right center;
+	background-image:url(uiplugin/selectbox/images/select_arrow.gif);
+}
+
+.gridstyle01 .grid1_columnstyle_1_ focusedTd{
+	background-color:#fcf6fa;
+	border:#d6d5d3 1px solid;
+}
+	
+
+
+.gridstyle01 .gridSubtotalTRDefault{
+    background-color:#f8f7f5;
+    border-top: 1px solid #5d5d5d;    
+    border-bottom: 1px solid #5d5d5d;
+
+}
+.gridstyle01 .gridSubtotalDefault{
+	overflow:hidden;
+	background-color:#f8f7f5;
+	font-family:tahoma,dotum;
+	font-size:12px;
+	font-weight:bold;
+	text-align:center;
+	vertical-align:middle;
+	border: 1px solid #d6d5d3;
+	white-space:nowrap;
+	color:#000000;
+	height:20px;
+}
+.gridstyle01 .gridSubtotalDefault_rowNumber{
+	background-color:#ffffff;
+	border:1px solid #B1C5D6;
+}
+.gridstyle01 .gridSubtotalDefault_rowStatus{
+	background-color:#ffffff;
+	border:1px solid #B1C5D6;
+}
+
+.gridstyle01 .gridBodyDefault_rowNumber{
+	font-family:tahoma, dotum;
+	background-color: #f9f9f9;
+}
+
+.gridstyle01 .gridBodyDefault_colNumber{
+	font-family:tahoma, dotum;
+}
+.gridstyle01 .gridBodyDefault_rowStatus{
+	font-family:tahoma, dotum;
+}
+
+
+.gridstyle01 .gridFooterTableDefault{ 
+	cursor:default; 
+	font-weight:normal; 
+	border-top: 1px solid #5d5d5d;    
+	text-align:center; 
+	vertical-align:middle; 
+}
+
+.gridstyle01 .gridFooterTRDefault{
+    background-color: #f8f7f5;
+    border-top: 2px solid #5d5d5d;    
+    border-bottom: 2px solid #5d5d5d;
+}
+
+
+.gridstyle01 .gridFooterTDDefault{
+	border-top: 2px solid #5d5d5d;    
+	overflow:hidden;
+	background-color:#f8f7f5;
+	font-family:tahoma,dotum;
+	font-size:12px;
+	font-weight:bold;
+	text-align:center;
+	vertical-align:middle;
+	border: 1px solid #5d5d5d;
+	white-space:nowrap;
+	color:#4a4a4a;
+	height:20px;
+}
+.gridstyle01 .gridFooterTDDefault_rowNumber{
+}
+.gridstyle01 .gridFooterTDDefault_rowStatus{
+}
+
+
+.focusedTd1{ background-color:#FCA73C }
+
+.w2grid_tooltip {
+	display : none;
+	position : absolute;
+	border:2px solid #7BAFE4;
+	background-color:#ffffff;
+	cursor : default;
+	font-size : 11px;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.w2grid_drag {
+	visibility : hidden;
+	position : absolute;
+	border:2px solid #7BAFE4;
+	background-color:#ffffff;
+	cursor : default;
+	font-size : 12px;
+	margin-left : 10px;
+	margin-top : 10px;
+}
+
+.w2grid_fastScroll_layer {
+	position : absolute;
+	left : 0px;
+	width : 100%;
+	height : 100%;
+	background-color : #e8f0f8;
+}
+
+.w2grid_fastScroll_msg {
+	color:#333333;
+	font-weight : bold;
+	text-align : center;
+	position:absolute;
+	top : 30px;
+	left : 50%;
+	width : 200px;
+	height : 20px;
+	margin-left : -100px;
+	padding-top : 3px;
+	border : 2px solid #7BAFE4;  
+}
+
+.gridstyle01 nobr a {
+	font: bold 12px "Dotum", "tahoma";
+	color: #336598;
+	padding-left: 8px;
+	text-decoration: none;
+}
+
+.gridstyle01 nobr a:hover {
+	font: bold 12px "Dotum", "tahoma";
+	color: #336598;
+	padding-left: 8px;
+	text-decoration: underline;
+}
+
+
+/************************************************************************
+  join_info
+************************************************************************/
+/* 0401 박진우 수정*/
+.job_text {
+	color:#003b70;
+	font-weight:bold;
+}
+.jobinfo {
+	background: url(https://suwings.syu.ac.kr/img/contents/job_c_bg.gif) repeat-x top left;
+	text-align:left;
+	padding-left:10px;
+	font: bold 12px "Dotum", "tahoma";
+}
+
+.jobinfo_left {
+	background: url(https://suwings.syu.ac.kr/img/contents/job_l.gif) no-repeat top left;
+	float:left;
+}
+
+.jobinfo_right {
+	background: url(https://suwings.syu.ac.kr/img/contents/job_r.gif) no-repeat top right;
+	float:right;
+}
+
+/************************************************************************
+  contents
+************************************************************************/
+/* 수정 설춘경  */
+
+/*
+.bg_contents {
+	background: url(https://suwings.syu.ac.kr/img/menu/tab_ba_bg.gif) repeat-x top left;
+	border-left:1px solid #868a8d;
+}
+*/
+
+.bg_contents {
+	background: url(https://suwings.syu.ac.kr/img/menu/tab_ba_bg.gif) repeat-x top left;
+	border-left:0px solid #868a8d;
+}
+
+.rounding_bg {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/table_fc.gif) repeat-x;
+	height:18px;
+	vertical-align:bottom;
+}	
+.rounding_left {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/table_fl.gif) no-repeat;
+	height:18px;
+	width:9px;
+	text-align:left;
+}
+
+.rounding_right {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/table_fr.gif) no-repeat;
+	height:18px;
+	width:8px;
+	text-align:right;
+}
+
+
+/********** btn_add1 *********************/
+
+.btn_add1 .w2trigger_left {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_1_l.gif) no-repeat 0 0; 
+	width: 10px;
+	height: 20px;
+}
+.btn_add1 .w2trigger_center {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_1_c.gif) repeat-x; 	
+	font: 12px "Dotum", "tahoma";
+	color:#fff;	
+	text-align: center;
+}
+.btn_add1 .w2trigger_right {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_1_r.gif) no-repeat 0 0; 
+	width: 19px;
+	height: 20px;
+}
+
+.btn_add1 .w2trigger_over .w2trigger_left {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_1over_l.gif) no-repeat 0 0; 
+	width: 10px;
+	height: 20px;
+}
+.btn_add1 .w2trigger_over .w2trigger_center {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_1over_c.gif) repeat-x; 
+	
+	font: 12px "Dotum", "tahoma";
+	color:#fff;	
+	text-align: center;
+}
+.btn_add1 .w2trigger_over .w2trigger_right {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_1over_r.gif) no-repeat 0 0; 
+	width: 19px;
+	height: 20px;
+}
+
+.btn_add1 .w2trigger_disabled .w2trigger_left {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_1off_l.gif) no-repeat 0 0; 
+	width: 10px;
+	height: 20px;
+}
+.btn_add1 .w2trigger_disabled .w2trigger_center {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_1off_c.gif) repeat-x; 	
+	font: 12px "Dotum", "tahoma";
+	font-style:none;
+	color:#fff;
+	text-align: center;
+}
+.btn_add1 .w2trigger_disabled .w2trigger_right {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_1off_r.gif) no-repeat 0 0; 
+	width: 19px;
+	height: 20px;
+}
+
+
+/********** btn_add2 *********************/
+
+.btn_add2 .w2trigger_left {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_5_l.gif) no-repeat 0 0; 
+	width: 10px;
+	height: 20px;
+}
+.btn_add2 .w2trigger_center {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_5_c.gif) repeat-x; 
+	
+	font: 12px "Dotum", "tahoma";
+	color:#ffffff;
+	text-align: center;
+}
+.btn_add2 .w2trigger_right {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_5_r.gif) no-repeat 0 0; 
+	width: 19px;
+	height: 20px;
+}
+
+.btn_add2 .w2trigger_over .w2trigger_left {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_5on_l.gif) no-repeat 0 0; 
+	width: 10px;
+	height: 20px;
+}
+.btn_add2 .w2trigger_over .w2trigger_center {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_5on_c.gif) repeat-x; 	
+	font: 12px "Dotum", "tahoma";
+	color:#ffffff;
+	text-align: center;
+}
+.btn_add2 .w2trigger_over .w2trigger_right {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_5on_r.gif) no-repeat 0 0; 
+	width: 19px;
+	height: 20px;
+}
+
+.btn_add2 .w2trigger_disabled .w2trigger_left {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_5off_l.gif) no-repeat 0 0; 
+	width: 10px;
+	height: 20px;
+}
+.btn_add2 .w2trigger_disabled .w2trigger_center {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_5off_c.gif) repeat-x; 	
+	font: 12px "Dotum", "tahoma";
+	font-style:none;
+	color:#4a4a4a;
+	text-align: center;
+}
+.btn_add2 .w2trigger_disabled .w2trigger_right {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_5off_r.gif) no-repeat 0 0; 
+	width: 19px;
+	height: 20px;
+}
+
+
+
+/********** btn_add3 *********************/
+
+.btn_add3 .w2trigger_left {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_6_l.gif) no-repeat 0 0; 
+	width: 10px;
+	height: 20px;
+}
+.btn_add3 .w2trigger_center {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_6_c.gif) repeat-x; 
+	
+	font: bold 12px "Dotum", "tahoma";
+	color:#ffffff;
+	text-align: center;
+}
+.btn_add3 .w2trigger_right {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_6_r.gif) no-repeat 0 0; 
+	width: 19px;
+	height: 20px;
+}
+
+.btn_add3 .w2trigger_over .w2trigger_left {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_6on_l.gif) no-repeat 0 0; 
+	width: 10px;
+	height: 20px;
+}
+.btn_add3 .w2trigger_over .w2trigger_center {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_6on_c.gif) repeat-x; 
+	
+	font: bold 12px "Dotum", "tahoma";
+	color:#ffffff;
+	text-align: center;
+}
+.btn_add3 .w2trigger_over .w2trigger_right {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_6on_r.gif) no-repeat 0 0; 
+	width: 19px;
+	height: 20px;
+}
+
+.btn_add3 .w2trigger_disabled .w2trigger_left {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_6off_l.gif) no-repeat 0 0; 
+	width: 10px;
+	height: 20px;
+}
+.btn_add3 .w2trigger_disabled .w2trigger_center {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_6off_c.gif) repeat-x; 
+	font-style:none;
+	font: bold 12px "Dotum", "tahoma";
+	color:#4a4a4a;
+	text-align: center;
+}
+.btn_add3 .w2trigger_disabled .w2trigger_right {
+	background:url(https://suwings.syu.ac.kr/img/btn/btn_6off_r.gif) no-repeat 0 0; 
+	width: 19px;
+	height: 20px;
+}
+
+
+
+/********** btn_add4 *********************/
+
+.btn_add4 .w2trigger_left {
+	       
+    background-image: url(https://suwings.syu.ac.kr/img/btn/btn_7on_l.gif);
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 20px;
+}
+
+.btn_add4 .w2trigger_center {
+	background-image: url(https://suwings.syu.ac.kr/img/btn/btn_7on_c.gif);
+	background-repeat: repeat-x;
+	font: bold 12px "Dotum", "tahoma";
+	padding-bottom: 1px;
+	color:#ffffff;
+	text-align: center;
+	height: 20px;
+}
+
+.btn_add4 .w2trigger_right {
+	background-image: url(https://suwings.syu.ac.kr/img/btn/btn_7on_r.gif);
+	background-repeat: no-repeat;
+	width: 16px;
+	height:20px;
+}
+
+.btn_add4 .w2trigger_over .w2trigger_left {
+	background-image: url(https://suwings.syu.ac.kr/img/btn/btn_7over_l.gif);
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 20px;
+}
+
+.btn_add4 .w2trigger_over .w2trigger_center {
+	background-image: url(https://suwings.syu.ac.kr/img/btn/btn_7over_c.gif);
+	background-repeat: repeat-x;
+	font: bold 12px "Dotum", "tahoma";
+	color:#ffffff;
+	padding-bottom: 1px;
+	text-align: center;
+	height: 20px;
+}
+
+.btn_add4 .w2trigger_over .w2trigger_right {
+	background-image: url(https://suwings.syu.ac.kr/img/btn/btn_7over_r.gif);
+	background-repeat: no-repeat;
+	width: 16px;
+	height:20px;
+}
+
+
+.btn_add4 .w2trigger_disabled .w2trigger_left {
+	background-image: url(https://suwings.syu.ac.kr/img/btn/btn_7_l.gif);
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 20px;
+}
+
+.btn_add4 .w2trigger_disabled .w2trigger_center {
+	background-image: url(https://suwings.syu.ac.kr/img/btn/btn_7_c.gif);
+	background-repeat: repeat-x;
+	font: bold 12px "Dotum", "tahoma";
+	padding-bottom: 1px;
+	color:#4a4a4a;
+	font-style:none;
+	text-align: center;
+	height: 20px;
+}
+
+.btn_add4 .w2trigger_disabled .w2trigger_right {
+	background-image: url(https://suwings.syu.ac.kr/img/btn/btn_7_r.gif);
+	background-repeat: no-repeat;
+	width: 16px;
+	height:20px;
+}
+
+
+
+
+/************************************************************************
+  inputbox
+************************************************************************/
+
+
+.common_input {
+	border:1px solid #d7d7d7;
+	font-size:12px;
+	padding : 0px 2px 0px 2px;
+	font-family: 'tahoma', 'dotum';
+	background-color: #ffffff;
+	ime-mode:active;
+}
+
+.common_input.w2input_focus {
+	border : solid 1px #7e9db9;
+	background-color: #f7f7f7;
+}
+
+.common_input .w2input_disabled {	
+	font-size:12px;
+	padding : 0px 2px 0px 2px;
+	font-family: 'tahoma', 'dotum';
+	background-color: #e1e1e1;
+	border:1px solid #d7d7d7;
+	color:#bcbcbc;
+}
+.common_input.w2input_readonly {
+	border:1px solid #d7d7d7;
+	font-size:12px;
+	padding : 0px 2px 0px 2px;
+	font-family: 'tahoma', 'dotum';
+	background-color: #f7f7f7;
+}
+
+.w2upload {
+	width: 400px;
+	height: 20px;
+	position: absolute;
+}
+
+.upload .w2upload {
+	width: 500px;
+	height: 20px;
+	position: absolute;
+}
+
+.upload .w2upload_input{
+	position:absolute;
+	vertical-align: middle; 
+	word-wrap: break-word;
+	height:100%;
+	border:1px solid #d7d7d7;
+	height:15px;
+	padding-right:3px;
+	font-size:12px;
+}
+
+.upload.w2input_focus {
+	border : solid 1px #7e9db9;
+	background-color: #f7f7f7;
+}
+
+.upload .w2input_disabled {	
+	font-size:12px;
+	padding : 0px 2px 0px 2px;
+	font-family: 'tahoma', 'dotum';
+	background-color: #e1e1e1;
+	border:1px solid #d7d7d7;
+	color:#bcbcbc;
+}
+
+.upload .w2upload_image {
+	background: url(https://suwings.syu.ac.kr/img/contents/search_btn.gif) no-repeat 0 0;	
+	position:absolute;	
+	vertical-align: middle; 
+	margin-left:3px;
+	word-wrap: break-word;
+	overflow:hidden;
+	width:25px;
+}
+
+
+.upload2 .w2upload {
+	width: 500px;
+	height: 20px;
+	position: absolute;
+}
+
+.upload2 .w2upload_input{
+	position:absolute;
+	vertical-align: middle; 
+	word-wrap: break-word;
+	height:100%;
+	border:1px solid #d7d7d7;
+	height:15px;
+	padding-right:3px;
+	font-size:12px;
+}
+
+.upload2.w2input_focus {
+	border : solid 1px #7e9db9;
+	background-color: #f7f7f7;
+}
+
+.upload2 .w2input_disabled {	
+	font-size:12px;
+	padding : 0px 2px 0px 2px;
+	font-family: 'tahoma', 'dotum';
+	background-color: #e1e1e1;
+	border:1px solid #d7d7d7;
+	color:#bcbcbc;
+}
+
+.upload2 .w2upload_image {
+	background: url(https://suwings.syu.ac.kr/img/notice/btn_filedown.gif) no-repeat 0 0;	
+	position:absolute;	
+	vertical-align: middle; 
+	margin-left:4px;
+	overflow:hidden;
+	width:120px;
+	height:20px;
+}
+
+
+/************************************************************************
+사진 업로드
+************************************************************************/
+.blob_upload .w2upload {
+	width: 800px;
+	height: 20px;
+	position: absolute;
+}
+
+.blob_upload .w2upload_input{
+	position:absolute;
+	vertical-align: middle; 
+	word-wrap: break-word;
+	height:100%;
+	border:0px solid #d7d7d7;
+	height:16px;
+	padding-right:3px;
+	font-size:12px;
+}
+
+.blob_upload.w2input_focus {
+	border : solid 1px #7e9db9;
+	background-color: #f7f7f7;
+}
+
+.blob_upload .w2input_disabled {	
+	font-size:12px;
+	padding : 0px 2px 0px 2px;
+	font-family: 'tahoma', 'dotum';
+	background-color: #e1e1e1;
+	border:1px solid #d7d7d7;
+	color:#bcbcbc;
+}
+
+.blob_upload .w2upload_image {
+	background: url(https://suwings.syu.ac.kr/img/btn/blob_upload.gif) no-repeat 0 0;	
+	position:absolute;	
+	vertical-align: middle; 
+	margin-left:3px;
+	word-wrap: break-word;
+	overflow:hidden;
+	width:92px;
+	height:20px;
+}
+/************************************************************************
+증빙자료올리기 업로드
+************************************************************************/
+.blob_upload2 .w2upload {
+	width: 500px;
+	height: 20px;
+	position: absolute;
+}
+
+.blob_upload2 .w2upload_input{
+	position:absolute;
+	vertical-align: middle; 
+	word-wrap: break-word;
+	height:100%;
+	border:0px solid #d7d7d7;
+	height:16px;
+	padding-right:3px;
+	font-size:12px;
+}
+
+.blob_upload2 .w2input_focus {
+	border : solid 1px #7e9db9;
+	background-color: #f7f7f7;
+}
+
+.blob_upload2 .w2input_disabled {	
+	font-size:12px;
+	padding : 0px 2px 0px 2px;
+	font-family: 'tahoma', 'dotum';
+	background-color: #e1e1e1;
+	border:1px solid #d7d7d7;
+	color:#bcbcbc;
+}
+
+.blob_upload2 .w2upload_image {
+	background: url(https://suwings.syu.ac.kr/img/btn/btn_DocUpload.gif) no-repeat 0 0;	
+	position:absolute;	
+	vertical-align: middle; 
+	margin-left:3px;
+	word-wrap: break-word;
+	overflow:hidden;
+	width:135px;
+	height:20px;
+}
+/************************************************************************
+  selectbox
+************************************************************************/
+
+
+.jinjin {
+	border:1px solid #d7d7d7;
+	font-size:12px;
+	font-family: 'tahoma', 'dotum';
+}
+
+.jinjin_focus {
+	border : solid 1px #7e9db9;
+	background-color: #f7f7f7;
+	text-align : left;
+}
+
+.jinjin_disabled {
+	border : solid 1px #d7d7d7;
+	background-color: #f7f7f7;
+	text-align : left;
+}
+
+
+.jinjin .w2selectbox {
+	margin : 0px;
+	padding : 0px;
+	border:1px solid #b5c7d6;
+	background-color : #ffffff;
+	text-align : left;
+}
+
+.jinjin .w2selectbox_table_main {
+	position : absolute;
+	left:0px;
+	top:0px;
+	width : 100%;
+	height : 100%;
+	border-collapse : collapse;
+	table-layout : fixed;
+}
+
+.jinjin .w2selectbox_col_label {
+	font-size : 12px;
+	vertical-align : middle;
+	text-align : left;
+	padding-left:3px;
+	
+}
+
+
+.jinjin_disabled .w2selectbox_col_label {
+	font-size : 12px;
+	vertical-align : middle;
+	text-align : left;
+	padding-left:3px;
+	color:#dcdcdc;	
+}
+
+
+.jinjin .w2selectbox_focus .w2selectbox_col_label {
+	background-color : #ffffff;
+	vertical-align : middle;
+	text-align : left;	
+}
+
+.jinjin .w2selectbox_over .w2selectbox_col_label {
+	background-color : #f7f7f7;
+	text-align : left;
+}
+
+.jinjin .w2selectbox .w2selectbox_col_button {
+	background-image : url(https://suwings.syu.ac.kr/img/selectbox/select_arrow.gif);
+}
+
+.jinjin .w2selectbox_over .w2selectbox_col_button {
+	background-image : url(https://suwings.syu.ac.kr/img/selectbox/select_arrow_on.gif);
+}
+
+
+/* 셀렉트 박스 sublayer div 스타일 */
+.jinjin .w2table_sb {
+	background-color : #ffffff;
+	border : 1px solid #d7d7d7;
+	left:0px;
+	position : absolute;
+	overflow-x : hidden;
+	overflow-y : auto;
+	white-space : nowrap;
+	z-index : 5100;
+
+	scrollbar-face-color : #FFFFFF;
+	scrollbar-highlight-color : #FFFFFF;
+	scrollbar-shadow-color: : #E7E7E7;
+	scrollbar-3dlight-color : #C7C7C7;
+	scrollbar-arrow-color : #797979;
+	scrollbar-track-color : #C7C7C7;
+	scrollbar-darkshadow-color : #C7C7C7;
+	scrollbar-base-color : #FFFFFF;
+}
+
+/* 셀렉트 박스 sublayer안의 table 스타일 */
+.jinjin .w2table_sb_main {
+	position : absolute;
+	left : 0px;
+	top : 0px;
+	overflow-x : hidden;
+	border-collapse : collapse;
+	border-spacing : 0px;
+	background-color : #ffffff;
+	text-align : left;
+	vertical-align : middle;
+}
+
+.jinjin .w2table_sb_row {
+}
+
+
+.jinjin .w2table_sb_col {
+	height : 17px;
+	font-size : 12px;
+	border-top : 1px solid #7f9db9;
+	background-color : #ffffff;
+	text-align : left;
+	overflow : hidden;
+	padding-left : 2px;
+	white-space : nowrap;	/* table에만 걸어놓으니 ie의 한글에서는 안먹을때 있음 */
+}
+
+.jinjin .w2table_sb_col_over {
+	background-color : #dde7f0;	
+	text-align : left;
+}
+
+
+/************************************************************************
+  selectbox
+************************************************************************/
+
+
+.jintop {
+	border:1px solid #484747;
+	font-size:12px;
+	font-family: 'tahoma', 'dotum';
+	padding : 0px;
+	background-color: #848484;
+	
+}
+
+.jintop_focus {
+	border : solid 1px #484747;	
+	background-color : #707070;
+	text-align : left;
+}
+
+.jintop_disabled {
+	border : solid 1px #484747;	
+	background-color : #707070;
+	text-align : left;
+}
+
+.jintop .w2selectbox {
+	margin : 0px;
+	padding : 0px;
+	border:1px solid #484747;
+	background-color: #3b3b3b;
+	text-align : left;
+	height : 16px;
+}
+
+.jintop .w2selectbox_table_main {
+	position : absolute;
+	left:0px;
+	top:0px;
+	width : 100%;
+	height : 100%;
+	border-collapse : collapse;
+	table-layout : fixed;
+}
+
+.jintop .w2selectbox_col_label {
+	font-size : 12px;
+	vertical-align : middle;
+	text-align : left;
+	padding-left:3px;
+	color:#e1e1e1;
+
+	
+}
+
+.jintop_disabled .w2selectbox_col_label {
+	font-size : 12px;
+	vertical-align : middle;
+	text-align : left;
+	padding-left:3px;
+	color:#4f4f4f;	
+}
+
+
+.jintop .w2selectbox_focus .w2selectbox_col_label {
+	background-color: #3b3b3b;
+	vertical-align : middle;
+	text-align : left;
+	padding-left:3px;
+	color:#e1e1e1;
+	
+}
+
+.jintop .w2selectbox_over .w2selectbox_col_label {
+	background-color : #707070;
+	text-align : left;
+	padding-left:3px;
+	color:#e1e1e1;
+}
+
+.jintop.w2selectbox .w2selectbox_col_button {
+	background-image : url(https://suwings.syu.ac.kr/img/selectbox/select_arrowtop.gif);
+}
+
+.jintop .w2selectbox_over .w2selectbox_col_button {
+	background-image : url(https://suwings.syu.ac.kr/img/selectbox/select_arrow_on.gif);
+}
+
+
+/* 셀렉트 박스 sublayer div 스타일 */
+.jintop .w2table_sb {
+	border:1px solid #484747;
+	background-color : #3b3b3b;
+	left:0px;
+	position : absolute;
+	overflow-x : hidden;
+	overflow-y : auto;
+	white-space : nowrap;
+	z-index : 5100;
+	color:#e1e1e1;
+
+	scrollbar-face-color : #FFFFFF;
+	scrollbar-highlight-color : #FFFFFF;
+	scrollbar-shadow-color: : #E7E7E7;
+	scrollbar-3dlight-color : #C7C7C7;
+	scrollbar-arrow-color : #797979;
+	scrollbar-track-color : #C7C7C7;
+	scrollbar-darkshadow-color : #C7C7C7;
+	scrollbar-base-color : #FFFFFF;
+}
+
+/* 셀렉트 박스 sublayer안의 table 스타일 */
+.jintop .w2table_sb_main {
+	position : absolute;
+	left : 6px;
+	top : 0px;
+	overflow-x : hidden;
+	border-collapse : collapse;
+	border-spacing : 0px;
+	border:1px solid #484747;
+	background-color : #2d2d2d;
+	text-align : left;
+	vertical-align : middle;
+}
+
+.jintop .w2table_sb_row {
+}
+
+
+.jintop .w2table_sb_col {
+	height : 16px;
+	font-size : 12px;
+	border:1px solid #484747;
+	background-color : #3b3b3b;
+	text-align : left;
+	overflow : hidden;
+	padding-left : 2px;
+	color:#e1e1e1;
+	white-space : nowrap;	/* table에만 걸어놓으니 ie의 한글에서는 안먹을때 있음 */
+}
+
+.jintop .w2table_sb_col_over {
+	border : solid 1px #484747;
+	background-color : #000000;
+	text-align : left;
+	padding-left:2px;
+	color:#e1e1e1;
+}
+
+
+
+/* multiSelect */
+/* multiSelect */
+
+.mselect .w2multiselect_div {
+	overflow-x : hidden;
+	overflow-y : auto;
+	scrollbar-face-color: #ffffff;
+	scrollbar-highlight-color: #ffffff;
+	scrollbar-shadow-color: #e7e7e7;
+	scrollbar-3dlight-color: #c7c7c7;
+	scrollbar-arrow-color: #797979;
+	scrollbar-track-color: #c7c7c7;
+	scrollbar-base-color: #ffffff;
+	scrollbardarkshadowcolor: #c7c7c7;
+	border :1px solid #b5c5d2;
+}
+
+.mselect .w2multiselect_table {
+	position : absolute;
+	left : 1px;
+	top : 1px;
+	bottom : 1px;
+	right : 1px;
+	width : 99%;
+	border-collapse : collapse;
+	table-layout : fixed;
+	border-spacing : 0px;
+	background-image:url(https://suwings.syu.ac.kr/img/calendar/table5R_bg.gif);
+	border:1px solid #b5c7d6;
+	background-color : #ffffff;
+}
+
+.mselect .w2multiselect_td {
+	height : 21px;
+	font-size : 12px;
+	font-family : tahoma;
+	text-align : left;
+	vertical-align : middle;
+	padding-left : 15px;
+	border :0px solid #b5c5d2;	
+}
+
+.mselect .w2multiselect_tr_over {
+	border : solid 1px #7e9db9;
+	background-color : #dde7f0;	
+	color:#000;
+
+}
+
+
+
+
+/* -------------------------------------------*/
+/* ---------------- TAB관련  -------------------*/
+/* -------------------------------------------*/
+.tab1content {
+	border : solid 0px #ffffff;
+}
+
+.index_tab_containerBG {
+	background-color:transparent;
+}
+
+.tab1contentreal {
+	border-top: solid 0px #666666;
+	border-left: solid 2px #666666;
+	border-right: solid 2px #666666;
+}
+
+.workTabcontentreal {
+	border: solid 1px #e1e1e1;
+}
+.groupTabcontentreal {
+    border-left:0px solid #868a8d;
+}
+
+/* --------------------------------------------------------------------------------------------*/
+/* ----------------tab 관련 (메인 화면에 뿌려지는 tab관련 CSS, 되도록 수정전 확인 바람) --------------------*/
+/* -----------------------이 아래로는 다른 CSS를 추가하지 말아주세요. ----------------------------------*/
+/* --------------------------------------------------------------------------------------------*/
+
+.tab_main {
+	height:27px;
+}
+
+.tab_selected .tab_main {
+	margin : 0px 1px 0px 0px;
+	cursor : pointer;
+	font-size:12px;
+	color: #ec6311;
+	background-color:transparent;
+}
+
+.tab_deselected .tab_main {
+	margin : 0px 1px 0px 0px;
+	cursor : pointer;
+	background-color:transparent;
+	font-family:dotum;
+	font-size:12px;
+	color: #000000;
+}
+
+
+.tab_hover .tab_main {
+	margin : 0px 1px 0px 0px;
+	cursor : pointer;
+	font-size:12px;
+	color: #ec6311;
+}
+
+.tab_fixed_width {
+	overflow : hidden;
+	text-overflow : ellipsis;
+	white-space : nowrap;    
+}
+
+.tab_del_button {
+	width : 10px;
+	height : 10px;
+	background-repeat : no-repeat;
+	background-position : center center;
+	padding-left:2px
+	margin-bottom:0px;
+}
+
+.tab_left {
+	width : 3px;
+	background-repeat : no-repeat;
+	background-position : top right;
+}
+
+.tab_mid {
+	background-repeat : repeat-x;
+	background-position : top center;
+	
+}
+
+.tab_right {
+	width : 3px;
+	background-repeat : no-repeat;
+	background-position : top left;
+}
+
+/*-----------------Main Tab----------------------*/
+/* tab deselected */
+
+.tab_deselected .tab_main .tab_del_button {
+	/* background-image : url(https://suwings.syu.ac.kr/img/tabContainer/tab1_off_rigth.gif);*/
+	width : 10px;
+	height: 10px;
+}
+
+.tab_deselected .tab_main .tab_left {
+	background-image : url(https://suwings.syu.ac.kr/img/tabContainer/tab1_off_left.gif);
+	width: 10px;
+	height:25px;
+}
+/*박진우 수정 0401 S*/
+.tab_deselected .tab_main .tab_mid {
+	text-align: center;
+	vertical-align: middle;
+	background-image : url(https://suwings.syu.ac.kr/img/tabContainer/tab1_off_center.gif);
+	overflow: hidden;
+	padding-left:0px;
+	padding-top:2px;
+	color: #777777;
+	font: bold 12px "Dotum", "tahoma";
+}
+
+.tab_deselected .tab_main .tab_right {
+	background-image : url(https://suwings.syu.ac.kr/img/tabContainer/tab1_off_right.gif);
+	width: 12px;
+	height: 27px;
+}
+
+/*설춘경 수정 0401 S*/
+.tab_deselected .tab_main .tab_right_notice {
+	background-image : url(https://suwings.syu.ac.kr/img/tabContainer/tab1_off_right_notice.gif);
+	width: 12px;
+	height: 27px;
+}
+
+/* tab hover */
+.tab_hover .tab_main .tab_del_button {
+	/*background-image : url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_right.gif);*/
+	width : 10px;
+	height: 10px;
+}
+
+.tab_hover .tab_main .tab_left {
+	background-image : url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_left.gif);
+	width: 10px;
+	height: 27px;
+}
+
+/*박진우 수정 0401 S*/
+.tab_hover .tab_main .tab_mid {
+	background-image : url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_center.gif);
+	padding-left:0px;
+	padding-top:2px;
+	color: #777777;
+	font: bold 12px "Dotum", "tahoma";
+	text-align: center;
+}
+
+.tab_hover .tab_main .tab_right {
+	background-image : url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_right.gif);
+	width: 12px;
+	height: 27px;
+}
+
+/*설춘경 수정 0401 S*/
+.tab_hover .tab_main .tab_right_notice {
+	background-image : url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_right_notice.gif);
+	width: 12px;
+	height: 27px;
+}
+
+/* tab selected */
+.tab_selected .tab_main .tab_del_button {
+	/*background-image :  url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_right.gif);*/
+	width : 10px;
+	height: 10px;
+}
+
+.tab_selected .tab_main .tab_left {
+	background-image : url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_left.gif);
+	width : 10px;
+	height: 27px;
+}
+/*박진우 수정 0401 S*/
+.tab_selected .tab_main .tab_mid {
+	background-image : url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_center.gif);
+	padding-left:0px;
+	padding-top:2px;
+	font: bold 12px "Dotum", "tahoma";
+	color: #0a438b;
+	background-color:transparent;
+	border:0px;
+	text-align: center;
+}
+
+.tab_selected .tab_main .tab_right {
+	background-image : url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_right.gif);
+	width: 12px;
+	height: 27px;
+}
+
+/*설춘경 수정 0401 S*/
+.tab_selected .tab_main .tab_right_notice {
+	background-image : url(https://suwings.syu.ac.kr/img/tabContainer/tab1_on_right_notice.gif);
+	width: 12px;
+	height: 27px;
+}
+
+/* ----------------tab 관련  끝------------------------------------------------------------*/
+
+
+/*----------------- page navigation ----------------------*/
+.pageSelectedClass {
+	text-align:center; 
+	font-family:돋움,Dotum,Tahoma; 
+	font-size:12px; 
+	color:#e67335; 
+	font-weight:bold;text-decoration:none;
+} 
+.pageDefaultClass {
+	text-align:center; 
+	font-family:돋움,Dotum,Tahoma; 
+	font-size:12px;
+	color:#999; 
+	font-weight:bold;text-decoration:none;
+} 
+
+/* chart */
+.chart .w2chart {
+}
+
+.chart .w2chart_disabled {
+	
+}
+
+.chart .w2chart_over {
+}
+
+
+.chart .w2chartLabel {
+	text-align : center;
+	z-Index : 110;
+}
+
+
+/*multiupload*/
+.w2multiupload{
+	width : 400px;
+	height : 50px;
+	position: absolute;
+}
+
+.w2multiupload_uploader{
+	width : 450px;
+	height : 400px;
+	position: absolute;
+
+}
+
+
+
+/* floatingLayer */
+.flayer .w2floatingLayer {
+	padding : 0px;
+	margin : 0px;
+}
+
+.flayer .w2floatingLayer_title {
+	color : #ffffff;
+	font-family : Dotum;
+	font-size : 12px;
+	font-weight : bold;
+	cursor : pointer;
+	white-space : nowrap;
+	float : left;
+}
+
+.flayer .w2floatingLayer_close_button {
+	width : 11px;
+	height : 10px;
+	cursor : pointer;
+	background : url(uiplugin/floatingLayer/images/fl_close_but.gif)  no-repeat center center;
+	float : right;
+}
+
+.flayer .w2floatingLayer_contents {
+	position : relative;
+	left : 0px;
+	top : 0px;
+	margin : 0px;
+	padding : 0px;
+	background-color : #ffffff;
+}
+
+.flayer .w2floatingLayer_table {
+	table-layout : fixed;
+	width : 100%;
+	height : 100%;
+	margin : 0px;
+	padding : 0px;
+}
+
+.flayer .w2floatingLayer_topleft {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popup_top_l.gif) no-repeat top left;
+	width:17px;
+	height:61px;
+}
+
+.flayer .w2floatingLayer_topcenter {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popup_top_bg.gif) repeat-x top left;
+	height:61px;
+}
+
+.flayer .w2floatingLayer_topright {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popup_top_r.gif) no-repeat top right;
+	width:17px;
+	height:61px;
+
+}
+
+.flayer .w2floatingLayer_centerleft {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/popup_m_l.gif) repeat-y center left;
+	width:17px;
+}
+
+.flayer .w2floatingLayer_centercenter {
+	vertical-align : top;
+}
+
+c
+
+
+/************************************************************************
+  img 및 output 관련 css
+************************************************************************/
+
+.smu_go {
+	background: url(https://suwings.syu.ac.kr/img/top/t_smu.gif) no-repeat bottom left;
+	height:12px;
+	width:94px;
+}
+
+.remote {
+	background: url(https://suwings.syu.ac.kr/img/top/btn_tremote.gif) no-repeat bottom left;
+	height:19px;
+	width:58px;
+}
+
+.logout {
+	background: url(https://suwings.syu.ac.kr/img/top/btn_logout.gif) no-repeat bottom left;
+	height:18px;
+	width:50px;
+}
+.top_dot {
+	background: url(https://suwings.syu.ac.kr/img/icon/dot_2.gif) no-repeat bottom left;
+	height:11px;
+	width:11px;
+}
+
+.arrow_1 {
+	background: url(https://suwings.syu.ac.kr/img/icon/arrow_1.gif) no-repeat bottom left;
+	height:11px;
+	width:8px;
+}
+
+.left_close {
+	background: url(https://suwings.syu.ac.kr/img/menu/btn_close.gif) no-repeat bottom left;
+	width:11px;
+	height:52px;
+}
+
+.tab_close { 
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/btn_tab_close.gif) no-repeat bottom left;
+	width:81px;
+	height:17px;
+}
+
+.btn_reset { 
+	background: url(https://suwings.syu.ac.kr/img/tabContainer/btn_reset.gif) no-repeat bottom left;
+	width:59px;
+	height:17px;
+}
+
+.img_error {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/img_error.gif) no-repeat bottom left;
+	width:37px;
+	height:38px;
+}
+
+
+.img_message {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/img_message.gif) no-repeat bottom left;
+	width:37px;
+	height:38px;
+}
+
+
+.img_save {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/img_save.gif) no-repeat bottom left;
+	width:37px;
+	height:38px;
+}
+
+
+.img_question {
+	background: url(https://suwings.syu.ac.kr/img/pu_table/img_question.gif) no-repeat bottom left;
+	width:37px;
+	height:38px;
+}
+
+/************************************************************************
+  fa_textarea (공학인증)
+************************************************************************/
+.fatextarea {
+	border:1px solid #d7d7d7;
+	font-size:12px;
+	padding : 0px 2px 0px 2px;
+	font-family: 'tahoma', 'dotum';
+	background-color: #ffffff;
+	ime-mode:active;
+	overflow:auto;
+}
+
+.fatextarea.w2textarea_focus {
+	border : solid 1px #7e9db9;
+	background-color: #f7f7f7;
+}
+
+.fatextarea.w2textarea_disabled {	
+	font-size:12px;
+	padding : 0px 2px 0px 2px;
+	font-family: 'tahoma', 'dotum';
+	background-color: #e1e1e1;
+	border:1px solid #d7d7d7;
+	color:#bcbcbc;
+}
+.fatextarea.w2textarea_readonly {
+	border:1px solid #d7d7d7;
+	font-size:12px;
+	padding : 0px 2px 0px 2px;
+	font-family: 'tahoma', 'dotum';
+	background-color: #f7f7f7;
+}
+
+/************************************************************************
+  faGridStyle (공학인증-그리드 스타일 링크부분 추가)
+************************************************************************/
+.faGridStyle nobr a {
+	font: bold 12px "Dotum", "tahoma";
+	color: #336598;
+	padding-left: 0px;
+	text-decoration: none;
+}
+
+.faGridStyle nobr a:hover {
+	font: bold 12px "Dotum", "tahoma";
+	color: #336598;
+	padding-left: 0px;
+	text-decoration: underline;
+}

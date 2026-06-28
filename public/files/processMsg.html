@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0131)http://sugang.suwings.syu.ac.kr/websquare/message/processMsg.html?param=%c0%e1%bd%c3%b8%b8+%b1%e2%b4%d9%b7%c1+%c1%d6%bc%bc%bf%e4... -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>loading</title>
+	<script type="text/javascript">
+		function init(){
+			try {
+				var prsMsg = parent.WebSquare.layer.processMsg;
+				document.getElementById("processMsgLayer").innerHTML = prsMsg;
+			} catch(e) {}
+		}
+		
+		window.onload = init;
+		
+		var colorArr = [ "#013D41","#EEEEEE" ];
+		function setColor(){
+			var color = colorArr.shift();
+			colorArr.push(color);
+			document.getElementById("processMsgLayer").style.color = color;
+		}
+		setInterval( function(){ setColor() } , 500 );
+    </script>
+</head>
+<body style="margin : 0px 0px 0px 0px; background:#ffffff">
+	<table style="width:180px; height:80px;" class="progress" border="0" cellspacing="0" cellpadding="0">
+	  <tbody><tr>
+	    <td style="text-align:center">
+	    	<img src="./progress_name.gif" style="padding-bottom:7px"><br>
+	      	<img src="./progressingbar.gif"><br>
+	      	<div style="font-size: 12px; font-weight: bold; font-family: dotum; color: rgb(238, 238, 238); padding-top: 10px;" id="processMsgLayer">잠시만 기다려 주세요...</div>
+	    </td>
+	  </tr>
+	</tbody></table>
+
+
+</body></html>

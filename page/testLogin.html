@@ -1,0 +1,343 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>삼육대 모의 수강신청</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="삼육대 모의 수강신청" />
+    <meta property="og:description" content="삼육대학교 모의 수강신청 사이트" />
+    <meta property="og:image" content="https://www.syu.kr/assets/img/banner.png" />
+    <meta property="og:url" content="https://sugang.syu.kr/testLogin" />
+    <meta name="keywords" content="삼육대학교 수강신청, 삼육대학교 모의 수강신청, 삼육대학교 수강신청 연습" />
+    <meta name="description" content="삼육대학교 모의 수강신청 사이트" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13FLHMGH10"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+
+      gtag('config', 'G-13FLHMGH10')
+    </script>
+    <style type="text/css">
+      body {
+        margin: 0px;
+      }
+
+      .login-card {
+        padding: 40px;
+        width: 274px;
+        background-color: #f7f7f7;
+        margin: 0 auto 10px;
+        border-radius: 2px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+      }
+
+      .login-card h1 {
+        font-weight: 100;
+        text-align: center;
+        font-size: 2em;
+      }
+
+      .login-card input[type='submit'] {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+        position: relative;
+      }
+
+      .login-card input[type='text'],
+      input[type='password'] {
+        height: 44px;
+        font-size: 16px;
+        width: 100%;
+        margin-bottom: 10px;
+        -webkit-appearance: none;
+        background: #fff;
+        border: 1px solid #d9d9d9;
+        border-top: 1px solid #c0c0c0;
+        /* border-radius: 2px; */
+        padding: 0 8px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+      }
+
+      .login-card input[type='text']:hover,
+      input[type='password']:hover {
+        border: 1px solid #b9b9b9;
+        border-top: 1px solid #a0a0a0;
+        -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .login {
+        text-align: center;
+        font-size: 14px;
+        font-family: 'Arial', sans-serif;
+        font-weight: 700;
+        height: 36px;
+        padding: 0 8px;
+      }
+
+      .login-submit {
+        border: 0px;
+        color: #fff;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+        background-color: #4d90fe;
+      }
+
+      .login-submit:hover {
+        border: 0px;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+        background-color: #357ae8;
+      }
+
+      .login-card a {
+        color: #4285f4;
+        font-size: 12px;
+        text-decoration: none;
+        text-align: right;
+      }
+
+      .login-card a:hover {
+        opacity: 1;
+      }
+
+      .login-help {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+      }
+
+      .watermark {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9999;
+        overflow: hidden;
+      }
+
+      .watermark::before {
+        content: '';
+        position: absolute;
+        inset: -70%;
+        pointer-events: none;
+        transform: rotate(-35deg);
+        transform-origin: center;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='80'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='12' fill='%23000000' fill-opacity='0.08'>본 사이트는 실제 수강신청 사이트가 아닙니다.</text></svg>");
+        background-repeat: repeat;
+        background-size: 240px 80px;
+        opacity: 0.95;
+        mix-blend-mode: normal;
+      }
+
+      @media print {
+        .watermark {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-card">
+      <h1>삼육대학교/대학원<br />수강신청</h1>
+      <br />
+      <input type="text" name="userId" tabindex="1" id="userId" placeholder="학번 (필요 없음)" />
+      <input type="password" name="userPwd" tabindex="2" id="userPwd" placeholder="비밀번호 (필요 없음)" />
+      <input type="submit" name="login" class="login login-submit" value="login" id="imgLogin" onclick="loading()" />
+      <a href="#" onclick="alert('사용할 수 없습니다.')">학번 조회</a>
+    </div>
+    <div style="text-align: center; font-size: 6pt"></div>
+    <div style="padding: 0px 10px 10px 10px; text-align: center">
+      <h1 id="notice" style="color: #cccccc; -ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select: none"></h1>
+      <!--<h1
+        style="
+          color: #cccccc;
+          -ms-user-select: none;
+          -moz-user-select: -moz-none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          user-select: none;
+        ">
+        (C) SUWINGS . Powered by SYU KR
+      </h1>-->
+    </div>
+    <!-- <div style="padding: 3rem; text-align: center; filter: opacity(0.1) drop-shadow(0 0 0 #cccccc)">
+      <img src="/mlogo.png" />
+    </div> -->
+    <!-- <div style="background-color: #0000001f; padding: 2rem; text-align: center">
+      <div style="color: white; font-size: 6pt">Copyright(C) 2023 - 2024 SYU KR (김상윤). All rights reserved.</div>
+    </div> -->
+    <div id="wait-screen" style="display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9999"></div>
+    <div id="wait" style="display: none; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 10000">
+      <style>
+        #netfunnel {
+          margin: 0;
+          background: #f2f4f8;
+          font-family:
+            'Noto Sans KR',
+            -apple-system,
+            BlinkMacSystemFont,
+            'Segoe UI',
+            sans-serif;
+          border-radius: 12px;
+        }
+
+        #netfunnel .overlay {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+        }
+
+        #netfunnel .modal {
+          width: 360px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+          text-align: center;
+          padding: 20px 24px 16px;
+          position: relative;
+        }
+
+        #netfunnel .title {
+          margin-top: 12px;
+          margin-bottom: 4px;
+          font-size: 22px;
+          font-weight: 700;
+          color: #2f5bea;
+        }
+
+        #netfunnel .subtitle {
+          font-size: 14px;
+          color: #333;
+          margin-bottom: 16px;
+        }
+
+        #netfunnel .progress {
+          width: 100%;
+          height: 10px;
+          background: #e6e9ef;
+          border-radius: 6px;
+          overflow: hidden;
+          margin-bottom: 16px;
+        }
+
+        #netfunnel .progress-bar {
+          height: 100%;
+          width: 0%;
+          background: #2f5bea;
+          border-radius: 6px;
+        }
+
+        #netfunnel .info {
+          font-size: 14px;
+          color: #333;
+          line-height: 1.8;
+          margin-bottom: 12px;
+        }
+
+        #netfunnel .highlight {
+          color: #2f5bea;
+          font-weight: 600;
+          margin-left: 4px;
+        }
+
+        #netfunnel .notice {
+          font-size: 12px;
+          color: #777;
+          line-height: 1.5;
+          margin: 10px 0 14px;
+        }
+
+        #netfunnel .footer {
+          font-size: 11px;
+          color: #aaa;
+        }
+      </style>
+
+      <div id="netfunnel">
+        <div class="modal">
+          <h1 class="title">모의 수강신청 대기</h1>
+          <p class="subtitle">온라인 접속 대기 안내</p>
+
+          <div class="progress">
+            <div class="progress-bar" id="progressbar"></div>
+          </div>
+
+          <div class="info">
+            <div>
+              예상 대기 시간 :
+              <span class="highlight"><span id="time">00:00:04</span></span>
+            </div>
+            <div>
+              내 앞의 대기자 수 :
+              <span class="highlight">100명</span>
+            </div>
+            <div>
+              내 뒤의 대기자 수 :
+              <span class="highlight">100명</span>
+            </div>
+          </div>
+
+          <p class="notice">새로고침 또는 뒤로가기를 누르거나 팝업창을 닫고 재접속할 경우 대기 시간이 초기화됩니다.</p>
+
+          <div class="footer">Powered by Surffy.io | © STCLab Inc.</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const filter = 'win16|win32|win64|mac|macintel'
+      if (navigator.platform) {
+        if (filter.indexOf(window.navigator.platform.toLowerCase()) < 0) {
+          document.getElementById('notice').innerText = '컴퓨터 / PC 환경을 권장합니다.'
+        } else {
+          document.getElementById('notice').innerText = '브라우저 전체 화면을 권장합니다.'
+        }
+      }
+    </script>
+    <script>
+      function formatTime(seconds) {
+        const hours = Math.floor(seconds / 3600)
+        const minutes = Math.floor((seconds % 3600) / 60)
+        const secs = seconds % 60
+        return String(hours).padStart(2, '0') + ':' + String(minutes).padStart(2, '0') + ':' + String(secs).padStart(2, '0')
+      }
+
+      function loading() {
+        document.getElementById('wait-screen').style.display = ''
+        const loading = document.getElementById('wait')
+        loading.style.display = ''
+
+        const time = 4
+        let percent = 0
+        let realTime = time
+
+        // 클릭 방지 함수
+        const preventClick = (e) => {
+          if (e.target.id !== 'netfunnel' && !document.getElementById('netfunnel').contains(e.target)) {
+            e.preventDefault()
+            e.stopPropagation()
+          }
+        }
+        document.addEventListener('click', preventClick, true)
+        document.addEventListener('touchstart', preventClick, true)
+
+        const checker = setInterval(function () {
+          percent += 400 / time
+          document.getElementById('time').innerText = formatTime(realTime)
+          document.getElementById('progressbar').innerHTML = '<div style="width: ' + (percent > 390 ? 400 : percent) + 'px; height: 20px; background-color: #2f5bea"></div>'
+          if (realTime-- <= 0) {
+            // 클릭 방지 제거
+            document.removeEventListener('click', preventClick, true)
+            document.removeEventListener('touchstart', preventClick, true)
+            location.href = 'https://sugang.syu.kr/test1'
+          }
+        }, 1000)
+      }
+    </script>
+    <div class="watermark" aria-hidden="true" role="presentation"></div>
+  </body>
+</html>

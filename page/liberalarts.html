@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>교양 학기별 수강신청 장바구니 경쟁률</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="공통 교양, 교양, 수강신청, 장바구니, 경쟁률, 삼육대학교" />
+    <meta name="description" content="공통 교양 과목의 학기별 장바구니 경쟁률을 과목별로 확인할 수 있습니다." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="공통 교양 과목별 경쟁률 - 삼육대학교" />
+    <meta property="og:image" content="https://www.syu.kr/assets/img/banner.png" />
+    <meta property="og:url" content="https://sugang.syu.kr/liberalarts" />
+    <meta property="og:description" content="공통 교양 과목의 학기별 장바구니 경쟁률을 과목별로 확인할 수 있습니다." />
+    <link rel="icon" href="https://sugang.syu.kr/favicon.ico" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13FLHMGH10"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-13FLHMGH10')
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script type="text/javascript" src="/js/liberalarts.js" defer></script>
+    <style>
+      @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
+      body {
+        font-family: 'NanumSquare', sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .title {
+        font-size: 23pt;
+        margin-bottom: 8px;
+      }
+
+      .subtitle {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 38px;
+      }
+
+      .controls-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+
+      .controls-grow {
+        flex: 1;
+      }
+
+      .controls-area {
+        width: 180px;
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .controls-sort {
+        width: 250px;
+        text-align: right;
+        flex-shrink: 0;
+      }
+
+      table {
+        width: 100%;
+        table-layout: fixed;
+      }
+
+      th,
+      td {
+        padding: 10px 12px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 16px;
+      }
+
+      .name-col {
+        width: 46%;
+      }
+
+      .rate-col {
+        width: 8%;
+        text-align: center;
+      }
+
+      .rating-col {
+        width: 10%;
+        text-align: center;
+      }
+
+      .area-col {
+        width: 15%;
+        min-width: 120px;
+        text-align: center;
+      }
+
+      .legend {
+        text-align: right;
+        font-size: 12px;
+        color: #777;
+      }
+
+      .responsive-hidden {
+        display: none;
+      }
+
+      .rating {
+        position: relative;
+        display: inline-block;
+        font-size: 13px;
+        vertical-align: middle;
+        line-height: 1;
+      }
+
+      .rating .star-bg,
+      .rating .star-fill {
+        font-family: monospace;
+        letter-spacing: 0.5px;
+        display: block;
+        white-space: nowrap;
+      }
+
+      .rating .star-bg {
+        color: #ddd;
+        z-index: 1;
+      }
+
+      .rating .star-fill {
+        color: #ffb400;
+        position: absolute;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .rating .rating-text {
+        color: #666;
+        font-size: 12px;
+      }
+
+      .min-width-warning {
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        background: #fff7e6;
+        color: #333;
+        text-align: center;
+        padding: 12px 16px;
+        border-bottom: 1px solid #f0e68c;
+        font-weight: 700;
+        z-index: 9999;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        font-size: 15px;
+      }
+
+      .page-footer {
+        margin-top: 28px;
+        padding: 14px 10px;
+        border-top: 1px solid #ececec;
+        background: linear-gradient(90deg, #fafafa, #ffffff);
+      }
+
+      .page-footer .footer-inner {
+        display: flex;
+        gap: 18px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        color: #6b6b6b;
+        font-size: 13px;
+      }
+
+      .page-footer .brand strong {
+        letter-spacing: 1px;
+        color: #222;
+        font-weight: 700;
+      }
+
+      .page-footer .footer-disclaimer {
+        width: 100%;
+        text-align: center;
+        color: #999;
+        font-size: 12px;
+        margin-top: 8px;
+      }
+
+      @media (max-width: 1120px) {
+        .min-width-warning {
+          display: block;
+        }
+
+        body {
+          padding-top: 70px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          font-size: 15px;
+        }
+
+        .title {
+          font-size: 18pt;
+        }
+
+        th,
+        td {
+          font-size: 13px;
+          padding: 8px 10px;
+        }
+
+        .name-col {
+          width: 60%;
+        }
+
+        .area-col {
+          min-width: 90px;
+        }
+
+        .controls-row {
+          flex-wrap: wrap;
+        }
+
+        .controls-grow {
+          flex-basis: 100%;
+        }
+
+        .controls-area {
+          width: calc(38% - 5px);
+          min-width: 150px;
+          text-align: left;
+        }
+
+        .controls-sort {
+          width: calc(62% - 5px);
+          text-align: left;
+        }
+
+        .page-footer .footer-inner {
+          font-size: 12px;
+          gap: 10px;
+        }
+
+        .page-footer {
+          padding: 10px;
+        }
+
+        .page-footer .footer-disclaimer {
+          font-size: 11px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .controls-area,
+        .controls-sort {
+          width: 100%;
+        }
+
+        .min-width-warning {
+          font-size: 13px;
+          padding: 10px 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="min-width-warning" class="min-width-warning" role="status" aria-live="polite">
+      좁은 화면에서는 평점, 평균, 이전 학기 열이 자동 숨김됩니다. PC 전체 화면 사용을 권장합니다.
+    </div>
+
+    <div class="title">교양 학기별 수강신청 장바구니 경쟁률</div>
+    <div class="subtitle">각 학기별 수강신청 장바구니 경쟁률을 표시합니다. (에브리타임 강의평가 반영)</div>
+
+    <div class="controls-row">
+      <div class="controls-grow">
+        <label style="font-weight: 600">검색</label>
+        <input id="search" class="form-control" placeholder="과목명 또는 교수명으로 검색" />
+      </div>
+
+      <div class="controls-area">
+        <label style="font-weight: 600">영역</label>
+        <select id="areaFilter" class="form-select">
+          <option value="">모두</option>
+        </select>
+      </div>
+
+      <div class="controls-sort">
+        <label style="font-weight: 600">정렬</label>
+        <select id="sort" class="form-select"></select>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th class="name-col">과목명(교수명)</th>
+            <th class="area-col">영역</th>
+            <th class="rate-col">로딩 중...</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="legend">
+      색상: <span style="color: red">높음(>=4)</span>, <span style="color: #ff7070">중간(>=3)</span>, <span style="color: orange">보통(>=2)</span>, <span style="color: #cdcd00">낮음(>=1)</span>,
+      <span style="color: #00ff00">매우낮음</span> · <strong>X = 개설되지 않음</strong>
+    </div>
+
+    <footer class="page-footer">
+      <div class="footer-inner">
+        <div class="brand"><strong>SYU KR</strong></div>
+        <div class="copy">© 2023 - 2026 SYU KR (KIM SANG YUN) · All rights reserved.</div>
+      </div>
+      <div class="footer-disclaimer">해당 사이트는 <strong>삼육대학교(학교법인 삼육학원)</strong>와 무관한 비공식 사이트입니다.</div>
+    </footer>
+  </body>
+</html>

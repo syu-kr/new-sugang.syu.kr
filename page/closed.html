@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>삼육대학교 수강신청 폐강위기 현황</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13FLHMGH10"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+
+      gtag('config', 'G-13FLHMGH10')
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+      crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+      crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <script type="text/javascript" src="/js/closed.js"></script>
+    <style>
+      @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+      body {
+        background: #212529;
+        color: white;
+        font-size: 17px;
+        font-family: 'NanumSquare', sans-serif;
+        /* overflow-y: scroll; */
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .dropdown-menu {
+        left: 50% !important;
+        right: auto !important;
+        transform: translate(-50%, 0) !important;
+      }
+      .title {
+        font-size: 24pt;
+      }
+      .drag {
+        padding: 0px 0px 10px 0px;
+        font-size: 9px;
+        color: #ff6262;
+        display: none;
+      }
+      .table-dark { 
+        margin: 0;
+      }
+      @media (max-width: 992px) {
+        /* .table-size {
+        height: 1705px;
+      } */
+        .title {
+          font-size: 20pt;
+        }
+        table {
+          font-size: 15px;
+        }
+        .table > :not(caption) > * > * {
+          /* padding: 60px; */
+          /* font-size: 14px; */
+          padding: 0.3rem 0.3rem;
+        }
+        .rank {
+          width: 23px;
+        }
+      }
+      @media (max-width: 768px) {
+        /* .table-size {
+        height: 1250px;
+      } */
+        .drag {
+          display: inline-block;
+        }
+        .title {
+          font-size: 18pt;
+        }
+        table {
+          font-size: 11px;
+        }
+        .table > :not(caption) > * > * {
+          padding: 0.2rem 0.2rem;
+          /* padding: 60px; */
+          /* font-size: 11px; */
+        }
+        .rank {
+          width: 16px;
+        }
+      }
+      @media (max-width: 550px) {
+        /* .table-size {
+        height: 918px;
+      } */
+        .drag {
+          display: inline-block;
+        }
+        .title {
+          font-size: 13pt;
+        }
+        table {
+          font-size: 10px !important;
+        }
+        .table > :not(caption) > * > * {
+          padding: 0.1rem 0.1rem;
+          /* padding: 60px; */
+          /* font-size: 8px; */
+        }
+        .rank {
+          width: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Tenth navbar example">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse justify-content-center" id="dropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">MENU</a>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown">
+                <li><a class="dropdown-item" href="/testLogin">모의 수강신청 해보기</a></li>
+                <li><a class="dropdown-item" href="/basket">장바구니 경쟁률 확인하기</a></li>
+                <li><a class="dropdown-item" href="https://www.syu.kr">다양한 서비스 더보기</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div style="padding: 3rem; text-align: center">
+      <div>
+        <img src="/logo.png" width="128px" />
+      </div>
+      <div class="title" style="padding: 3rem; color: white">
+        <strong>삼육대학교 수강신청<br />폐강위기 충원율 현황</strong>
+      </div>
+      <hr style="color: white" />
+      <span id="time" style="color: white; font-size: 9pt"></span>
+    </div>
+    <!-- <div style="padding: 10px">
+      <span style="font-size: 1.2rem; color: white">검색: </span>
+      <input type="search" id="search" />
+    </div> -->
+    <div class="table-responsive">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th style="text-align: center" scope="col" nowrap>순위</th>
+            <th scope="col" style="color: #5f6062" nowrap>강좌번호</th>
+            <!--<th scope="col" style="color: #5f6062" nowrap>학부(과)</th>-->
+            <th scope="col" nowrap>과목명</th>
+            <!--<th scope="col" style="color: #5f6062" nowrap>교수명</th>-->
+            <th scope="col" nowrap>인원</th>
+            <th style="text-align: center" scope="col" nowrap>충원율</th>
+          </tr>
+        </thead>
+        <tbody id="info"></tbody>
+      </table>
+    </div>
+    <div id="number-button-wrapper" style="margin: 35px 0px 35px 0px; text-align: center; line-height: 1.6;"></div>
+    <div style="margin: 2rem; text-align: center">
+      <div style="font-size: 10pt">Copyright(C) 2025 SYU KR. All rights reserved.</div>
+      <div style="font-size: 10pt">Powered by 0verfl0w767.</div>
+    </div>
+    <script type="text/javascript" src="/js/search.js"></script>
+  </body>
+</html>
