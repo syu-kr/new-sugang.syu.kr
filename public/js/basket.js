@@ -81,6 +81,41 @@ function rankConvert(value) {
   return `<span><b>${value}</b></span>`
 }
 
+function parseNumber(value, fallback) {
+  const parsed = Number.parseFloat(value)
+  return Number.isFinite(parsed) ? parsed : fallback
+}
+
+function getCompetitionValue(item, fallback = Number.NEGATIVE_INFINITY) {
+  return parseNumber(item[FIELD_COMPETITION], fallback)
+}
+
+function getBasketValue(item, fallback = 0) {
+  return parseNumber(item[FIELD_BASKET], fallback)
+}
+
+function getLimitValue(item, fallback = 0) {
+  return parseNumber(item[FIELD_LIMIT], fallback)
+}
+
+function compareNumbersDescending(left, right) {
+  if (left === right) return 0
+  return right - left
+}
+
+function compareByCompetition(left, right) {
+  const competitionDiff = compareNumbersDescending(getCompetitionValue(left), getCompetitionValue(right))
+  if (competitionDiff !== 0) return competitionDiff
+
+  const basketDiff = compareNumbersDescending(getBasketValue(left), getBasketValue(right))
+  if (basketDiff !== 0) return basketDiff
+
+  const limitDiff = compareNumbersDescending(getLimitValue(left), getLimitValue(right))
+  if (limitDiff !== 0) return limitDiff
+
+  return String(left[FIELD_COURSE_NO] || '').localeCompare(String(right[FIELD_COURSE_NO] || ''), 'ko', {numeric: true})
+}
+
 function competitionColor(value) {
   if (value >= 4) return 'red'
   if (value >= 3) return '#ff7070'
@@ -166,7 +201,16 @@ function setPageOf(pageNumber) {
 
   for (let index = COUNT_PER_PAGE * (pageNumber - 1); index < COUNT_PER_PAGE * pageNumber && index < datas.data.length; index += 1) {
     const item = datas.data[index]
-    const competition = Number.parseFloat(item[FIELD_COMPETITION]).toFixed(2)
+    const competitionValue = getCompetitionValue(item, Number.NaN)
+    const hasCompetition = Number.isFinite(competitionValue)
+    const competition = hasCompetition ? competitionValue.toFixed(2) : '-'
+    const competitionTone = hasCompetition ? competitionColor(competitionValue) : '#5f6062'
+    const countMarkup = hasCompetition
+      ? `<span><span style="color: ${competitionTone};">${item[FIELD_BASKET]}</span>/${item[FIELD_LIMIT]}</span>`
+      : `<span>${item[FIELD_BASKET]}/${item[FIELD_LIMIT]}</span>`
+    const rateMarkup = hasCompetition
+      ? `<b><span style="color: ${competitionTone};">${competition}:1</span></b>`
+      : '<b><span style="color: #5f6062;">-</span></b>'
 
     tbody += `
       <tr>
@@ -177,10 +221,10 @@ function setPageOf(pageNumber) {
           <span class="col-professor ${!colStateSource.professor ? 'hidden-col' : ''}" id="professor">(${item[FIELD_PROFESSOR]})</span>
         </td>
         <td class="col-count ${!colStateSource.count ? 'hidden-col' : ''}" nowrap>
-          <span><span style="color: ${competitionColor(competition)};">${item[FIELD_BASKET]}</span>/${item[FIELD_LIMIT]}</span>
+          ${countMarkup}
         </td>
         <td class="col-rate ${!colStateSource.rate ? 'hidden-col' : ''}" align="center" nowrap>
-          <b><span style="color: ${competitionColor(competition)};">${competition}:1</span></b>
+          ${rateMarkup}
         </td>
       </tr>
     `
@@ -221,7 +265,7 @@ async function init() {
   renderTermOptions(terms, selectedTermId)
 
   const data = await getRequest(selectedTermId)
-  data.data.sort((left, right) => Number.parseFloat(right[FIELD_COMPETITION]) - Number.parseFloat(left[FIELD_COMPETITION]))
+  data.data.sort(compareByCompetition)
   data.data = filterDataBySearch(data.data)
   data.data.forEach((item, index) => {
     item[FIELD_RANK] = index + 1
