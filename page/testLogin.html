@@ -10,7 +10,6 @@
     <meta property="og:url" content="https://sugang.syu.kr/testLogin" />
     <meta name="keywords" content="삼육대학교 수강신청, 삼육대학교 모의 수강신청, 삼육대학교 수강신청 연습" />
     <meta name="description" content="삼육대학교 모의 수강신청 사이트" />
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-13FLHMGH10"></script>
     <script>
       window.dataLayer = window.dataLayer || []
@@ -22,21 +21,78 @@
       gtag('config', 'G-13FLHMGH10')
     </script>
     <style type="text/css">
+      :root {
+        --card-width: 354px;
+        --card-height: 392px;
+        --panel-gap: 24px;
+        --card-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+        --login-card-bg: #f7f7f7;
+        --login-card-border: #e4e4e4;
+        --queue-card-bg: #eef4ff;
+        --queue-card-border: #cfdfff;
+        --practice-card-bg: var(--queue-card-bg);
+        --practice-card-border: var(--queue-card-border);
+        --queue-accent: #2f5bea;
+        --practice-accent: var(--queue-accent);
+      }
+
       body {
-        margin: 0px;
+        margin: 0;
+        padding: 24px 0 40px;
+        background-color: #ffffff;
+      }
+
+      .login-wrap {
+        position: relative;
+        width: min(var(--card-width), calc(100vw - 20px));
+        min-height: var(--card-height);
+        margin: 0 auto;
+      }
+
+      .login-card,
+      .queue-card,
+      .practice-card {
+        width: 100%;
+        max-width: var(--card-width);
+        height: var(--card-height);
+        border-radius: 2px;
+        box-shadow: var(--card-shadow);
+        box-sizing: border-box;
+        overflow: hidden;
       }
 
       .login-card {
         padding: 40px;
-        width: 274px;
-        background-color: #f7f7f7;
-        margin: 0 auto 10px;
-        border-radius: 2px;
-        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-        overflow: hidden;
+        border: 1px solid var(--login-card-border);
+        background-color: var(--login-card-bg);
+      }
+
+      .queue-card,
+      .practice-card {
+        position: absolute;
+        top: 0;
+        width: var(--card-width);
+        padding: 18px 20px 20px;
+        border-style: solid;
+        border-width: 1px 1px 1px 4px;
+      }
+
+      .queue-card {
+        right: calc(100% + var(--panel-gap));
+        border-color: var(--queue-card-border);
+        border-left-color: var(--queue-accent);
+        background-color: var(--queue-card-bg);
+      }
+
+      .practice-card {
+        left: calc(100% + var(--panel-gap));
+        border-color: var(--practice-card-border);
+        border-left-color: var(--practice-accent);
+        background-color: var(--practice-card-bg);
       }
 
       .login-card h1 {
+        margin: 0;
         font-weight: 100;
         text-align: center;
         font-size: 2em;
@@ -50,7 +106,7 @@
       }
 
       .login-card input[type='text'],
-      input[type='password'] {
+      .login-card input[type='password'] {
         height: 44px;
         font-size: 16px;
         width: 100%;
@@ -59,14 +115,14 @@
         background: #fff;
         border: 1px solid #d9d9d9;
         border-top: 1px solid #c0c0c0;
-        /* border-radius: 2px; */
         padding: 0 8px;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
       }
 
       .login-card input[type='text']:hover,
-      input[type='password']:hover {
+      .login-card input[type='password']:hover,
+      .queue-input:hover {
         border: 1px solid #b9b9b9;
         border-top: 1px solid #a0a0a0;
         -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -84,16 +140,20 @@
       }
 
       .login-submit {
-        border: 0px;
+        border: 0;
         color: #fff;
         text-shadow: 0 1px rgba(0, 0, 0, 0.1);
         background-color: #4d90fe;
       }
 
       .login-submit:hover {
-        border: 0px;
+        border: 0;
         text-shadow: 0 1px rgba(0, 0, 0, 0.3);
         background-color: #357ae8;
+      }
+
+      .login-submit.practice-armed {
+        box-shadow: 0 0 0 3px rgba(47, 91, 234, 0.18);
       }
 
       .login-card a {
@@ -107,10 +167,189 @@
         opacity: 1;
       }
 
-      .login-help {
+      .panel-title {
+        margin: 0;
+        font-size: 16px;
+        color: #333333;
+      }
+
+      .queue-card .panel-title {
+        color: var(--queue-accent);
+      }
+
+      .practice-card .panel-title {
+        color: var(--practice-accent);
+      }
+
+      .panel-subtitle {
+        margin: 6px 0 0;
+        font-size: 12px;
+        line-height: 1.5;
+        color: #777777;
+      }
+
+      .queue-summary-box,
+      .practice-clock-box {
+        margin-top: 14px;
+        padding: 16px 12px;
+        border: 1px solid #d9d9d9;
+        background-color: #ffffff;
+        text-align: center;
+      }
+
+      .queue-card .queue-summary-box {
+        border-color: #cbdcff;
+        background-color: rgba(255, 255, 255, 0.82);
+      }
+
+      .practice-card .practice-clock-box {
+        border-color: #cbdcff;
+        background-color: rgba(255, 255, 255, 0.82);
+      }
+
+      .queue-summary-label,
+      .practice-clock-label {
+        font-size: 11px;
+        color: #666666;
+      }
+
+      .queue-summary-time,
+      .practice-clock {
+        display: block;
+        margin-top: 8px;
+        font-size: 28px;
+        line-height: 1;
+        font-family: Consolas, 'Courier New', monospace;
+        font-weight: 700;
+        color: #222222;
+      }
+
+      .queue-summary-meta,
+      .practice-target {
+        margin-top: 10px;
+        font-size: 12px;
+        color: #666666;
+      }
+
+      .queue-summary-meta strong {
+        color: var(--queue-accent);
+      }
+
+      .queue-form {
+        margin-top: 14px;
+      }
+
+      .queue-field {
+        margin-bottom: 10px;
+      }
+
+      .queue-label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 12px;
+        color: #555555;
+      }
+
+      .queue-input {
         width: 100%;
+        height: 36px;
+        border: 1px solid #d9d9d9;
+        border-top: 1px solid #c0c0c0;
+        background-color: #ffffff;
+        font-size: 14px;
+        color: #333333;
+        padding: 0 10px;
+        box-sizing: border-box;
+      }
+
+      .queue-actions,
+      .practice-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .queue-actions {
+        margin-top: 14px;
+      }
+
+      .queue-button,
+      .practice-button {
+        height: 34px;
+        border: 1px solid #c8d2e5;
+        background-color: #ffffff;
+        color: #444444;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .queue-button.primary,
+      .practice-button.primary {
+        color: #ffffff;
+      }
+
+      .queue-button.primary {
+        border-color: var(--queue-accent);
+        background-color: var(--queue-accent);
+      }
+
+      .practice-button.primary {
+        border-color: var(--practice-accent);
+        background-color: var(--practice-accent);
+      }
+
+      .queue-card .queue-button {
+        border-color: #c1d4ff;
+      }
+
+      .practice-card .practice-button,
+      .practice-card .practice-record {
+        border-color: #c1d4ff;
+      }
+
+      .practice-primary-action {
+        margin-top: 16px;
+      }
+
+      .practice-primary-action .practice-button {
+        width: 100%;
+      }
+
+      .practice-actions {
+        margin-top: 16px;
+      }
+
+      .practice-button:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      .practice-records {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .practice-record {
+        padding: 12px 10px;
+        border: 1px solid #d9d9d9;
+        background-color: #ffffff;
         text-align: center;
         font-size: 12px;
+        color: #666666;
+      }
+
+      .practice-record span {
+        display: block;
+      }
+
+      .practice-record strong {
+        display: block;
+        margin-top: 6px;
+        font-size: 16px;
+        color: var(--practice-accent);
       }
 
       .watermark {
@@ -140,39 +379,99 @@
           display: none;
         }
       }
+
+      @media screen and (max-width: 1150px) {
+        .login-wrap {
+          min-height: 0;
+        }
+
+        .queue-card,
+        .practice-card {
+          display: none;
+        }
+      }
+
+      @media screen and (max-width: 420px) {
+        .login-card {
+          height: auto;
+          padding: 32px 20px;
+        }
+      }
     </style>
   </head>
   <body>
-    <div class="login-card">
-      <h1>삼육대학교/대학원<br />수강신청</h1>
-      <br />
-      <input type="text" name="userId" tabindex="1" id="userId" placeholder="학번 (필요 없음)" />
-      <input type="password" name="userPwd" tabindex="2" id="userPwd" placeholder="비밀번호 (필요 없음)" />
-      <input type="submit" name="login" class="login login-submit" value="login" id="imgLogin" onclick="loading()" />
-      <a href="#" onclick="alert('사용할 수 없습니다.')">학번 조회</a>
+    <div class="login-wrap">
+      <div class="queue-card">
+        <h2 class="panel-title">대기열 설정</h2>
+        <p class="panel-subtitle">접속 인원을 기준으로 대기 시간을 계산합니다.</p>
+
+        <div class="queue-summary-box">
+          <div class="queue-summary-label">계산된 대기 시간</div>
+          <strong class="queue-summary-time" id="queue-preview-time">00:00:10</strong>
+          <div class="queue-summary-meta">1명 입장 간격 <strong id="queue-preview-step">0.1초</strong></div>
+        </div>
+
+        <div class="queue-form">
+          <div class="queue-field">
+            <label class="queue-label" for="queue-active-count">현재 접속자 수</label>
+            <input class="queue-input" type="number" id="queue-active-count" min="1" max="9999" value="100" />
+          </div>
+        </div>
+
+        <div class="queue-actions">
+          <button type="button" class="queue-button primary" id="queue-apply">적용하기</button>
+          <button type="button" class="queue-button" id="queue-reset">기본값</button>
+        </div>
+      </div>
+
+      <div class="login-card">
+        <h1>삼육대학교/대학원<br />수강신청</h1>
+        <br />
+        <input type="text" name="userId" tabindex="1" id="userId" placeholder="학번 (필요 없음)" />
+        <input type="password" name="userPwd" tabindex="2" id="userPwd" placeholder="비밀번호 (필요 없음)" />
+        <input type="submit" name="login" class="login login-submit" value="login" id="imgLogin" onclick="return handleLoginClick()" />
+        <a href="#" onclick="alert('사용할 수 없습니다.')">학번 조회</a>
+      </div>
+
+      <div class="practice-card">
+        <h2 class="panel-title">정각 연습</h2>
+        <p class="panel-subtitle">10:00:00 에 맞춰 바로 login 버튼을 눌러보는 연습입니다.</p>
+
+        <div class="practice-clock-box">
+          <div class="practice-clock-label">현재 시각</div>
+          <strong class="practice-clock" id="reaction-clock">09:59:55</strong>
+          <div class="practice-target">목표 시각 10:00:00</div>
+        </div>
+
+        <div class="practice-primary-action">
+          <button type="button" class="practice-button primary" id="reaction-start">시작하기</button>
+        </div>
+
+        <div class="practice-actions">
+          <button type="button" class="practice-button" id="reaction-retry" disabled>다시하기</button>
+          <button type="button" class="practice-button" id="reaction-reset">초기화</button>
+        </div>
+
+        <div class="practice-records">
+          <div class="practice-record">
+            <span>이번 기록</span>
+            <strong id="reaction-result-ms">-</strong>
+          </div>
+          <div class="practice-record">
+            <span>베스트 기록</span>
+            <strong id="reaction-best-ms">-</strong>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div style="text-align: center; font-size: 6pt"></div>
-    <div style="padding: 0px 10px 10px 10px; text-align: center">
+    <div style="padding: 0 10px 10px; text-align: center">
       <h1 id="notice" style="color: #cccccc; -ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select: none"></h1>
-      <!--<h1
-        style="
-          color: #cccccc;
-          -ms-user-select: none;
-          -moz-user-select: -moz-none;
-          -webkit-user-select: none;
-          -khtml-user-select: none;
-          user-select: none;
-        ">
-        (C) SUWINGS . Powered by SYU KR
-      </h1>-->
     </div>
-    <!-- <div style="padding: 3rem; text-align: center; filter: opacity(0.1) drop-shadow(0 0 0 #cccccc)">
-      <img src="/mlogo.png" />
-    </div> -->
-    <!-- <div style="background-color: #0000001f; padding: 2rem; text-align: center">
-      <div style="color: white; font-size: 6pt">Copyright(C) 2023 - 2024 SYU KR (김상윤). All rights reserved.</div>
-    </div> -->
+
     <div id="wait-screen" style="display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9999"></div>
+
     <div id="wait" style="display: none; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 10000">
       <style>
         #netfunnel {
@@ -185,13 +484,6 @@
             'Segoe UI',
             sans-serif;
           border-radius: 12px;
-        }
-
-        #netfunnel .overlay {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 100vh;
         }
 
         #netfunnel .modal {
@@ -236,20 +528,13 @@
           font-size: 14px;
           color: #333;
           line-height: 1.8;
-          margin-bottom: 12px;
+          margin-bottom: 4px;
         }
 
         #netfunnel .highlight {
           color: #2f5bea;
           font-weight: 600;
           margin-left: 4px;
-        }
-
-        #netfunnel .notice {
-          font-size: 12px;
-          color: #777;
-          line-height: 1.5;
-          margin: 10px 0 14px;
         }
 
         #netfunnel .footer {
@@ -261,7 +546,7 @@
       <div id="netfunnel">
         <div class="modal">
           <h1 class="title">모의 수강신청 대기</h1>
-          <p class="subtitle">온라인 접속 대기 안내</p>
+          <p class="subtitle">트래픽 분산을 위한 접속 대기 안내</p>
 
           <div class="progress">
             <div class="progress-bar" id="progressbar"></div>
@@ -270,74 +555,309 @@
           <div class="info">
             <div>
               예상 대기 시간 :
-              <span class="highlight"><span id="time">00:00:04</span></span>
+              <span class="highlight"><span id="time">00:00:10</span></span>
             </div>
             <div>
-              내 앞의 대기자 수 :
-              <span class="highlight">100명</span>
-            </div>
-            <div>
-              내 뒤의 대기자 수 :
-              <span class="highlight">100명</span>
+              현재 접속자 수 :
+              <span class="highlight" id="queue-active-display">100명</span>
             </div>
           </div>
 
-          <p class="notice">새로고침 또는 뒤로가기를 누르거나 팝업창을 닫고 재접속할 경우 대기 시간이 초기화됩니다.</p>
-
-          <div class="footer">Powered by Surffy.io | © STCLab Inc.</div>
+          <div class="footer">Powered by Surffy.io | STCLab Inc.</div>
         </div>
       </div>
     </div>
+
     <script>
       const filter = 'win16|win32|win64|mac|macintel'
       if (navigator.platform) {
         if (filter.indexOf(window.navigator.platform.toLowerCase()) < 0) {
-          document.getElementById('notice').innerText = '컴퓨터 / PC 환경을 권장합니다.'
+          document.getElementById('notice').innerText = '태블릿 또는 PC 환경을 권장합니다.'
         } else {
           document.getElementById('notice').innerText = '브라우저 전체 화면을 권장합니다.'
         }
       }
     </script>
+
     <script>
+      const queueStepMs = 100
+
+      const queueDefaults = {
+        activeCount: 100,
+      }
+
+      const queueState = {
+        activeCount: queueDefaults.activeCount,
+        dequeueIntervalMs: queueStepMs,
+        estimatedWaitMs: 10000,
+        estimatedWaitSeconds: 10,
+      }
+
+      const reactionTargetTime = 10 * 60 * 60 * 1000
+      const reactionReadyClock = reactionTargetTime - 5000
+      const reactionState = {
+        animationFrameId: 0,
+        started: false,
+        running: false,
+        startTime: 0,
+        simulatedStartTime: reactionReadyClock,
+        bestDiffMs: null,
+      }
+
+      const queueElements = {
+        activeCount: document.getElementById('queue-active-count'),
+        apply: document.getElementById('queue-apply'),
+        reset: document.getElementById('queue-reset'),
+        previewTime: document.getElementById('queue-preview-time'),
+        previewStep: document.getElementById('queue-preview-step'),
+        modalActive: document.getElementById('queue-active-display'),
+        modalTime: document.getElementById('time'),
+      }
+
+      const reactionElements = {
+        clock: document.getElementById('reaction-clock'),
+        resultMs: document.getElementById('reaction-result-ms'),
+        bestMs: document.getElementById('reaction-best-ms'),
+        login: document.getElementById('imgLogin'),
+        start: document.getElementById('reaction-start'),
+        retry: document.getElementById('reaction-retry'),
+        reset: document.getElementById('reaction-reset'),
+      }
+
+      function clampNumber(value, min, max, fallback) {
+        const parsed = Number.parseInt(value, 10)
+        if (Number.isNaN(parsed)) {
+          return fallback
+        }
+
+        return Math.min(Math.max(parsed, min), max)
+      }
+
       function formatTime(seconds) {
-        const hours = Math.floor(seconds / 3600)
-        const minutes = Math.floor((seconds % 3600) / 60)
-        const secs = seconds % 60
+        const safeSeconds = Math.max(0, seconds)
+        const hours = Math.floor(safeSeconds / 3600)
+        const minutes = Math.floor((safeSeconds % 3600) / 60)
+        const secs = safeSeconds % 60
         return String(hours).padStart(2, '0') + ':' + String(minutes).padStart(2, '0') + ':' + String(secs).padStart(2, '0')
       }
+
+      function formatClockTime(milliseconds) {
+        const totalSeconds = Math.floor(Math.max(0, milliseconds) / 1000)
+        const hours = Math.floor(totalSeconds / 3600)
+        const minutes = Math.floor((totalSeconds % 3600) / 60)
+        const seconds = totalSeconds % 60
+        return String(hours).padStart(2, '0') + ':' + String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0')
+      }
+
+      function formatDiff(milliseconds) {
+        if (milliseconds === null) {
+          return '-'
+        }
+
+        if (milliseconds === 0) {
+          return '0ms'
+        }
+
+        const sign = milliseconds > 0 ? '+' : '-'
+        return sign + Math.abs(milliseconds).toLocaleString('ko-KR') + 'ms'
+      }
+
+      function formatStep(seconds) {
+        return seconds.toFixed(1) + '초'
+      }
+
+      function recalculateQueueState() {
+        const safeActiveCount = clampNumber(queueState.activeCount, 1, 9999, queueDefaults.activeCount)
+        const dequeueIntervalMs = queueStepMs
+        const estimatedWaitMs = safeActiveCount * dequeueIntervalMs
+
+        queueState.activeCount = safeActiveCount
+        queueState.dequeueIntervalMs = dequeueIntervalMs
+        queueState.estimatedWaitMs = estimatedWaitMs
+        queueState.estimatedWaitSeconds = Math.ceil(estimatedWaitMs / 1000)
+      }
+
+      function syncQueueInputs() {
+        queueElements.activeCount.value = String(queueState.activeCount)
+      }
+
+      function renderQueueState() {
+        recalculateQueueState()
+        queueElements.previewTime.innerText = formatTime(queueState.estimatedWaitSeconds)
+        queueElements.previewStep.innerText = formatStep(queueState.dequeueIntervalMs / 1000)
+        queueElements.modalTime.innerText = formatTime(queueState.estimatedWaitSeconds)
+        queueElements.modalActive.innerText = queueState.activeCount.toLocaleString('ko-KR') + '명'
+      }
+
+      function applyQueueSettings() {
+        queueState.activeCount = clampNumber(queueElements.activeCount.value, 1, 9999, queueDefaults.activeCount)
+
+        syncQueueInputs()
+        renderQueueState()
+      }
+
+      function resetQueueSettings() {
+        queueState.activeCount = queueDefaults.activeCount
+
+        syncQueueInputs()
+        renderQueueState()
+      }
+
+      function updateReactionButtons() {
+        reactionElements.start.disabled = reactionState.running
+        reactionElements.retry.disabled = !reactionState.started
+        reactionElements.start.innerText = reactionState.running ? '진행 중' : '시작하기'
+        reactionElements.login.classList.toggle('practice-armed', reactionState.running)
+      }
+
+      function renderReactionClock(milliseconds) {
+        reactionElements.clock.innerText = formatClockTime(milliseconds)
+      }
+
+      function stopReactionTicker() {
+        if (reactionState.animationFrameId) {
+          window.cancelAnimationFrame(reactionState.animationFrameId)
+          reactionState.animationFrameId = 0
+        }
+      }
+
+      function getReactionSimulatedTime(now) {
+        return reactionState.simulatedStartTime + (now - reactionState.startTime)
+      }
+
+      function finishReactionTest(diffMs) {
+        reactionState.running = false
+        stopReactionTicker()
+
+        if (reactionState.bestDiffMs === null || Math.abs(diffMs) < Math.abs(reactionState.bestDiffMs)) {
+          reactionState.bestDiffMs = diffMs
+        }
+
+        renderReactionClock(reactionTargetTime + diffMs)
+        reactionElements.resultMs.innerText = formatDiff(diffMs)
+        reactionElements.bestMs.innerText = formatDiff(reactionState.bestDiffMs)
+        updateReactionButtons()
+      }
+
+      function tickReactionTest() {
+        if (!reactionState.running) {
+          return
+        }
+
+        renderReactionClock(getReactionSimulatedTime(performance.now()))
+        reactionState.animationFrameId = window.requestAnimationFrame(tickReactionTest)
+      }
+
+      function startReactionTest() {
+        stopReactionTicker()
+        reactionState.started = true
+        reactionState.running = true
+        reactionState.startTime = performance.now()
+        reactionState.simulatedStartTime = reactionTargetTime - (4200 + Math.floor(Math.random() * 2400))
+
+        reactionElements.resultMs.innerText = '-'
+        updateReactionButtons()
+        tickReactionTest()
+      }
+
+      function resetReactionTest() {
+        reactionState.started = false
+        reactionState.running = false
+        reactionState.startTime = 0
+        reactionState.simulatedStartTime = reactionReadyClock
+        reactionState.bestDiffMs = null
+
+        stopReactionTicker()
+        renderReactionClock(reactionReadyClock)
+        reactionElements.resultMs.innerText = '-'
+        reactionElements.bestMs.innerText = '-'
+        updateReactionButtons()
+      }
+
+      function submitReactionTest() {
+        if (!reactionState.running) {
+          return
+        }
+
+        const diffMs = Math.round(getReactionSimulatedTime(performance.now()) - reactionTargetTime)
+        finishReactionTest(diffMs)
+      }
+
+      function handleLoginClick() {
+        if (reactionState.running) {
+          submitReactionTest()
+          return false
+        }
+
+        loading()
+        return false
+      }
+
+      window.handleLoginClick = handleLoginClick
+
+      queueElements.apply.addEventListener('click', applyQueueSettings)
+      queueElements.reset.addEventListener('click', resetQueueSettings)
+      reactionElements.start.addEventListener('click', startReactionTest)
+      reactionElements.retry.addEventListener('click', startReactionTest)
+      reactionElements.reset.addEventListener('click', resetReactionTest)
+
+      resetQueueSettings()
+      resetReactionTest()
 
       function loading() {
         document.getElementById('wait-screen').style.display = ''
         const loading = document.getElementById('wait')
+        const progressBar = document.getElementById('progressbar')
         loading.style.display = ''
+        renderQueueState()
 
-        const time = 4
-        let percent = 0
-        let realTime = time
+        const totalWaitMs = queueState.estimatedWaitMs
+        const initialActiveCount = queueState.activeCount
+        const startedAt = Date.now()
 
-        // 클릭 방지 함수
         const preventClick = (e) => {
           if (e.target.id !== 'netfunnel' && !document.getElementById('netfunnel').contains(e.target)) {
             e.preventDefault()
             e.stopPropagation()
           }
         }
+
+        const finishLoading = () => {
+          document.removeEventListener('click', preventClick, true)
+          document.removeEventListener('touchstart', preventClick, true)
+          location.href = 'https://sugang.syu.kr/test1'
+        }
+
         document.addEventListener('click', preventClick, true)
         document.addEventListener('touchstart', preventClick, true)
 
+        if (totalWaitMs <= 0) {
+          progressBar.style.width = '100%'
+          queueElements.modalTime.innerText = '00:00:00'
+          queueElements.modalActive.innerText = '0명'
+          setTimeout(finishLoading, 150)
+          return
+        }
+
         const checker = setInterval(function () {
-          percent += 400 / time
-          document.getElementById('time').innerText = formatTime(realTime)
-          document.getElementById('progressbar').innerHTML = '<div style="width: ' + (percent > 390 ? 400 : percent) + 'px; height: 20px; background-color: #2f5bea"></div>'
-          if (realTime-- <= 0) {
-            // 클릭 방지 제거
-            document.removeEventListener('click', preventClick, true)
-            document.removeEventListener('touchstart', preventClick, true)
-            location.href = 'https://sugang.syu.kr/test1'
+          const elapsedMs = Date.now() - startedAt
+          const remainingMs = Math.max(totalWaitMs - elapsedMs, 0)
+          const processedCount = Math.min(initialActiveCount, Math.floor(elapsedMs / queueState.dequeueIntervalMs))
+          const remainingActiveCount = Math.max(initialActiveCount - processedCount, 0)
+          const percent = Math.min((elapsedMs / totalWaitMs) * 100, 100)
+
+          queueElements.modalTime.innerText = formatTime(Math.ceil(remainingMs / 1000))
+          queueElements.modalActive.innerText = remainingActiveCount.toLocaleString('ko-KR') + '명'
+          progressBar.style.width = percent + '%'
+
+          if (elapsedMs >= totalWaitMs || remainingActiveCount <= 0) {
+            clearInterval(checker)
+            finishLoading()
           }
-        }, 1000)
+        }, 100)
       }
     </script>
+
     <div class="watermark" aria-hidden="true" role="presentation"></div>
   </body>
 </html>

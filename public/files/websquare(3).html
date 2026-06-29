@@ -75,8 +75,8 @@
         class="w2trigger w2trigger_table btn_add4"
         cellpadding="0"
         cellspacing="0"
-        onkeydown="if (event.keyCode == 32 || event.keyCode == 13) click()"
-        onclick="alert('사용할 수 없습니다.')">
+        onkeydown="return window.handleLectureLookupKeydown ? window.handleLectureLookupKeydown(event) : false"
+        onclick="return window.handleLectureLookup ? window.handleLectureLookup(event) : false">
         <tbody>
           <tr id="trF_LECT_INFO_row" class="">
             <td id="trF_LECT_INFO_left" class="w2trigger_col_left w2trigger_left"></td>
@@ -99,7 +99,13 @@
         </table>
       </div>
       <div id="output141" style="position: absolute; left: 833px; top: 2px; width: 55px; height: 16px" class="w2output font_searchtitle">강좌번호</div>
-      <input id="ipF_LECT_CD" style="position: absolute; left: 888px; top: 2px; width: 70px; height: 18px; text-align: center" class="w2input common_input" type="text" maxlength="8" />
+      <input
+        id="ipF_LECT_CD"
+        style="position: absolute; left: 888px; top: 2px; width: 70px; height: 18px; text-align: center"
+        class="w2input common_input"
+        type="text"
+        maxlength="8"
+        onkeydown="return window.handleLectureLookupKeydown ? window.handleLectureLookupKeydown(event) : true" />
       <div
         id="sbF_FCLT_CD"
         role="combobox"
@@ -162,7 +168,7 @@
       <img id="image1" src="./dot_1.gif" style="position: absolute; height: 14px; width: 14px; left: 10px; top: 7px" class="w2image" />
       <div id="tbI_text" style="position: absolute; width: 143px; left: 30px; top: 8px" class="w2textbox font_subtitle">장바구니 등록강좌</div>
       <div style="position: absolute; right: 15px; top: 8px; color: red">
-        <strong>※ 실제 수강신청인 경우, 강좌번호를 입력하면 바로 강의 조회가 가능합니다.</strong>
+        <strong>※ 강좌번호를 입력하면 바로 해당 강좌를 조회할 수 있습니다.</strong>
       </div>
     </div>
     <div id="gdM1_F0" class="w2grid gridstyle01" style="position: absolute; height: 290px; width: 1031px; left: -1px; top: 204px; overflow: hidden" role="application" tabindex="0">
@@ -1267,7 +1273,7 @@
                   <nobr></nobr>
                 </td>
                 <td class="gridBodyDefault gridBodyDefault_data gdM2_F0_columnstyle_15_">
-                  <button type="button" style="width: 100%; height: 100%" tabindex="-1" onclick="cancel(this, 4)">취소</button>
+                  <button type="button" style="width: 100%; height: 100%" tabindex="-1" onclick="cancel(this, 5)">취소</button>
                 </td>
               </tr>
             </tbody>
@@ -1390,7 +1396,7 @@
       </div>
     </div>
     <div id="group4" style="position: absolute; top: 0px; left: 0px; width: 1030px; height: 97px" class="w2group detail_box">
-      <div id="opI_YY_SHTM" style="position: absolute; height: 90px; width: 87px; left: 0px; top: 0px" class="w2output td1">2025년<br /><br />1학기 정규<br /><br />수강신청</div>
+      <div id="opI_YY_SHTM" style="position: absolute; height: 90px; width: 87px; left: 0px; top: 0px" class="w2output td1">2026년<br /><br />1학기 정규<br /><br />수강신청</div>
       <div id="output30" style="position: absolute; height: 18px; width: 105px; left: 106px; top: 0px" class="w2output td1">학번</div>
       <div id="output31" style="position: absolute; height: 18px; width: 157px; left: 230px; top: 0px" class="w2output td1_2"></div>
       <input id="ipI_STUNO" style="position: absolute; height: 18px; width: 164px; left: 233px; top: 2px; text-align: center" class="w2input common_input" type="text" disabled="" value="2025003636" />
@@ -1578,6 +1584,51 @@
     </script>
     <script>
       const time = 4
+      const lectureLookupInput = document.getElementById('ipF_LECT_CD')
+      const lectureLookupButton = document.getElementById('trF_LECT_INFO')
+      const basketCount = document.getElementById('basket')
+      const applicationCount = document.getElementById('application')
+      const totalCreditInput = document.getElementById('ipI_TOT_LCTPT')
+      let activeLectureQuery = ''
+      const basketRows = Array.from(document.querySelectorAll('#gdM1_F0_body_tbody tr')).map((applicationRow) => {
+        const rowNumber = applicationRow.id.split('-')[0]
+        return {
+          rowNumber,
+          applicationRow,
+          cancelRow: document.getElementById(rowNumber + '-cancel'),
+          lectureNumber: applicationRow.cells[5].innerText.replace(/\s+/g, '').trim(),
+          credit: Number(applicationRow.cells[9].innerText.replace(/\s+/g, '').trim() || 0),
+        }
+      })
+
+      function normalizeLectureQuery(value) {
+        return String(value || '')
+          .replace(/\s+/g, '')
+          .trim()
+      }
+
+      function syncAppliedSummary() {
+        const appliedRows = basketRows.filter((rowState) => rowState.cancelRow.style.display !== 'none')
+        const totalCredit = appliedRows.reduce((sum, rowState) => sum + rowState.credit, 0)
+
+        applicationCount.innerText = String(appliedRows.length)
+        totalCreditInput.value = String(totalCredit)
+      }
+
+      function renderLectureLookup() {
+        let visibleCount = 0
+
+        basketRows.forEach((rowState) => {
+          const isApplied = rowState.cancelRow.style.display !== 'none'
+          const isMatched = activeLectureQuery === '' || rowState.lectureNumber === activeLectureQuery
+          const shouldShow = !isApplied && isMatched
+
+          rowState.applicationRow.style.display = shouldShow ? '' : 'none'
+          rowState.applicationRow.cells[0].innerText = shouldShow ? String(++visibleCount) : '-'
+        })
+
+        basketCount.innerText = String(visibleCount)
+      }
 
       function formatTime(seconds) {
         const hours = Math.floor(seconds / 3600)
@@ -1593,6 +1644,28 @@
       function loadingOff(id) {
         const loading = document.getElementById(id)
         loading.style.display = 'none'
+      }
+      function handleLectureLookup(event) {
+        if (event) {
+          event.preventDefault()
+        }
+
+        activeLectureQuery = normalizeLectureQuery(lectureLookupInput ? lectureLookupInput.value : '')
+
+        loadingOn('search')
+        window.setTimeout(function () {
+          renderLectureLookup()
+          loadingOff('search')
+        }, 200)
+
+        return false
+      }
+      function handleLectureLookupKeydown(event) {
+        if ((event.key && event.key === 'Enter') || event.keyCode === 13 || event.keyCode === 32) {
+          return handleLectureLookup(event)
+        }
+
+        return true
       }
       function application(obj, number) {
         document.getElementById('wait-screen').style.display = ''
@@ -1628,9 +1701,8 @@
             obj.disabled = false
             document.getElementById('progressbar').innerHTML = '<div style="width: 0px; height: 20px; background-color: #2f5bea"></div>'
             clearInterval(checker)
-            document.getElementById('basket').innerText = Number(document.getElementById('basket').innerText) - 1
-            document.getElementById('application').innerText = Number(document.getElementById('application').innerText) + 1
-            document.getElementById('ipI_TOT_LCTPT').value = Number(document.getElementById('ipI_TOT_LCTPT').value) + 21
+            renderLectureLookup()
+            syncAppliedSummary()
           }
         }, 1000)
       }
@@ -1668,12 +1740,25 @@
             obj.disabled = false
             document.getElementById('progressbar').innerHTML = '<div style="width: 0px; height: 20px; background-color: #2f5bea"></div>'
             clearInterval(checker)
-            document.getElementById('basket').innerText = Number(document.getElementById('basket').innerText) + 1
-            document.getElementById('application').innerText = Number(document.getElementById('application').innerText) - 1
-            document.getElementById('ipI_TOT_LCTPT').value = Number(document.getElementById('ipI_TOT_LCTPT').value) - 21
+            renderLectureLookup()
+            syncAppliedSummary()
           }
         }, 1000)
       }
+
+      window.handleLectureLookup = handleLectureLookup
+      window.handleLectureLookupKeydown = handleLectureLookupKeydown
+      window.renderLectureLookup = renderLectureLookup
+
+      if (lectureLookupButton) {
+        lectureLookupButton.onclick = handleLectureLookup
+      }
+      if (lectureLookupInput) {
+        lectureLookupInput.addEventListener('keydown', handleLectureLookupKeydown)
+      }
+
+      syncAppliedSummary()
+      renderLectureLookup()
     </script>
     <script>
       loadingOn('search')
