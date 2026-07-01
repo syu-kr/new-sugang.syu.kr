@@ -7,6 +7,7 @@ const FIELD_TIMETABLE_PROFESSOR = '\uad50\uc218\uba85'
 const FIELD_AREA = '\uc601\uc5ed\uad6c\ubd84'
 const AREA_ALL = '\ubaa8\ub450'
 const DEPARTMENT_LIBERAL_ARTS = '\uacf5\ud1b5(\uad50\uc591)'
+const LEGACY_ALIAS_PATTERN = /\s*\((?:\uad6c|\u820a)\s*,[^)]*\)\s*/g
 const RESPONSIVE_HIDE_BREAKPOINTS = [1120, 1040, 960, 880, 800, 720, 640, 560, 480, 400]
 
 const EXCLUDE_NAME_PATTERNS = ['\uc9c0\uad6c\uc0ac\ub791\uacfc\ubd09\uc0ac', '\uae00\ub85c\ubc8c \uc601\uc5b4']
@@ -35,6 +36,107 @@ function formatRate(value) {
 
 function normalizeString(value) {
   return (value || '').toString().trim().replace(/\s+/g, ' ')
+}
+
+function normalizeCourseName(value) {
+  return normalizeString(value).replace(LEGACY_ALIAS_PATTERN, '').trim()
+}
+
+function buildUniqueAreaMap(areaSets) {
+  const uniqueAreaMap = new Map()
+
+  areaSets.forEach((areas, key) => {
+    if (areas.size === 1) {
+      uniqueAreaMap.set(key, Array.from(areas)[0])
+    }
+  })
+
+  return uniqueAreaMap
+}
+
+function buildAreaResolver(areaRows) {
+  const exactAreaByCourseProfessor = new Map()
+  const areaSetsByCourseName = new Map()
+  const areaSetsByCanonicalCourseName = new Map()
+
+  function addArea(areaSets, key, area) {
+    if (!key || !area) return
+
+    if (!areaSets.has(key)) {
+      areaSets.set(key, new Set())
+    }
+
+    areaSets.get(key).add(area)
+  }
+
+  areaRows.forEach((entry) => {
+    const courseName = normalizeString(entry.courseName)
+    const professor = normalizeString(entry.professor)
+    const area = normalizeString(entry.area)
+    const canonicalCourseName = normalizeCourseName(courseName)
+
+    if (courseName && professor) {
+      const exactKey = `${courseName}|${professor}`
+
+      if (area || !exactAreaByCourseProfessor.has(exactKey)) {
+        exactAreaByCourseProfessor.set(exactKey, area)
+      }
+    }
+
+    addArea(areaSetsByCourseName, courseName, area)
+    addArea(areaSetsByCanonicalCourseName, canonicalCourseName, area)
+  })
+
+  const uniqueAreaByCourseName = buildUniqueAreaMap(areaSetsByCourseName)
+  const uniqueAreaByCanonicalCourseName = buildUniqueAreaMap(areaSetsByCanonicalCourseName)
+
+  return (courseName, professor) => {
+    const normalizedCourseName = normalizeString(courseName)
+    const normalizedProfessor = normalizeString(professor)
+    const exactArea = exactAreaByCourseProfessor.get(`${normalizedCourseName}|${normalizedProfessor}`)
+
+    if (exactArea) {
+      return exactArea
+    }
+
+    return (
+      uniqueAreaByCourseName.get(normalizedCourseName) ||
+      uniqueAreaByCanonicalCourseName.get(normalizeCourseName(normalizedCourseName)) ||
+      ''
+    )
+  }
+}
+
+function buildTimetableAreaResolver(timetable) {
+  return buildAreaResolver(
+    timetable.map((entry) => ({
+      area: entry[FIELD_AREA],
+      courseName: entry[FIELD_TIMETABLE_COURSE_NAME],
+      professor: entry[FIELD_TIMETABLE_PROFESSOR],
+    })),
+  )
+}
+
+function buildTermAreaResolverMap(areaHistory) {
+  const rowsByTerm = new Map()
+  const resolverByTerm = new Map()
+
+  areaHistory.forEach((entry) => {
+    const term = normalizeString(entry.term)
+    if (!term) return
+
+    if (!rowsByTerm.has(term)) {
+      rowsByTerm.set(term, [])
+    }
+
+    rowsByTerm.get(term).push(entry)
+  })
+
+  rowsByTerm.forEach((rows, term) => {
+    resolverByTerm.set(term, buildAreaResolver(rows))
+  })
+
+  return resolverByTerm
 }
 
 function renderStars(percent) {
@@ -79,6 +181,12 @@ async function fetchTerm(term) {
   return response.json()
 }
 
+async function fetchLiberalArtsAreaHistory() {
+  const response = await fetch('/api/liberalartsAreaHistory')
+  if (!response.ok) throw new Error('failed to fetch liberal arts area history')
+  return response.json()
+}
+
 function buildTableHeader(terms) {
   const headerRow = document.querySelector('thead tr')
   if (!headerRow) return
@@ -107,6 +215,16 @@ function averageFor(item, terms) {
   return values.reduce((sum, value) => sum + value, 0) / values.length
 }
 
+function isInactiveInRecentTerms(item, terms) {
+  const recentTerms = terms.slice(0, 3)
+
+  if (recentTerms.length < 3) {
+    return false
+  }
+
+  return recentTerms.every((term) => typeof item.rates[term] !== 'number')
+}
+
 async function main() {
   const termDetails = await fetchTerms()
   const terms = termDetails.map((term) => term.id)
@@ -132,6 +250,12 @@ async function main() {
     }
   }
 
+  let termAreaResolvers = new Map()
+  try {
+    const areaHistoryJson = await fetchLiberalArtsAreaHistory()
+    termAreaResolvers = buildTermAreaResolverMap(areaHistoryJson.data || [])
+  } catch {}
+
   const ratingsMap = new Map()
   try {
     const ratingResponse = await fetch('/api/courseRate')
@@ -149,12 +273,18 @@ async function main() {
 
   const courses = new Map()
   for (const term of terms) {
+    const areaResolver = termAreaResolvers.get(term)
     perTermMap[term].items.forEach((item) => {
       const key = `${item[FIELD_SOURCE_COURSE_NAME]}|${item[FIELD_SOURCE_PROFESSOR]}`
       if (!courses.has(key)) {
-        courses.set(key, {name: item[FIELD_SOURCE_COURSE_NAME], professor: item[FIELD_SOURCE_PROFESSOR], rates: {}})
+        courses.set(key, {area: '', name: item[FIELD_SOURCE_COURSE_NAME], professor: item[FIELD_SOURCE_PROFESSOR], rates: {}})
       }
-      courses.get(key).rates[term] = Number.parseFloat(item[FIELD_COMPETITION])
+      const course = courses.get(key)
+      course.rates[term] = Number.parseFloat(item[FIELD_COMPETITION])
+
+      if (!course.area && areaResolver) {
+        course.area = areaResolver(item[FIELD_SOURCE_COURSE_NAME], item[FIELD_SOURCE_PROFESSOR])
+      }
     })
   }
 
@@ -171,21 +301,25 @@ async function main() {
     }
   } catch {}
 
+  const resolveArea = buildTimetableAreaResolver(timetable)
+
   list.forEach((item) => {
-    const courseName = normalizeString(item.name)
-    const professor = normalizeString(item.professor)
-
-    const match = timetable.find((entry) => {
-      return normalizeString(entry[FIELD_TIMETABLE_COURSE_NAME]) === courseName && normalizeString(entry[FIELD_TIMETABLE_PROFESSOR]) === professor
-    })
-
-    const area = match ? match[FIELD_AREA] : ''
+    const area = item.area || resolveArea(item.name, item.professor)
     item.area = area && String(area).trim() ? area : '-'
   })
 
   const areaFilterEl = document.getElementById('areaFilter')
   if (areaFilterEl) {
-    areaFilterEl.innerHTML = `<option value="">${AREA_ALL}</option>${MANUAL_AREAS.map((area) => `<option value="${area}">${area}</option>`).join('')}`
+    const discoveredAreas = Array.from(
+      new Set(
+        list
+          .map((item) => item.area)
+          .filter((area) => area && area !== '-'),
+      ),
+    )
+    const areaOptions = Array.from(new Set([...MANUAL_AREAS, ...discoveredAreas]))
+
+    areaFilterEl.innerHTML = `<option value="">${AREA_ALL}</option>${areaOptions.map((area) => `<option value="${area}">${area}</option>`).join('')}`
   }
 
   const searchEl = document.getElementById('search')
@@ -198,7 +332,10 @@ async function main() {
       const tr = document.createElement('tr')
 
       const nameTd = document.createElement('td')
-      nameTd.innerHTML = `<strong>${item.name}</strong> <span style="color:#666">(${item.professor})</span>`
+      const courseNameStyle = isInactiveInRecentTerms(item, terms)
+        ? 'text-decoration:line-through; text-decoration-thickness:1.5px; color:#666;'
+        : ''
+      nameTd.innerHTML = `<strong style="${courseNameStyle}">${item.name}</strong> <span style="color:#666">(${item.professor})</span>`
       tr.appendChild(nameTd)
 
       const areaTd = document.createElement('td')
