@@ -39,7 +39,13 @@ function shouldSkipScript(script: LegacyScriptAsset) {
   const src = script.attributes.src || ''
   const text = script.content
 
-  return src.includes('googletagmanager.com/gtag/js') || text.includes("gtag('config'")
+  return (
+    src.includes('googletagmanager.com/gtag/js') ||
+    text.includes('window.dataLayer = window.dataLayer') ||
+    text.includes('function gtag(') ||
+    text.includes("gtag('js'") ||
+    text.includes("gtag('config'")
+  )
 }
 
 function injectScript(scriptAsset: LegacyScriptAsset) {

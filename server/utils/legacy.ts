@@ -14,9 +14,7 @@ import {
 const HTML_ATTRIBUTES_PATTERN = /<html\b([^>]*)>/i
 const HEAD_CONTENT_PATTERN = /<head\b[^>]*>([\s\S]*?)<\/head>/i
 const BODY_CONTENT_PATTERN = /<body\b([^>]*)>([\s\S]*?)<\/body>/i
-const TITLE_PATTERN = /<title\b[^>]*>([\s\S]*?)<\/title>/i
 const LINK_PATTERN = /<link\b([^>]*?)\/?>/gi
-const META_PATTERN = /<meta\b([^>]*?)\/?>/gi
 const SCRIPT_PATTERN = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi
 const STYLE_PATTERN = /<style\b[^>]*>([\s\S]*?)<\/style>/gi
 const ATTRIBUTE_PATTERN = /([^\s"'=<>`/]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g
@@ -75,22 +73,6 @@ function readScripts(source: string) {
   return scripts
 }
 
-function readMetaContent(source: string, key: string, attributeName: 'name' | 'property') {
-  for (const match of source.matchAll(META_PATTERN)) {
-    const attributes = parseAttributes(match[1] ?? '')
-    if (attributes[attributeName]?.toLowerCase() === key.toLowerCase()) {
-      return attributes.content?.trim()
-    }
-  }
-
-  return undefined
-}
-
-function readTitle(source: string) {
-  const match = source.match(TITLE_PATTERN)
-  return match?.[1] ? decodeHtmlEntities(match[1].trim()) : undefined
-}
-
 function promoteTitleToHeading(page: LegacyPageName, bodyHtml: string) {
   const definition = getLegacyPageDefinition(page)
   if (!definition.promoteTitleToHeading || /<h1\b/i.test(bodyHtml)) {
@@ -100,13 +82,20 @@ function promoteTitleToHeading(page: LegacyPageName, bodyHtml: string) {
   return bodyHtml.replace(TITLE_DIV_PATTERN, '<h1$1>$3</h1>')
 }
 
-function buildRobotsContent(page: LegacyPageName, headContent: string) {
+function buildSeoFromDefinition(page: LegacyPageName) {
   const definition = getLegacyPageDefinition(page)
-  return (
-    definition.robots ??
-    readMetaContent(headContent, 'robots', 'name') ??
-    (definition.indexable ? 'index, follow, max-image-preview:large' : 'noindex, nofollow, noarchive')
-  )
+
+  return {
+    title: definition.title,
+    description: definition.description,
+    keywords: definition.keywords,
+    robots: definition.robots ?? (definition.indexable ? 'index, follow, max-image-preview:large' : 'noindex, nofollow, noarchive'),
+    ogType: 'website',
+    ogTitle: definition.ogTitle ?? definition.title,
+    ogDescription: definition.ogDescription ?? definition.description,
+    ogImage: definition.ogImage ?? defaultOgImage,
+    canonicalUrl: `${siteUrl}${definition.path}`,
+  }
 }
 
 export function getLegacyPageFileName(name: string) {
@@ -162,17 +151,6 @@ export async function readLegacyPageDocument(name: string): Promise<LegacyPageDo
     }),
     inlineStyles: readInlineTags(STYLE_PATTERN, headContent),
     scripts: [...readScripts(headContent), ...readScripts(rawBodyHtml)],
-    seo: {
-      title: readTitle(headContent) ?? definition.title,
-      description: readMetaContent(headContent, 'description', 'name') ?? definition.description,
-      keywords: readMetaContent(headContent, 'keywords', 'name') ?? definition.keywords,
-      robots: buildRobotsContent(legacyPage, headContent),
-      ogType: readMetaContent(headContent, 'og:type', 'property') ?? 'website',
-      ogTitle: readMetaContent(headContent, 'og:title', 'property') ?? definition.ogTitle ?? definition.title,
-      ogDescription:
-        readMetaContent(headContent, 'og:description', 'property') ?? definition.ogDescription ?? definition.description,
-      ogImage: readMetaContent(headContent, 'og:image', 'property') ?? definition.ogImage ?? defaultOgImage,
-      canonicalUrl: `${siteUrl}${definition.path}`,
-    },
+    seo: buildSeoFromDefinition(legacyPage),
   }
 }

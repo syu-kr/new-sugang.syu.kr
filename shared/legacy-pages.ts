@@ -43,7 +43,7 @@ export const legacyPages = {
     ogDescription: '삼육대학교 수강신청 폐강위기 과목 현황을 확인할 수 있습니다.',
     indexable: true,
     changefreq: 'daily',
-    priority: 0.8,
+    priority: 0.6,
     promoteTitleToHeading: true,
   },
   liberalarts: {
@@ -56,7 +56,7 @@ export const legacyPages = {
     ogDescription: '공통 교양 과목의 학기별 장바구니 경쟁률을 과목별로 확인할 수 있습니다.',
     indexable: true,
     changefreq: 'daily',
-    priority: 0.9,
+    priority: 1,
     promoteTitleToHeading: true,
   },
   test1: {
@@ -89,7 +89,7 @@ export const legacyPages = {
     ogDescription: '삼육대학교 모의 수강신청 페이지에서 수강신청 흐름을 미리 연습할 수 있습니다.',
     indexable: true,
     changefreq: 'weekly',
-    priority: 0.7,
+    priority: 1,
   },
   warning: {
     fileName: 'warning.html',
