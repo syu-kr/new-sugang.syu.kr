@@ -1592,10 +1592,13 @@
       let activeLectureQuery = ''
       const basketRows = Array.from(document.querySelectorAll('#gdM1_F0_body_tbody tr')).map((applicationRow) => {
         const rowNumber = applicationRow.id.split('-')[0]
+        const cancelRow = document.getElementById(rowNumber + '-cancel')
         return {
           rowNumber,
           applicationRow,
-          cancelRow: document.getElementById(rowNumber + '-cancel'),
+          cancelRow,
+          applicationButton: applicationRow.querySelector('button'),
+          cancelButton: cancelRow ? cancelRow.querySelector('button') : null,
           lectureNumber: applicationRow.cells[5].innerText.replace(/\s+/g, '').trim(),
           credit: Number(applicationRow.cells[9].innerText.replace(/\s+/g, '').trim() || 0),
         }
@@ -1607,8 +1610,17 @@
           .trim()
       }
 
+      function isRowApplied(rowState) {
+        return rowState.cancelRow.style.display !== 'none'
+      }
+
+      function syncApplicationButtons(rowState) {
+        if (!rowState.applicationButton) return
+        rowState.applicationButton.disabled = isRowApplied(rowState)
+      }
+
       function syncAppliedSummary() {
-        const appliedRows = basketRows.filter((rowState) => rowState.cancelRow.style.display !== 'none')
+        const appliedRows = basketRows.filter((rowState) => isRowApplied(rowState))
         const totalCredit = appliedRows.reduce((sum, rowState) => sum + rowState.credit, 0)
 
         applicationCount.innerText = String(appliedRows.length)
@@ -1619,12 +1631,12 @@
         let visibleCount = 0
 
         basketRows.forEach((rowState) => {
-          const isApplied = rowState.cancelRow.style.display !== 'none'
           const isMatched = activeLectureQuery === '' || rowState.lectureNumber === activeLectureQuery
-          const shouldShow = !isApplied && isMatched
+          const shouldShow = isMatched
 
           rowState.applicationRow.style.display = shouldShow ? '' : 'none'
           rowState.applicationRow.cells[0].innerText = shouldShow ? String(++visibleCount) : '-'
+          syncApplicationButtons(rowState)
         })
 
         basketCount.innerText = String(visibleCount)
@@ -1694,11 +1706,14 @@
             document.removeEventListener('touchstart', preventClick, true)
             const a_row = document.getElementById(String(number) + '-application')
             const c_row = document.getElementById(String(number) + '-cancel')
-            a_row.style.display = 'none'
             c_row.style.display = ''
             document.getElementById('wait-screen').style.display = 'none'
             loadingOff('wait')
-            obj.disabled = false
+            obj.disabled = true
+            const cancelButton = c_row ? c_row.querySelector('button') : null
+            if (cancelButton) {
+              cancelButton.disabled = false
+            }
             document.getElementById('progressbar').innerHTML = '<div style="width: 0px; height: 20px; background-color: #2f5bea"></div>'
             clearInterval(checker)
             renderLectureLookup()
@@ -1733,10 +1748,13 @@
             document.removeEventListener('touchstart', preventClick, true)
             const a_row = document.getElementById(String(number) + '-application')
             const c_row = document.getElementById(String(number) + '-cancel')
-            a_row.style.display = ''
             c_row.style.display = 'none'
             document.getElementById('wait-screen').style.display = 'none'
             loadingOff('wait')
+            const applicationButton = a_row ? a_row.querySelector('button') : null
+            if (applicationButton) {
+              applicationButton.disabled = false
+            }
             obj.disabled = false
             document.getElementById('progressbar').innerHTML = '<div style="width: 0px; height: 20px; background-color: #2f5bea"></div>'
             clearInterval(checker)
