@@ -14,7 +14,7 @@
         font-size: 17px;
         font-family: 'NanumSquare', sans-serif;
         /* overflow-y: scroll; */
-        max-width: 1000px;
+        max-width: 1280px;
         margin: 0 auto;
       }
       .dropdown-menu {
@@ -140,7 +140,7 @@
           font-size: 7pt;
         }
         .search-label input[type='search'] {
-          width: 130px !important;
+          width: 170px !important;
         }
 
         .search-icon {
@@ -211,6 +211,7 @@
         width: 14px;
         height: 14px;
       }
+
     </style>
     <style>
       input[type='radio'] {
@@ -349,6 +350,7 @@
         outline: none;
         background: transparent;
         box-sizing: border-box;
+        width: 260px;
       }
       .search-label input[type='search']::placeholder {
         color: #888888;
@@ -484,6 +486,7 @@
           <div class="col-radio-wrapper" id="semester-list"></div>
           <div class="col-toggle-wrapper">
             <label><input type="checkbox" class="col-toggle" data-col="courseNo" checked /> 강좌번호</label>
+            <label><input type="checkbox" class="col-toggle" data-col="department" /> 학부(과)</label>
             <label><input type="checkbox" class="col-toggle" data-col="professor" checked /> 교수명</label>
             <label><input type="checkbox" class="col-toggle" data-col="count" checked /> 수강인원</label>
             <label><input type="checkbox" class="col-toggle" data-col="rate" checked /> 경쟁률</label>
@@ -513,7 +516,6 @@
             <tr>
               <th class="col-rank" style="text-align: center" scope="col" nowrap>순위</th>
               <th class="col-courseNo" style="text-align: center" scope="col" style="color: #5f6062" nowrap>강좌번호</th>
-              <!--<th scope="col" style="color: #5f6062" nowrap>학부(과)</th>-->
               <th class="col-subject" scope="col" nowrap>교과목</th>
               <!--<th scope="col" style="color: #5f6062;" nowrap>교수명</th>-->
               <th class="col-count" scope="col" nowrap>수강인원</th>
@@ -633,6 +635,7 @@
     <script>
       const colStates = {
         courseNo: true,
+        department: false,
         professor: true,
         count: true,
         rate: true,
@@ -723,8 +726,8 @@
 
           if (!countdownEl) return
 
-          // 2026-01-28 17:00
-          const FINAL_DEADLINE = new Date(2026, 0, 28, 17, 0, 0)
+          // 2026-08-05 17:00
+          const FINAL_DEADLINE = new Date(2026, 7, 5, 17, 0, 0)
 
           if (now >= FINAL_DEADLINE) {
             countdownEl.textContent = '마감되었습니다.'

@@ -1,6 +1,7 @@
 const COUNT_PER_PAGE = 50
 
 const FIELD_COURSE_NO = '\uac15\uc88c\ubc88\ud638'
+const FIELD_DEPARTMENT = '\ud559\ubd80(\uacfc)'
 const FIELD_COURSE_NAME = '\uac15\uc88c\uba85'
 const FIELD_PROFESSOR = '\uad50\uc218\uba85'
 const FIELD_LIMIT = '\uc81c\ud55c\uc778\uc6d0'
@@ -197,7 +198,7 @@ function setPageOf(pageNumber) {
   document.getElementById('time').innerHTML = convertTime(datas.time)
   setPageButtons(pageNumber)
 
-  const colStateSource = typeof colStates === 'object' ? colStates : {courseNo: true, professor: true, count: true, rate: true}
+  const colStateSource = typeof colStates === 'object' ? colStates : {courseNo: true, department: true, professor: true, count: true, rate: true}
 
   for (let index = COUNT_PER_PAGE * (pageNumber - 1); index < COUNT_PER_PAGE * pageNumber && index < datas.data.length; index += 1) {
     const item = datas.data[index]
@@ -218,6 +219,7 @@ function setPageOf(pageNumber) {
         <td class="col-courseNo ${!colStateSource.courseNo ? 'hidden-col' : ''}" align="center" nowrap><span style="color: #5f6062;">${item[FIELD_COURSE_NO]}</span></td>
         <td nowrap>
           <strong><span>${item[FIELD_COURSE_NAME]}</span></strong>
+          <span class="col-department ${!colStateSource.department ? 'hidden-col' : ''}" id="professor">(${item[FIELD_DEPARTMENT] || ''})</span>
           <span class="col-professor ${!colStateSource.professor ? 'hidden-col' : ''}" id="professor">(${item[FIELD_PROFESSOR]})</span>
         </td>
         <td class="col-count ${!colStateSource.count ? 'hidden-col' : ''}" nowrap>
