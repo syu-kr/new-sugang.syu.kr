@@ -369,14 +369,14 @@
 
       .header-layout {
         display: grid;
-        grid-template-columns: 320px minmax(0, 1fr);
+        grid-template-columns: 360px minmax(0, 1fr);
       }
 
       .brand-panel {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        padding: 30px 28px;
+        align-items: center;
+        padding: 34px 32px;
         border-right: 1px solid #e2e5e9;
         background: #fff;
       }
@@ -400,25 +400,30 @@
         font-size: 24px;
         font-weight: 700;
         line-height: 1.4;
-        text-align: left;
+        text-align: center;
+        white-space: nowrap;
       }
 
       .update-time {
-        padding: 6px 0 0;
+        padding: 0;
         font-size: 11px;
         line-height: 1.35;
         color: #8b8f97;
+        text-align: center;
       }
 
       .tools-panel {
         min-width: 0;
-        padding: 30px 30px 30px;
+        padding: 34px 32px;
       }
 
       .tools-top {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 14px;
+        height: 72px;
+        box-sizing: border-box;
         padding-bottom: 16px;
         border-bottom: 1px solid #e2e5e9;
       }
@@ -490,6 +495,7 @@
       .notice-box {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 12px;
         min-width: 0;
         flex: 1;
@@ -497,10 +503,21 @@
 
       .notice-title {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        gap: 5px;
+        justify-content: center;
+        gap: 3px;
         min-width: 0;
         font-size: 16px;
+        text-align: center;
+      }
+
+      .notice-status {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        flex-wrap: nowrap;
       }
 
       .notice-link {
@@ -540,18 +557,22 @@
       }
 
       .tools-panel .col-radio-wrapper {
-        justify-content: flex-start;
+        justify-content: center;
         margin: 0;
       }
 
       .control-row .col-toggle-wrapper,
       .control-row .search-wrapper {
-        align-self: flex-start;
-        justify-content: flex-start;
+        align-self: center;
+        justify-content: center;
         margin: 0;
       }
 
       @media (max-width: 992px) {
+        .header-layout {
+          grid-template-columns: 340px minmax(0, 1fr);
+        }
+
         .header-controls {
           --control-height: 32px;
         }
@@ -564,11 +585,11 @@
         }
 
         .header-layout {
-          grid-template-columns: 210px minmax(0, 1fr);
+          grid-template-columns: 230px minmax(0, 1fr);
         }
 
         .brand-panel {
-          padding: 18px 14px 16px;
+          padding: 20px 16px 18px;
           border-right: 1px solid #e2e5e9;
         }
 
@@ -603,10 +624,11 @@
         }
 
         .tools-panel {
-          padding: 12px 14px 16px;
+          padding: 14px 16px 18px;
         }
 
         .tools-top {
+          height: 46px;
           padding-bottom: 11px;
         }
 
@@ -623,21 +645,6 @@
           --control-height: 27px;
           --control-gap: 6px;
           margin-top: 12px;
-        }
-
-        .tools-panel .col-radio-wrapper,
-        .control-row .col-toggle-wrapper,
-        .control-row .search-wrapper {
-          justify-content: center;
-        }
-
-        .control-row {
-          align-items: center;
-        }
-
-        .control-row .col-toggle-wrapper,
-        .control-row .search-wrapper {
-          align-self: center;
         }
       }
 
@@ -680,10 +687,12 @@
           font-size: 16px;
           line-height: 1.3;
           white-space: nowrap;
+          text-align: left;
         }
 
         .update-time {
           padding-top: 1px;
+          text-align: center;
         }
 
         .header-menu {
@@ -728,6 +737,7 @@
         }
 
         .tools-top {
+          height: auto;
           padding-bottom: 8px;
         }
 
@@ -988,7 +998,6 @@
           <img class="header-logo" src="https://www.syu.ac.kr/wp-content/uploads/2018/05/pg_logo3.png" alt="삼육대학교" />
           <div class="header-copy">
             <h1 class="title">수강신청 장바구니 경쟁률</h1>
-            <div class="update-time" id="time"></div>
           </div>
           <nav class="header-menu navbar navbar-expand p-0" aria-label="주요 메뉴">
             <div class="nav-item dropdown w-100">
@@ -1012,8 +1021,11 @@
           <div class="tools-top">
             <div class="notice-box">
               <div class="notice-title">
-                <strong id="status-text" class="status-open">실시간 집계중</strong> 입니다.
-                <span id="countdown" class="countdown-badge" role="status" aria-live="polite" aria-atomic="true" title="오늘 오후 5시에 집계가 마감됩니다."></span>
+                <div class="notice-status">
+                  <strong id="status-text" class="status-open">실시간 집계중</strong> 입니다.
+                  <span id="countdown" class="countdown-badge" role="status" aria-live="polite" aria-atomic="true" title="오늘 오후 5시에 집계가 마감됩니다."></span>
+                </div>
+                <div class="update-time" id="time"></div>
               </div>
               <!-- <a href="/testLogin" class="notice-link">모의 수강신청 →</a> -->
             </div>
