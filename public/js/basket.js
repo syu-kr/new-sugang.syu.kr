@@ -8,6 +8,9 @@ const FIELD_LIMIT = '\uc81c\ud55c\uc778\uc6d0'
 const FIELD_BASKET = '\uc7a5\ubc14\uad6c\ub2c8'
 const FIELD_COMPETITION = '\uacbd\uc7c1\ub960'
 const FIELD_RANK = '__rank'
+const FIELD_AREA = '__area'
+const DEPARTMENT_LIBERAL_ARTS = '\uacf5\ud1b5(\uad50\uc591)'
+const LEGACY_ALIAS_PATTERN = /\s*\((?:\uad6c|\u820a)\s*,[^)]*\)\s*/g
 
 let datas = {time: null, data: []}
 
@@ -20,6 +23,12 @@ async function fetchTerms() {
 async function getRequest(termId) {
   const response = await fetch(`/api/${termId}`, {method: 'get'})
   if (!response.ok) throw new Error(`failed to fetch term: ${termId}`)
+  return response.json()
+}
+
+async function fetchLiberalArtsAreaHistory() {
+  const response = await fetch('/api/liberalartsAreaHistory')
+  if (!response.ok) throw new Error('failed to fetch liberal arts area history')
   return response.json()
 }
 
@@ -48,6 +57,54 @@ function getSelectedTermId(terms) {
 function formatTermLabel(term) {
   const shortYear = String(term.year).slice(-2)
   return `'${shortYear} ${term.semester}\ud559\uae30`
+}
+
+function normalizeString(value) {
+  return (value || '').toString().trim().replace(/\s+/g, ' ')
+}
+
+function normalizeCourseName(value) {
+  return normalizeString(value).replace(LEGACY_ALIAS_PATTERN, '').trim()
+}
+
+function buildAreaResolver(areaRows, selectedTermId) {
+  const exactAreaByCourseProfessor = new Map()
+  const areaSetsByCourseName = new Map()
+
+  ;(areaRows || []).forEach((entry) => {
+    if (normalizeString(entry.term) !== selectedTermId) return
+
+    const courseName = normalizeString(entry.courseName)
+    const professor = normalizeString(entry.professor)
+    const area = normalizeString(entry.area)
+    const canonicalCourseName = normalizeCourseName(courseName)
+
+    if (courseName && professor && area) {
+      exactAreaByCourseProfessor.set(`${courseName}|${professor}`, area)
+    }
+
+    if (canonicalCourseName && area) {
+      if (!areaSetsByCourseName.has(canonicalCourseName)) {
+        areaSetsByCourseName.set(canonicalCourseName, new Set())
+      }
+      areaSetsByCourseName.get(canonicalCourseName).add(area)
+    }
+  })
+
+  const uniqueAreaByCourseName = new Map()
+  areaSetsByCourseName.forEach((areas, courseName) => {
+    if (areas.size === 1) {
+      uniqueAreaByCourseName.set(courseName, Array.from(areas)[0])
+    }
+  })
+
+  return (courseName, professor) => {
+    return (
+      exactAreaByCourseProfessor.get(`${normalizeString(courseName)}|${normalizeString(professor)}`) ||
+      uniqueAreaByCourseName.get(normalizeCourseName(courseName)) ||
+      ''
+    )
+  }
 }
 
 function renderTermOptions(terms, selectedTermId) {
@@ -198,7 +255,7 @@ function setPageOf(pageNumber) {
   document.getElementById('time').innerHTML = convertTime(datas.time)
   setPageButtons(pageNumber)
 
-  const colStateSource = typeof colStates === 'object' ? colStates : {courseNo: true, department: true, professor: true, count: true, rate: true}
+  const colStateSource = typeof colStates === 'object' ? colStates : {courseNo: true, count: true, rate: true}
 
   for (let index = COUNT_PER_PAGE * (pageNumber - 1); index < COUNT_PER_PAGE * pageNumber && index < datas.data.length; index += 1) {
     const item = datas.data[index]
@@ -212,15 +269,19 @@ function setPageOf(pageNumber) {
     const rateMarkup = hasCompetition
       ? `<b><span style="color: ${competitionTone};">${competition}:1</span></b>`
       : '<b><span style="color: #5f6062;">-</span></b>'
+    const areaTag = item[FIELD_AREA] ? `<span class="course-meta-tag">${item[FIELD_AREA]}</span>` : ''
 
     tbody += `
       <tr>
         <td align="center" style="border-right-width: 1px" nowrap>${rankConvert(item[FIELD_RANK])}</td>
         <td class="col-courseNo ${!colStateSource.courseNo ? 'hidden-col' : ''}" align="center" nowrap><span style="color: #5f6062;">${item[FIELD_COURSE_NO]}</span></td>
-        <td nowrap>
-          <strong><span>${item[FIELD_COURSE_NAME]}</span></strong>
-          <span class="col-department ${!colStateSource.department ? 'hidden-col' : ''}" id="professor">(${item[FIELD_DEPARTMENT] || ''})</span>
-          <span class="col-professor ${!colStateSource.professor ? 'hidden-col' : ''}" id="professor">(${item[FIELD_PROFESSOR]})</span>
+        <td class="course-cell">
+          <strong class="course-title"><span>${item[FIELD_COURSE_NAME]}</span></strong>
+          <div class="course-meta-tags">
+            <span class="course-meta-tag">${item[FIELD_DEPARTMENT] || ''}</span>
+            ${areaTag}
+            <span class="course-meta-tag">${item[FIELD_PROFESSOR]}</span>
+          </div>
         </td>
         <td class="col-count ${!colStateSource.count ? 'hidden-col' : ''}" nowrap>
           ${countMarkup}
@@ -267,10 +328,20 @@ async function init() {
   renderTermOptions(terms, selectedTermId)
 
   const data = await getRequest(selectedTermId)
+  let resolveArea = () => ''
+
+  try {
+    const areaHistoryJson = await fetchLiberalArtsAreaHistory()
+    resolveArea = buildAreaResolver(areaHistoryJson.data || [], selectedTermId)
+  } catch {}
+
   data.data.sort(compareByCompetition)
   data.data = filterDataBySearch(data.data)
   data.data.forEach((item, index) => {
     item[FIELD_RANK] = index + 1
+    if (item[FIELD_DEPARTMENT] === DEPARTMENT_LIBERAL_ARTS) {
+      item[FIELD_AREA] = resolveArea(item[FIELD_COURSE_NAME], item[FIELD_PROFESSOR])
+    }
   })
 
   datas = data

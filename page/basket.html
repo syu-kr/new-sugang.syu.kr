@@ -38,6 +38,9 @@
         table-layout: fixed;
         width: 100%;
       }
+      .table > :not(caption) > * > * {
+        vertical-align: middle;
+      }
       .hidden-col {
         display: none;
         width: 0 !important;
@@ -64,6 +67,39 @@
       .update-time #time {
         color: #666;
       }
+      .course-cell {
+        white-space: normal;
+        overflow: visible;
+      }
+      .course-meta-tags {
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+        align-items: center;
+        max-width: 100%;
+        margin-top: 3px;
+      }
+      .course-meta-tag {
+        display: inline-flex;
+        align-items: center;
+        max-width: 100%;
+        padding: 1px 6px;
+        border: 1px solid #e2e5ea;
+        border-radius: 3px;
+        background: #f8fafc;
+        color: #5f6062;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        font-size: 11px;
+        font-weight: 700;
+        line-height: 1.3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .course-title {
+        display: block;
+        line-height: 1.25;
+      }
       @media (max-width: 992px) {
         /* .table-size {
           height: 1705px;
@@ -76,6 +112,9 @@
         }
         #professor {
           font-size: 13pt;
+        }
+        .course-meta-tag {
+          font-size: 9px;
         }
         .table > :not(caption) > * > * {
           /* padding: 60px; */
@@ -102,6 +141,10 @@
         #professor {
           font-size: 9pt;
         }
+        .course-meta-tag {
+          font-size: 8px;
+          padding: 0 4px;
+        }
         .table > :not(caption) > * > * {
           padding: 0.2rem 0.2rem;
           /* padding: 60px; */
@@ -126,6 +169,14 @@
         }
         #professor {
           font-size: 5pt;
+        }
+        .course-meta-tags {
+          gap: 3px;
+          margin-top: 2px;
+        }
+        .course-meta-tag {
+          font-size: 7px;
+          padding: 0 3px;
         }
         .table > :not(caption) > * > * {
           padding: 0.1rem 0.1rem;
@@ -486,8 +537,6 @@
           <div class="col-radio-wrapper" id="semester-list"></div>
           <div class="col-toggle-wrapper">
             <label><input type="checkbox" class="col-toggle" data-col="courseNo" checked /> 강좌번호</label>
-            <label><input type="checkbox" class="col-toggle" data-col="department" /> 학부(과)</label>
-            <label><input type="checkbox" class="col-toggle" data-col="professor" checked /> 교수명</label>
             <label><input type="checkbox" class="col-toggle" data-col="count" checked /> 수강인원</label>
             <label><input type="checkbox" class="col-toggle" data-col="rate" checked /> 경쟁률</label>
           </div>
@@ -635,8 +684,6 @@
     <script>
       const colStates = {
         courseNo: true,
-        department: false,
-        professor: true,
         count: true,
         rate: true,
       }
