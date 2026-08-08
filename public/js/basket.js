@@ -201,7 +201,7 @@ function convertTime(datetimeStr) {
   hour %= 12
   hour = hour === 0 ? 12 : hour
 
-  return `\ub9c8\uc9c0\ub9c9 \uc5c5\ub370\uc774\ud2b8: ${shortYear}\ub144 ${month}\uc6d4 ${day}\uc77c ${period} ${hour}\uc2dc ${minute}\ubd84`
+  return `\ub9c8\uc9c0\ub9c9 \uac31\uc2e0: ${shortYear}\ub144 ${month}\uc6d4 ${day}\uc77c ${period} ${hour}\uc2dc ${minute}\ubd84`
 }
 
 function pageButton(page, current) {

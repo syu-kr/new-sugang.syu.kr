@@ -186,23 +186,6 @@
         .rank {
           width: 13px;
         }
-        label,
-        .search-btn {
-          font-size: 7pt;
-        }
-        .search-label input[type='search'] {
-          width: 170px !important;
-        }
-
-        .search-icon {
-          width: 12px !important;
-          height: 12px !important;
-          padding: 0 !important;
-          box-sizing: content-box !important;
-          margin-left: 6px !important;
-          line-height: 0 !important;
-        }
-
         @media (max-width: 550px) {
           #number-button-wrapper {
             gap: 4px;
@@ -231,9 +214,9 @@
       .col-toggle-wrapper {
         display: flex;
         justify-content: center;
-        gap: 15px;
+        gap: 8px;
         flex-wrap: wrap;
-        margin: 10px 0;
+        margin: 8px 0;
         font-size: 17px;
         font-weight: bold;
       }
@@ -241,10 +224,11 @@
       .col-toggle-wrapper label {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 4px;
         padding: 4px 8px;
-        background: #f5f5f5;
-        border-radius: 6px;
+        background: #fff;
+        box-shadow: inset 0 0 0 1px #d7dce1;
+        border-radius: 4px;
         cursor: pointer;
 
         user-select: none;
@@ -254,15 +238,47 @@
       }
 
       .col-toggle-wrapper label:hover {
-        background: #e0e0e0;
+        background: #eef1f4;
       }
 
       .col-toggle-wrapper input[type='checkbox'] {
         accent-color: #9c9c9c;
-        width: 14px;
-        height: 14px;
+        width: 13px;
+        height: 13px;
       }
 
+      @media (max-width: 768px) {
+        .col-toggle-wrapper {
+          gap: 6px;
+          font-size: 12px;
+        }
+
+        .col-toggle-wrapper label {
+          padding: 3px 6px;
+        }
+
+        .col-toggle-wrapper input[type='checkbox'] {
+          width: 11px;
+          height: 11px;
+        }
+      }
+
+      @media (max-width: 550px) {
+        .col-toggle-wrapper {
+          gap: 5px;
+          margin: 0;
+          font-size: 10px;
+        }
+
+        .col-toggle-wrapper label {
+          padding: 2px 5px;
+        }
+
+        .col-toggle-wrapper input[type='checkbox'] {
+          width: 10px;
+          height: 10px;
+        }
+      }
     </style>
     <style>
       input[type='radio'] {
@@ -274,8 +290,8 @@
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
-        gap: 5px;
-        margin: 10px 0;
+        gap: 4px;
+        margin: 8px 0;
         font-size: 17px;
         font-weight: bold;
       }
@@ -283,10 +299,10 @@
       .semester-btn {
         display: flex;
         align-items: center;
-        gap: 5px;
         padding: 4px 8px;
-        background: #f5f5f5;
-        border-radius: 6px;
+        background: #fff;
+        box-shadow: inset 0 0 0 1px #d7dce1;
+        border-radius: 4px;
         cursor: pointer;
 
         white-space: nowrap;
@@ -300,47 +316,453 @@
       input[type='radio']:checked + .semester-btn {
         background-color: #777777;
         color: white;
+        box-shadow: none;
       }
 
       .semester-btn:hover {
-        background: #e0e0e0;
+        background: #eef1f4;
+      }
+
+      input[type='radio']:checked + .semester-btn:hover {
+        background: #686868;
+      }
+
+      @media (max-width: 768px) {
+        .col-radio-wrapper {
+          gap: 3px;
+          font-size: 12px;
+        }
+
+        .semester-btn {
+          padding: 3px 6px;
+        }
+      }
+
+      @media (max-width: 550px) {
+        .col-radio-wrapper {
+          justify-content: flex-start;
+          flex-wrap: nowrap;
+          gap: 4px;
+          margin: 0;
+          overflow-x: auto;
+          scrollbar-width: none;
+          font-size: 10px;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .col-radio-wrapper::-webkit-scrollbar {
+          display: none;
+        }
+
+        .semester-btn {
+          padding: 2px 5px;
+        }
       }
     </style>
     <style>
-      .header {
-        padding-top: 1.5rem;
-        text-align: center;
+      .site-header {
+        margin-top: 24px;
+        border-top: 1px solid #e2e5e9;
+        border-bottom: 1px solid #e2e5e9;
+        background: #f7f8fa;
+      }
+
+      .header-layout {
+        display: grid;
+        grid-template-columns: 320px minmax(0, 1fr);
+      }
+
+      .brand-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px 28px;
+        border-right: 1px solid #e2e5e9;
+        background: #fff;
+      }
+
+      .header-logo {
+        display: block;
+        width: 250px;
+        height: auto;
+      }
+
+      .header-copy {
+        width: 100%;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #e2e5e9;
       }
 
       .title {
-        padding: 0.75rem 0;
-        font-weight: 600;
-        text-align: center;
+        margin: 0;
+        padding: 0;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.4;
+        text-align: left;
+      }
+
+      .update-time {
+        padding: 6px 0 0;
+        font-size: 11px;
+        line-height: 1.35;
+        color: #8b8f97;
+      }
+
+      .tools-panel {
+        min-width: 0;
+        padding: 30px 30px 30px;
+      }
+
+      .tools-top {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #e2e5e9;
+      }
+
+      .header-menu {
+        width: 100%;
+        margin-top: 16px;
+      }
+
+      .header-menu-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        width: 100%;
+        height: 35px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 4px;
+        background: #f7f8fa;
+        box-shadow: inset 0 0 0 1px #d7dce1;
+        color: #4f5359;
+        font-size: 15px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .header-menu-button:hover,
+      .header-menu-button:focus-visible {
+        background: #eef1f4;
+        color: #111827;
+      }
+
+      .practice-link {
+        margin-top: 8px;
+        background: #fff;
+        text-decoration: none;
+      }
+
+      .menu-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .menu-label .bi {
+        font-size: 17px;
+        line-height: 1;
+      }
+
+      .menu-label .bi::before {
+        display: block;
+        vertical-align: 0;
+      }
+
+      .menu-chevron {
+        font-size: 12px;
+      }
+
+      .header-menu .dropdown-menu {
+        left: 0 !important;
+        right: auto !important;
+        transform: none !important;
+        width: 100%;
+        min-width: 0;
+        margin-top: 4px;
       }
 
       .notice-box {
-        margin: 0.75rem 0;
-        padding: 12px 14px;
-        text-align: center;
-        border: 1px solid #e5e7eb;
-        border-radius: 6px;
-        background: #fafafa;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+        flex: 1;
       }
 
       .notice-title {
-        font-size: 14px;
-        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        min-width: 0;
+        font-size: 16px;
       }
 
       .notice-link {
-        font-size: 13px;
+        flex-shrink: 0;
+        font-size: 15px;
         color: #2563eb;
         text-decoration: none;
-        font-weight: 500;
+        font-weight: 700;
       }
 
       .notice-link:hover {
         text-decoration: underline;
+      }
+
+      .header-controls {
+        --control-height: 35px;
+        --control-gap: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--control-gap);
+        margin-top: 16px;
+      }
+
+      .header-controls .semester-btn,
+      .header-controls .col-toggle-wrapper label,
+      .header-controls .search-label,
+      .header-controls .search-btn {
+        height: var(--control-height);
+        box-sizing: border-box;
+      }
+
+      .control-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--control-gap);
+      }
+
+      .tools-panel .col-radio-wrapper {
+        justify-content: flex-start;
+        margin: 0;
+      }
+
+      .control-row .col-toggle-wrapper,
+      .control-row .search-wrapper {
+        align-self: flex-start;
+        justify-content: flex-start;
+        margin: 0;
+      }
+
+      @media (max-width: 992px) {
+        .header-controls {
+          --control-height: 32px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .site-header {
+          position: relative;
+          margin-top: 0;
+        }
+
+        .header-layout {
+          grid-template-columns: 210px minmax(0, 1fr);
+        }
+
+        .brand-panel {
+          padding: 18px 14px 16px;
+          border-right: 1px solid #e2e5e9;
+        }
+
+        .header-logo {
+          width: 150px;
+        }
+
+        .header-copy {
+          margin-top: 10px;
+          padding-top: 10px;
+        }
+
+        .title {
+          font-size: 17px;
+          white-space: nowrap;
+        }
+
+        .desktop-title-break {
+          display: none;
+        }
+
+        .update-time {
+          padding-top: 2px;
+          font-size: 8px;
+        }
+
+        .header-menu-button {
+          width: 100%;
+          height: 30px;
+          padding-inline: 9px;
+          font-size: 12px;
+        }
+
+        .tools-panel {
+          padding: 12px 14px 16px;
+        }
+
+        .tools-top {
+          padding-bottom: 11px;
+        }
+
+        .notice-title {
+          flex-wrap: wrap;
+          font-size: 13px;
+        }
+
+        .notice-link {
+          font-size: 12px;
+        }
+
+        .header-controls {
+          --control-height: 27px;
+          --control-gap: 6px;
+          margin-top: 12px;
+        }
+
+        .tools-panel .col-radio-wrapper,
+        .control-row .col-toggle-wrapper,
+        .control-row .search-wrapper {
+          justify-content: center;
+        }
+
+        .control-row {
+          align-items: center;
+        }
+
+        .control-row .col-toggle-wrapper,
+        .control-row .search-wrapper {
+          align-self: center;
+        }
+      }
+
+      @media (max-width: 550px) {
+        .site-header {
+          background: #fff;
+        }
+
+        .header-layout {
+          display: block;
+        }
+
+        .brand-panel {
+          display: grid;
+          grid-template-columns: 46px minmax(0, 1fr) 34px;
+          grid-template-areas: 'logo copy menu';
+          gap: 10px;
+          align-items: center;
+          padding: 11px 16px 10px;
+          border-right: 0;
+          border-bottom: 1px solid #e2e5e9;
+        }
+
+        .header-logo {
+          grid-area: logo;
+          width: 49px;
+          height: 46px;
+          object-fit: cover;
+          object-position: left center;
+        }
+
+        .header-copy {
+          grid-area: copy;
+          margin-top: 0;
+          padding-top: 0;
+          border-top: 0;
+        }
+
+        .title {
+          font-size: 16px;
+          line-height: 1.3;
+          white-space: nowrap;
+        }
+
+        .update-time {
+          padding-top: 1px;
+        }
+
+        .header-menu {
+          grid-area: menu;
+          width: 34px;
+          margin-top: 0;
+        }
+
+        .header-menu-button {
+          width: 34px;
+          height: 34px;
+          padding: 0;
+        }
+
+        .practice-link {
+          display: none;
+        }
+
+        .menu-label {
+          justify-content: center;
+          width: 100%;
+          gap: 0;
+          font-size: 0;
+        }
+
+        .menu-label .bi {
+          font-size: 18px;
+        }
+
+        .menu-chevron {
+          display: none;
+        }
+
+        .header-menu .dropdown-menu {
+          left: auto !important;
+          right: 0 !important;
+          width: 210px;
+        }
+
+        .tools-panel {
+          padding: 9px 16px 12px;
+        }
+
+        .tools-top {
+          padding-bottom: 8px;
+        }
+
+        .header-controls {
+          --control-height: 25px;
+          --control-gap: 5px;
+          margin-top: 8px;
+        }
+
+        .notice-box {
+          flex-direction: row;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .notice-title {
+          width: 100%;
+          flex-wrap: nowrap;
+          justify-content: center;
+          text-align: center;
+          font-size: 12px;
+        }
+
+        .tools-panel .col-radio-wrapper,
+        .control-row .col-toggle-wrapper,
+        .control-row .search-wrapper {
+          align-self: stretch;
+          justify-content: flex-start;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .title {
+          font-size: 14px;
+        }
       }
     </style>
     <style>
@@ -348,32 +770,37 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 6px;
-        margin: 10px 0;
-        font-size: 17px;
+        gap: 5px;
+        margin: 8px 0;
+        width: min(100%, 628px);
+        font-size: 16px;
       }
 
       .search-label {
         display: flex;
         align-items: center;
-        gap: 6px;
-        padding: 3px 10px;
-        background: #f5f5f5;
-        border-radius: 6px;
+        flex: 1 1 auto;
+        min-width: 0;
+        gap: 4px;
+        padding: 3px 8px;
+        background: #fff;
+        box-shadow: inset 0 0 0 1px #d7dce1;
+        border-radius: 4px;
         cursor: text;
         font-weight: bold;
       }
 
       .search-label:hover {
-        background: #e0e0e0;
+        background: #f8f9fa;
+        box-shadow: inset 0 0 0 1px #aeb6bf;
       }
 
       .search-icon {
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
         display: inline-block;
         vertical-align: middle;
-        color: #666666;
+        color: #5f6670;
         cursor: pointer;
         padding: 0;
         box-sizing: content-box;
@@ -383,13 +810,13 @@
           color 0.15s ease,
           transform 0.06s ease;
         flex-shrink: 0;
-        margin-left: 8px;
+        margin-left: 5px;
         line-height: 0; /* inline 요소의 추가 높이 제거 */
       }
 
       .search-icon:hover {
-        background: #eaeaea;
-        color: #222222;
+        background: #eef1f4;
+        color: #222;
       }
 
       .search-icon:active {
@@ -401,16 +828,20 @@
         outline: none;
         background: transparent;
         box-sizing: border-box;
-        width: 260px;
+        width: 100%;
+        min-width: 0;
+        font: inherit;
       }
       .search-label input[type='search']::placeholder {
         color: #888888;
       }
 
       .search-btn {
-        padding: 4px 8px;
-        background: #f5f5f5;
-        border-radius: 6px;
+        padding: 3px 7px;
+        background: #fff;
+        color: #333;
+        box-shadow: inset 0 0 0 1px #c9d0d7;
+        border-radius: 4px;
         border: none;
         cursor: pointer;
         font-weight: bold;
@@ -418,6 +849,56 @@
         align-items: center;
         justify-content: center;
         gap: 6px;
+      }
+
+      .search-btn:hover,
+      .search-btn:focus-visible {
+        background: #eef1f4;
+      }
+
+      @media (max-width: 768px) {
+        .search-wrapper {
+          width: min(100%, 420px);
+          font-size: 12px;
+        }
+
+        .search-label input[type='search'] {
+          width: 100%;
+        }
+
+        .search-icon {
+          width: 16px;
+          height: 16px;
+          margin-left: 4px;
+        }
+      }
+
+      @media (max-width: 550px) {
+        .search-wrapper {
+          width: 100%;
+          max-width: none;
+          gap: 4px;
+          margin: 0;
+          font-size: 10px;
+        }
+
+        .search-label {
+          padding: 2px 5px;
+        }
+
+        .search-label input[type='search'] {
+          width: 100%;
+        }
+
+        .search-icon {
+          width: 12px;
+          height: 12px;
+          margin-left: 3px;
+        }
+
+        .search-btn {
+          padding: 2px 5px;
+        }
       }
     </style>
     <style>
@@ -501,58 +982,65 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand" aria-label="Tenth navbar example">
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse justify-content-center" id="dropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">MENU</a>
-              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown">
-                <li><a class="dropdown-item" href="/testLogin">모의 수강신청 해보기</a></li>
+    <header class="site-header">
+      <div class="header-layout">
+        <div class="brand-panel">
+          <img class="header-logo" src="https://www.syu.ac.kr/wp-content/uploads/2018/05/pg_logo3.png" alt="삼육대학교" />
+          <div class="header-copy">
+            <h1 class="title">수강신청 장바구니 경쟁률</h1>
+            <div class="update-time" id="time"></div>
+          </div>
+          <nav class="header-menu navbar navbar-expand p-0" aria-label="주요 메뉴">
+            <div class="nav-item dropdown w-100">
+              <button class="header-menu-button" type="button" id="header-menu" data-bs-toggle="dropdown" aria-expanded="false" aria-label="서비스 메뉴 열기">
+                <span class="menu-label"><i class="bi bi-grid" aria-hidden="true"></i>다른 서비스</span>
+                <i class="bi bi-chevron-down menu-chevron" aria-hidden="true"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="header-menu">
                 <li><a class="dropdown-item" href="/liberalarts">NEW. 교양 경쟁률 확인하기</a></li>
                 <li><a class="dropdown-item" href="/closed">수강신청 폐강위기 확인하기</a></li>
                 <li><a class="dropdown-item" href="https://www.syu.kr">다양한 서비스 더보기</a></li>
               </ul>
-            </li>
-          </ul>
+            </div>
+          </nav>
+          <a class="header-menu-button practice-link" href="/testLogin" target="_blank">
+            <span class="menu-label"><i class="bi bi-pencil-square" aria-hidden="true"></i>모의 수강신청 해보기</span>
+            <i class="bi bi-arrow-right menu-chevron" aria-hidden="true"></i>
+          </a>
         </div>
-      </div>
-    </nav>
-    <header>
-      <div style="text-align: center">
-        <div class="header">
-          <img src="https://www.syu.ac.kr/wp-content/uploads/2018/05/pg_logo3.png" height="60" alt="삼육대학교" />
-        </div>
-        <div class="title">수강신청 장바구니 경쟁률 현황</div>
-        <div class="update-time" id="time"></div>
-        <div class="notice-box">
-          <div class="notice-title">
-            <strong id="status-text" class="status-open">실시간 집계중</strong> 입니다.
-            <span id="countdown" class="countdown-badge" role="status" aria-live="polite" aria-atomic="true" title="오늘 오후 5시에 집계가 마감됩니다."></span>
+        <div class="tools-panel">
+          <div class="tools-top">
+            <div class="notice-box">
+              <div class="notice-title">
+                <strong id="status-text" class="status-open">실시간 집계중</strong> 입니다.
+                <span id="countdown" class="countdown-badge" role="status" aria-live="polite" aria-atomic="true" title="오늘 오후 5시에 집계가 마감됩니다."></span>
+              </div>
+              <!-- <a href="/testLogin" class="notice-link">모의 수강신청 →</a> -->
+            </div>
           </div>
-          <!-- <div id="time"></div> -->
-          <a href="/testLogin" class="notice-link"> 모의 수강신청 바로가기 → </a>
-        </div>
-        <div style="margin-block: 25px">
-          <div class="col-radio-wrapper" id="semester-list"></div>
-          <div class="col-toggle-wrapper">
-            <label><input type="checkbox" class="col-toggle" data-col="courseNo" checked /> 강좌번호</label>
-            <label><input type="checkbox" class="col-toggle" data-col="count" checked /> 수강인원</label>
-            <label><input type="checkbox" class="col-toggle" data-col="rate" checked /> 경쟁률</label>
-          </div>
-          <div class="search-wrapper">
-            <label class="search-label">
-              <input type="search" id="search" placeholder="강좌번호, 교과목, 교수명" aria-label="검색 입력" />
-              <svg class="search-icon" role="button" tabindex="0" aria-label="검색" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M20 20L15.8033 15.8033C15.8033 15.8033 14 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5C18 11.0137 17.9484 11.5153 17.85 12"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </label>
-            <label id="search-btn" class="search-btn" role="button" tabindex="0" aria-label="검색">검색</label>
+          <div class="header-controls">
+            <div class="col-radio-wrapper" id="semester-list"></div>
+            <div class="control-row">
+              <div class="col-toggle-wrapper">
+                <label><input type="checkbox" class="col-toggle" data-col="courseNo" checked /> 강좌번호</label>
+                <label><input type="checkbox" class="col-toggle" data-col="count" checked /> 수강인원</label>
+                <label><input type="checkbox" class="col-toggle" data-col="rate" checked /> 경쟁률</label>
+              </div>
+              <div class="search-wrapper">
+                <label class="search-label">
+                  <input type="search" id="search" placeholder="강좌번호, 교과목, 교수명" aria-label="검색 입력" />
+                  <svg class="search-icon" role="button" tabindex="0" aria-label="검색" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M20 20L15.8033 15.8033C15.8033 15.8033 14 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5C18 11.0137 17.9484 11.5153 17.85 12"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </label>
+                <label id="search-btn" class="search-btn" role="button" tabindex="0" aria-label="검색">검색</label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -632,12 +1120,20 @@
         background: #ff3b30;
         color: #fff;
         font-weight: 700;
-        padding: 5px 10px;
-        border-radius: 14px;
-        margin-left: 8px;
+        padding: 5px 9px;
+        border-radius: 4px;
+        margin-left: 3px;
         font-size: 14px;
         line-height: 1;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        box-shadow: none;
+      }
+
+      @media (max-width: 768px) {
+        .countdown-badge {
+          margin-left: 0;
+          padding: 4px 7px;
+          font-size: 11px;
+        }
       }
 
       .countdown-badge.urgent {
