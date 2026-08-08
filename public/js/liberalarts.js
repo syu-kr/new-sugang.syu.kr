@@ -34,6 +34,11 @@ function formatRate(value) {
   return `${Number.parseFloat(value).toFixed(2)}:1`
 }
 
+function formatTermLabel(term) {
+  const [year, semester] = String(term).split('-')
+  return `'${String(year).slice(-2)} ${semester}\ud559\uae30`
+}
+
 function normalizeString(value) {
   return (value || '').toString().trim().replace(/\s+/g, ' ')
 }
@@ -156,12 +161,40 @@ function hiddenColumnCountForWidth(width) {
 
 function updateResponsiveColumns(terms) {
   const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 1200
-  const hideOrder = ['rating-col', 'avg-col', ...terms.map((_, index) => `term-col-${terms.length - index - 1}`)]
-  const hiddenCount = Math.min(hiddenColumnCountForWidth(viewportWidth), Math.max(0, hideOrder.length - 1))
+  const hideOrder = ['rating-col', 'avg-col']
+  const hiddenCount = Math.min(hiddenColumnCountForWidth(viewportWidth), hideOrder.length)
 
   hideOrder.forEach((className, index) => {
     document.querySelectorAll(`.${className}`).forEach((element) => {
       element.classList.toggle('responsive-hidden', index < hiddenCount)
+    })
+  })
+}
+
+function updateTermColumns(terms, visibleTerms) {
+  terms.forEach((term, index) => {
+    document.querySelectorAll(`.term-col-${index}`).forEach((element) => {
+      element.classList.toggle('term-hidden', !visibleTerms.has(term))
+    })
+  })
+}
+
+function renderTermOptions(terms, visibleTerms, onChange) {
+  const wrapper = document.getElementById('semester-list')
+  if (!wrapper) return
+
+  wrapper.innerHTML = terms
+    .map((term) => {
+      const checked = visibleTerms.has(term) ? 'checked' : ''
+      return `
+        <label><input type="checkbox" class="term-toggle" value="${term}" ${checked} /> ${formatTermLabel(term)}</label>
+      `
+    })
+    .join('')
+
+  wrapper.querySelectorAll('.term-toggle').forEach((checkbox) => {
+    checkbox.addEventListener('change', function () {
+      onChange(this.value, this.checked)
     })
   })
 }
@@ -228,6 +261,7 @@ function isInactiveInRecentTerms(item, terms) {
 async function main() {
   const termDetails = await fetchTerms()
   const terms = termDetails.map((term) => term.id)
+  const visibleTerms = new Set(terms)
   const tbody = document.getElementById('tbody')
 
   if (!tbody) return
@@ -373,6 +407,7 @@ async function main() {
       tbody.appendChild(tr)
     })
 
+    updateTermColumns(terms, visibleTerms)
     updateResponsiveColumns(terms)
   }
 
@@ -408,6 +443,15 @@ async function main() {
     window.clearTimeout(resizeTimer)
     resizeTimer = window.setTimeout(() => updateResponsiveColumns(terms), 40)
   }
+
+  renderTermOptions(terms, visibleTerms, (term, checked) => {
+    if (checked) {
+      visibleTerms.add(term)
+    } else {
+      visibleTerms.delete(term)
+    }
+    updateTermColumns(terms, visibleTerms)
+  })
 
   list.sort((left, right) => (right.rates[terms[0]] || 0) - (left.rates[terms[0]] || 0))
   renderRows(list)

@@ -93,8 +93,41 @@
         color: #777;
       }
 
-      .responsive-hidden {
+      .responsive-hidden,
+      .term-hidden {
         display: none;
+      }
+
+      .term-toggle-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin: 10px 0 12px;
+        font-size: 17px;
+        font-weight: bold;
+      }
+
+      .term-toggle-wrapper label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 8px;
+        background: #f5f5f5;
+        border-radius: 6px;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .term-toggle-wrapper label:hover {
+        background: #e0e0e0;
+      }
+
+      .term-toggle-wrapper input[type='checkbox'] {
+        accent-color: #9c9c9c;
+        width: 14px;
+        height: 14px;
       }
 
       .rating {
@@ -262,7 +295,7 @@
   </head>
   <body>
     <div id="min-width-warning" class="min-width-warning" role="status" aria-live="polite">
-      좁은 화면에서는 평점, 평균, 이전 학기 열이 자동 숨김됩니다. PC 전체 화면 사용을 권장합니다.
+      좁은 화면에서는 평점, 평균 열이 자동 숨김됩니다. PC 전체 화면 사용을 권장합니다.
     </div>
 
     <div class="title">교양 학기별 수강신청 장바구니 경쟁률</div>
@@ -286,6 +319,8 @@
         <select id="sort" class="form-select"></select>
       </div>
     </div>
+
+    <div class="term-toggle-wrapper" id="semester-list"></div>
 
     <div class="table-responsive">
       <table class="table table-sm table-bordered table-hover">
