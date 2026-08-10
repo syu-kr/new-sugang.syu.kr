@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="https://sugang.syu.kr/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" defer></script>
     <script type="text/javascript" src="/js/liberalarts.js" defer></script>
     <style>
@@ -13,121 +14,370 @@
       body {
         font-family: 'NanumSquare', sans-serif;
         font-size: 16px;
-        line-height: 1.6;
-        max-width: 1200px;
+        line-height: 1.45;
+        max-width: 1280px;
         margin: 0 auto;
-        padding: 20px;
+        color: #17191c;
+      }
+
+      .mobile-pc-notice {
+        display: none;
+      }
+
+      .site-header {
+        margin-top: 24px;
+        border-top: 1px solid #e2e5e9;
+        border-bottom: 1px solid #e2e5e9;
+        background: #f7f8fa;
+      }
+
+      .header-layout {
+        display: grid;
+        grid-template-columns: 360px minmax(0, 1fr);
+      }
+
+      .brand-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 34px 32px;
+        border-right: 1px solid #e2e5e9;
+        background: #fff;
+      }
+
+      .header-logo {
+        display: block;
+        width: 250px;
+        height: auto;
+      }
+
+      .header-copy {
+        width: 100%;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #e2e5e9;
       }
 
       .title {
-        font-size: 23pt;
-        margin-bottom: 8px;
+        margin: 0;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.35;
+        text-align: center;
+        white-space: nowrap;
       }
 
       .subtitle {
-        font-size: 13px;
-        color: #666;
-        margin-bottom: 38px;
+        margin: 4px 0 0;
+        color: #8b8f97;
+        font-size: 11px;
+        text-align: center;
+      }
+
+      .header-menu {
+        width: 100%;
+        margin-top: 16px;
+      }
+
+      .header-menu-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        width: 100%;
+        height: 35px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 4px;
+        background: #f7f8fa;
+        box-shadow: inset 0 0 0 1px #d7dce1;
+        color: #4f5359;
+        font-size: 15px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .header-menu-button:hover,
+      .header-menu-button:focus-visible {
+        background: #eef1f4;
+        color: #111827;
+      }
+
+      .practice-link {
+        margin-top: 8px;
+        background: #fff;
+        text-decoration: none;
+      }
+
+      .menu-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .menu-label .bi {
+        font-size: 17px;
+        line-height: 1;
+      }
+
+      .menu-chevron {
+        font-size: 12px;
+      }
+
+      .header-menu .dropdown-menu {
+        left: 0 !important;
+        right: auto !important;
+        transform: none !important;
+        width: 100%;
+        min-width: 0;
+        margin-top: 4px;
+      }
+
+      .tools-panel {
+        min-width: 0;
+        padding: 34px 32px;
+      }
+
+      .tools-heading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        height: 66px;
+        box-sizing: border-box;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #e2e5e9;
+      }
+
+      .tools-heading strong {
+        font-size: 18px;
+      }
+
+      .tools-heading span {
+        padding: 3px 7px;
+        border-radius: 3px;
+        background: #fff;
+        box-shadow: inset 0 0 0 1px #d7dce1;
+        color: #60656c;
+        font-size: 11px;
+        font-weight: 700;
       }
 
       .controls-row {
+        display: grid;
+        grid-template-columns: minmax(240px, 1fr) 170px 250px;
+        align-items: end;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .controls-row label {
+        display: block;
+        min-width: 0;
+        margin: 0;
+      }
+
+      .controls-row label > span:first-child {
+        display: block;
+        margin-bottom: 4px;
+        color: #565b62;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .form-control,
+      .form-select {
+        height: 38px;
+        border-color: #d4dae1;
+        border-radius: 4px;
+        color: #34383e;
+        font-size: 16px;
+        box-shadow: none !important;
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        border-color: #9299a2;
+      }
+
+      .search-control {
+        position: relative;
+        display: block;
+      }
+
+      .search-control .form-control {
+        padding-right: 36px;
+      }
+
+      .search-control .bi {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        color: #68707a;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      .content {
+        padding: 0 0 24px;
+      }
+
+      .table-responsive {
+        overflow-x: auto;
+      }
+
+      .table-scroll-hint {
         display: flex;
         align-items: center;
-        gap: 10px;
-        margin-bottom: 8px;
+        justify-content: flex-end;
+        gap: 5px;
+        max-height: 0;
+        padding: 0 8px;
+        overflow: hidden;
+        color: #75591a;
+        font-size: 11px;
+        font-weight: 700;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          max-height 0.45s ease,
+          padding 0.45s ease,
+          opacity 0.45s ease,
+          visibility 0s linear 0.45s;
       }
 
-      .controls-grow {
-        flex: 1;
+      .table-scroll-hint.is-visible {
+        max-height: 24px;
+        padding: 4px 8px 2px;
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s;
       }
 
-      .controls-area {
-        width: 180px;
-        text-align: center;
-        flex-shrink: 0;
+      .slide-arrows {
+        display: inline-block;
+        animation: slide-arrows 0.8s ease-in-out infinite alternate;
       }
 
-      .controls-sort {
-        width: 250px;
-        text-align: right;
-        flex-shrink: 0;
+      @keyframes slide-arrows {
+        from {
+          opacity: 0.55;
+          transform: translateX(0);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(4px);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .slide-arrows {
+          animation: none;
+        }
       }
 
       table {
         width: 100%;
+        min-width: 960px;
+        margin: 0 !important;
         table-layout: fixed;
+        border-collapse: collapse;
       }
 
       th,
       td {
-        padding: 10px 12px;
+        padding: 9px 12px !important;
+        border: 0 !important;
+        border-bottom: 1px solid #e2e5e9 !important;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        font-size: 16px;
+        font-size: 15px;
+        vertical-align: middle;
+      }
+
+      thead th {
+        height: 48px;
+        background: #fff !important;
+        color: #17191c !important;
+        font-weight: 700;
+      }
+
+      tbody tr:hover > * {
+        background: #fafbfc !important;
       }
 
       .name-col {
-        width: 46%;
+        width: 420px;
+        min-width: 420px;
       }
 
       .rate-col {
-        width: 8%;
+        width: 70px;
+        min-width: 70px;
         text-align: center;
+      }
+
+      thead .rate-col {
+        padding-right: 4px !important;
+        padding-left: 4px !important;
       }
 
       .rating-col {
-        width: 10%;
+        width: 105px;
+        min-width: 105px;
         text-align: center;
       }
 
-      .area-col {
-        width: 15%;
-        min-width: 120px;
-        text-align: center;
+      .course-cell {
+        white-space: normal;
+        overflow: visible;
+      }
+
+      .course-meta-tags {
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+        align-items: center;
+        max-width: 100%;
+        margin-top: 3px;
+      }
+
+      .course-meta-tag {
+        display: inline-flex;
+        align-items: center;
+        max-width: 100%;
+        padding: 1px 6px;
+        border: 1px solid #e2e5ea;
+        border-radius: 3px;
+        background: #f8fafc;
+        color: #999999;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .course-title {
+        display: block;
+        line-height: 1.25;
+      }
+
+      .course-average-tag {
+        border-color: #cfd8e2;
+        background: #eef3f7;
+        color: #526575;
+        box-shadow: 0 1px 3px rgba(28, 47, 66, 0.12);
       }
 
       .legend {
+        padding: 8px 4px 0;
         text-align: right;
         font-size: 12px;
-        color: #777;
-      }
-
-      .responsive-hidden,
-      .term-hidden {
-        display: none;
-      }
-
-      .term-toggle-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-        margin: 10px 0 12px;
-        font-size: 17px;
-        font-weight: bold;
-      }
-
-      .term-toggle-wrapper label {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        padding: 4px 8px;
-        background: #f5f5f5;
-        border-radius: 6px;
-        cursor: pointer;
-        user-select: none;
-      }
-
-      .term-toggle-wrapper label:hover {
-        background: #e0e0e0;
-      }
-
-      .term-toggle-wrapper input[type='checkbox'] {
-        accent-color: #9c9c9c;
-        width: 14px;
-        height: 14px;
+        color: #777c84;
       }
 
       .rating {
@@ -141,7 +391,7 @@
       .rating .star-bg,
       .rating .star-fill {
         font-family: monospace;
-        letter-spacing: 0.5px;
+        letter-spacing: 0;
         display: block;
         white-space: nowrap;
       }
@@ -166,28 +416,11 @@
         font-size: 12px;
       }
 
-      .min-width-warning {
-        display: none;
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        background: #fff7e6;
-        color: #333;
-        text-align: center;
-        padding: 12px 16px;
-        border-bottom: 1px solid #f0e68c;
-        font-weight: 700;
-        z-index: 9999;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-        font-size: 15px;
-      }
-
       .page-footer {
         margin-top: 28px;
         padding: 14px 10px;
         border-top: 1px solid #ececec;
-        background: linear-gradient(90deg, #fafafa, #ffffff);
+        background: transparent;
       }
 
       .page-footer .footer-inner {
@@ -201,7 +434,7 @@
       }
 
       .page-footer .brand strong {
-        letter-spacing: 1px;
+        letter-spacing: 0;
         color: #222;
         font-weight: 700;
       }
@@ -215,12 +448,58 @@
       }
 
       @media (max-width: 1120px) {
-        .min-width-warning {
-          display: block;
+        .controls-row {
+          grid-template-columns: minmax(210px, 1fr) 145px 210px;
         }
 
-        body {
-          padding-top: 70px;
+        table {
+          min-width: 1000px;
+        }
+
+        .name-col {
+          width: 320px;
+          min-width: 320px;
+        }
+
+        .tools-heading {
+          height: 62px;
+        }
+      }
+
+      @media (max-width: 992px) {
+        .header-layout {
+          grid-template-columns: 340px minmax(0, 1fr);
+        }
+
+        .controls-row {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          margin-top: 10px;
+        }
+
+        .controls-grow {
+          grid-column: 1 / -1;
+        }
+
+        table {
+          min-width: 880px;
+        }
+
+        .name-col {
+          width: 260px;
+          min-width: 260px;
+        }
+
+        th,
+        td {
+          padding: 0.3rem !important;
+        }
+
+        thead th {
+          height: 36px;
+        }
+
+        .course-meta-tag {
+          font-size: 11px;
         }
       }
 
@@ -229,46 +508,106 @@
           font-size: 15px;
         }
 
+        .site-header {
+          margin-top: 0;
+        }
+
+        .header-layout {
+          grid-template-columns: 230px minmax(0, 1fr);
+        }
+
+        .brand-panel {
+          padding: 20px 16px 18px;
+        }
+
+        .header-logo {
+          width: 150px;
+        }
+
+        .header-copy {
+          margin-top: 10px;
+          padding-top: 10px;
+        }
+
         .title {
-          font-size: 18pt;
+          font-size: 17px;
+        }
+
+        .subtitle {
+          font-size: 9px;
+        }
+
+        .header-menu-button {
+          height: 30px;
+          padding-inline: 9px;
+          font-size: 12px;
+        }
+
+        .tools-panel {
+          padding: 15px 16px 18px;
+        }
+
+        .tools-heading {
+          height: 46px;
+          padding-bottom: 11px;
+        }
+
+        .tools-heading strong {
+          font-size: 15px;
+        }
+
+        .controls-row {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          gap: 7px;
+          margin-top: 10px;
+        }
+
+        .controls-grow {
+          grid-column: 1 / -1;
+        }
+
+        .form-control,
+        .form-select {
+          height: 32px;
+          font-size: 12px;
+        }
+
+        .controls-row label > span:first-child {
+          font-size: 12px;
+        }
+
+        table {
+          min-width: 720px;
         }
 
         th,
         td {
-          font-size: 13px;
-          padding: 8px 10px;
+          padding: 0.2rem !important;
+          font-size: 11px;
+        }
+
+        thead th {
+          height: 32px;
         }
 
         .name-col {
-          width: 60%;
+          width: 240px;
+          min-width: 240px;
         }
 
-        .area-col {
-          min-width: 90px;
+        .rate-col {
+          width: 70px;
+          min-width: 70px;
         }
 
-        .controls-row {
-          flex-wrap: wrap;
-        }
-
-        .controls-grow {
-          flex-basis: 100%;
-        }
-
-        .controls-area {
-          width: calc(38% - 5px);
-          min-width: 150px;
-          text-align: left;
-        }
-
-        .controls-sort {
-          width: calc(62% - 5px);
-          text-align: left;
+        .course-meta-tag {
+          padding: 0 4px;
+          font-size: 8px;
         }
 
         .page-footer .footer-inner {
-          font-size: 12px;
           gap: 10px;
+          font-size: 12px;
         }
 
         .page-footer {
@@ -280,70 +619,300 @@
         }
       }
 
-      @media (max-width: 480px) {
-        .controls-area,
-        .controls-sort {
-          width: 100%;
+      @media (max-width: 650px) {
+        table {
+          min-width: 585px;
         }
 
-        .min-width-warning {
-          font-size: 13px;
-          padding: 10px 12px;
+        .name-col {
+          width: 200px;
+          min-width: 200px;
+        }
+
+        .rate-col {
+          width: 55px;
+          min-width: 55px;
+        }
+
+        th,
+        td {
+          padding: 0.15rem !important;
+          font-size: 10px;
+        }
+      }
+
+      @media (max-width: 550px) {
+        .mobile-pc-notice {
+          display: block;
+          padding: 7px 16px;
+          border-bottom: 1px solid #ead9aa;
+          background: #fff8e8;
+          color: #75591a;
+          font-size: 10px;
+          font-weight: 700;
+          text-align: center;
+        }
+
+        .site-header {
+          background: #fff;
+        }
+
+        .header-layout {
+          display: block;
+        }
+
+        .brand-panel {
+          display: grid;
+          grid-template-columns: 46px minmax(0, 1fr) 34px;
+          grid-template-areas: 'logo copy menu';
+          gap: 10px;
+          align-items: center;
+          padding: 11px 16px 10px;
+          border-right: 0;
+          border-bottom: 1px solid #e2e5e9;
+        }
+
+        .header-logo {
+          grid-area: logo;
+          width: 49px;
+          height: 46px;
+          object-fit: cover;
+          object-position: left center;
+        }
+
+        .header-copy {
+          grid-area: copy;
+          margin: 0;
+          padding: 0;
+          border: 0;
+        }
+
+        .title {
+          font-size: 16px;
+          text-align: left;
+        }
+
+        .subtitle {
+          display: none;
+        }
+
+        .header-menu {
+          grid-area: menu;
+          width: 34px;
+          margin: 0;
+        }
+
+        .header-menu-button {
+          width: 34px;
+          height: 34px;
+          padding: 0;
+        }
+
+        .practice-link {
+          display: none;
+        }
+
+        .menu-label {
+          justify-content: center;
+          width: 100%;
+          gap: 0;
+          font-size: 0;
+        }
+
+        .menu-label .bi {
+          font-size: 18px;
+        }
+
+        .menu-chevron {
+          display: none;
+        }
+
+        .header-menu .dropdown-menu {
+          left: auto !important;
+          right: 0 !important;
+          width: 210px;
+        }
+
+        .tools-panel {
+          padding: 11px 16px 13px;
+        }
+
+        .tools-heading {
+          height: auto;
+          padding-bottom: 9px;
+        }
+
+        .tools-heading strong {
+          font-size: 14px;
+        }
+
+        .tools-heading span {
+          font-size: 10px;
+        }
+
+        table {
+          min-width: 685px;
+        }
+
+        .name-col {
+          width: 230px;
+          min-width: 230px;
+        }
+
+        .rate-col {
+          width: 65px;
+          min-width: 65px;
+        }
+
+        th,
+        td {
+          padding: 0.1rem !important;
+          font-size: 10px;
+        }
+
+        thead th {
+          height: 28px;
+        }
+
+        .controls-row label > span:first-child {
+          font-size: 11px;
+        }
+
+        .legend {
+          padding: 8px 16px 0;
+          text-align: left;
+          font-size: 10px;
+        }
+
+        .table-scroll-hint {
+          justify-content: center;
+          padding-inline: 16px;
+          font-size: 9px;
+        }
+
+        .table-scroll-hint.is-visible {
+          max-height: 20px;
+          padding-top: 2px;
+          padding-bottom: 2px;
+        }
+
+        thead th:first-child,
+        tbody td:first-child {
+          position: sticky;
+          left: 0;
+          z-index: 1;
+          background: #fff;
+        }
+
+        thead th:first-child {
+          z-index: 2;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .course-meta-tags {
+          gap: 3px;
+          margin-top: 2px;
+        }
+
+        .course-meta-tag {
+          padding: 0 3px;
+          font-size: 7px;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .title {
+          font-size: 14px;
         }
       }
     </style>
   </head>
   <body>
-    <div id="min-width-warning" class="min-width-warning" role="status" aria-live="polite">
-      좁은 화면에서는 평점, 평균 열이 자동 숨김됩니다. PC 전체 화면 사용을 권장합니다.
-    </div>
+    <div class="mobile-pc-notice" role="status">PC 화면을 권장합니다.</div>
+    <header class="site-header">
+      <div class="header-layout">
+        <div class="brand-panel">
+          <img class="header-logo" src="https://www.syu.ac.kr/wp-content/uploads/2018/05/pg_logo3.png" alt="삼육대학교" />
+          <div class="header-copy">
+            <h1 class="title">교양 학기별 경쟁률</h1>
+          </div>
+          <nav class="header-menu navbar navbar-expand p-0" aria-label="주요 메뉴">
+            <div class="nav-item dropdown w-100">
+              <button class="header-menu-button" type="button" id="header-menu" data-bs-toggle="dropdown" aria-expanded="false" aria-label="서비스 메뉴 열기">
+                <span class="menu-label"><i class="bi bi-grid" aria-hidden="true"></i>다른 서비스</span>
+                <i class="bi bi-chevron-down menu-chevron" aria-hidden="true"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="header-menu">
+                <li><a class="dropdown-item" href="/cse">NEW. 컴퓨터공학부 담은 인원</a></li>
+                <li><a class="dropdown-item" href="/basket">장바구니 경쟁률 확인하기</a></li>
+                <li><a class="dropdown-item" href="/closed">수강신청 폐강위기 확인하기</a></li>
+                <li><a class="dropdown-item" href="https://www.syu.kr">다양한 서비스 더보기</a></li>
+              </ul>
+            </div>
+          </nav>
+          <a class="header-menu-button practice-link" href="/testLogin" target="_blank">
+            <span class="menu-label"><i class="bi bi-pencil-square" aria-hidden="true"></i>모의 수강신청 해보기</span>
+            <i class="bi bi-arrow-right menu-chevron" aria-hidden="true"></i>
+          </a>
+        </div>
 
-    <div class="title">교양 학기별 수강신청 장바구니 경쟁률</div>
-    <div class="subtitle">각 학기별 수강신청 장바구니 경쟁률을 표시합니다. (에브리타임 강의평가 반영)</div>
+        <div class="tools-panel">
+          <div class="tools-heading">
+            <strong>2023년 이후 교양 과목 경쟁률</strong>
+          </div>
+          <div class="controls-row">
+            <label class="controls-grow">
+              <span>검색</span>
+              <span class="search-control">
+                <input id="search" class="form-control" type="search" placeholder="과목명 또는 교수명" />
+                <i class="bi bi-search" aria-hidden="true"></i>
+              </span>
+            </label>
 
-    <div class="controls-row">
-      <div class="controls-grow">
-        <label style="font-weight: 600">검색</label>
-        <input id="search" class="form-control" placeholder="과목명 또는 교수명으로 검색" />
+            <label class="controls-area">
+              <span>영역</span>
+              <select id="areaFilter" class="form-select">
+                <option value="">모두</option>
+              </select>
+            </label>
+
+            <label class="controls-sort">
+              <span>정렬</span>
+              <select id="sort" class="form-select"></select>
+            </label>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div id="table-scroll-hint" class="table-scroll-hint" aria-hidden="true">
+        <span class="slide-arrows" aria-hidden="true">&gt;&gt;&gt;</span>
+        <span>옆으로 슬라이드가 가능합니다.</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="name-col">교과목</th>
+              <th class="rate-col">로딩 중...</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
       </div>
 
-      <div class="controls-area">
-        <label style="font-weight: 600">영역</label>
-        <select id="areaFilter" class="form-select">
-          <option value="">모두</option>
-        </select>
+      <div class="legend">
+        색상: <span style="color: #ff1f1f">높음(>=4)</span>, <span style="color: #ff5270">중간(>=3)</span>, <span style="color: #ff9500">보통(>=2)</span>, <span style="color: #c4cc00">낮음(>=1)</span>,
+        <span style="color: #00c96b">매우낮음</span> · <strong>X = 개설되지 않음</strong>
       </div>
-
-      <div class="controls-sort">
-        <label style="font-weight: 600">정렬</label>
-        <select id="sort" class="form-select"></select>
-      </div>
-    </div>
-
-    <div class="term-toggle-wrapper" id="semester-list"></div>
-
-    <div class="table-responsive">
-      <table class="table table-sm table-bordered table-hover">
-        <thead class="table-dark">
-          <tr>
-            <th class="name-col">과목명(교수명)</th>
-            <th class="area-col">영역</th>
-            <th class="rate-col">로딩 중...</th>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
-    </div>
-
-    <div class="legend">
-      색상: <span style="color: red">높음(>=4)</span>, <span style="color: #ff7070">중간(>=3)</span>, <span style="color: orange">보통(>=2)</span>, <span style="color: #cdcd00">낮음(>=1)</span>,
-      <span style="color: #00ff00">매우낮음</span> · <strong>X = 개설되지 않음</strong>
-    </div>
+    </main>
 
     <footer class="page-footer">
       <div class="footer-inner">
         <div class="brand"><strong>SYU KR</strong></div>
-        <div class="copy">© 2023 - 2026 SYU KR (KIM SANG YUN) · All rights reserved.</div>
+        <div class="copy">© 2023 - 2026 SYU KR. All rights reserved.</div>
       </div>
       <div class="footer-disclaimer">해당 사이트는 <strong>삼육대학교(학교법인 삼육학원)</strong>와 무관한 비공식 사이트입니다.</div>
     </footer>

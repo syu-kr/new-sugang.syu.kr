@@ -1,4 +1,5 @@
 const FIELD_DEPARTMENT = '\ud559\ubd80(\uacfc)'
+const FIELD_COURSE_NUMBER = '\uac15\uc88c\ubc88\ud638'
 const FIELD_SOURCE_COURSE_NAME = '\uac15\uc88c\uba85'
 const FIELD_SOURCE_PROFESSOR = '\uad50\uc218\uba85'
 const FIELD_COMPETITION = '\uacbd\uc7c1\ub960'
@@ -8,8 +9,6 @@ const FIELD_AREA = '\uc601\uc5ed\uad6c\ubd84'
 const AREA_ALL = '\ubaa8\ub450'
 const DEPARTMENT_LIBERAL_ARTS = '\uacf5\ud1b5(\uad50\uc591)'
 const LEGACY_ALIAS_PATTERN = /\s*\((?:\uad6c|\u820a)\s*,[^)]*\)\s*/g
-const RESPONSIVE_HIDE_BREAKPOINTS = [1120, 1040, 960, 880, 800, 720, 640, 560, 480, 400]
-
 const EXCLUDE_NAME_PATTERNS = ['\uc9c0\uad6c\uc0ac\ub791\uacfc\ubd09\uc0ac', '\uae00\ub85c\ubc8c \uc601\uc5b4']
 const MANUAL_AREAS = [
   '\uae30\ucd08\uad50\uc591',
@@ -22,11 +21,11 @@ const MANUAL_AREAS = [
 ]
 
 function competitionColor(value) {
-  if (value >= 4) return 'red'
-  if (value >= 3) return '#ff7070'
-  if (value >= 2) return 'orange'
-  if (value >= 1) return '#cdcd00'
-  return '#00ff00'
+  if (value >= 4) return '#ff1f1f'
+  if (value >= 3) return '#ff5270'
+  if (value >= 2) return '#ff9500'
+  if (value >= 1) return '#c4cc00'
+  return '#00c96b'
 }
 
 function formatRate(value) {
@@ -153,50 +152,17 @@ function renderStars(percent) {
   return `<div class="rating" title="${value}%"><span class="star-bg">${stars}</span><span class="star-fill" style="width:${value}%">${stars}</span><span class="rating-text">${((value / 100) * 5).toFixed(2)} / 5</span></div>`
 }
 
-function hiddenColumnCountForWidth(width) {
-  return RESPONSIVE_HIDE_BREAKPOINTS.reduce((count, breakpoint) => {
-    return width <= breakpoint ? count + 1 : count
-  }, 0)
-}
+function updateTableScrollHint() {
+  const scroller = document.querySelector('.table-responsive')
+  const hint = document.getElementById('table-scroll-hint')
+  if (!scroller || !hint) return
 
-function updateResponsiveColumns(terms) {
-  const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 1200
-  const hideOrder = ['rating-col', 'avg-col']
-  const hiddenCount = Math.min(hiddenColumnCountForWidth(viewportWidth), hideOrder.length)
+  const hasOverflow = scroller.scrollWidth > scroller.clientWidth + 1
+  const hasMore = scroller.scrollLeft < scroller.scrollWidth - scroller.clientWidth - 1
+  const isVisible = hasOverflow && hasMore
 
-  hideOrder.forEach((className, index) => {
-    document.querySelectorAll(`.${className}`).forEach((element) => {
-      element.classList.toggle('responsive-hidden', index < hiddenCount)
-    })
-  })
-}
-
-function updateTermColumns(terms, visibleTerms) {
-  terms.forEach((term, index) => {
-    document.querySelectorAll(`.term-col-${index}`).forEach((element) => {
-      element.classList.toggle('term-hidden', !visibleTerms.has(term))
-    })
-  })
-}
-
-function renderTermOptions(terms, visibleTerms, onChange) {
-  const wrapper = document.getElementById('semester-list')
-  if (!wrapper) return
-
-  wrapper.innerHTML = terms
-    .map((term) => {
-      const checked = visibleTerms.has(term) ? 'checked' : ''
-      return `
-        <label><input type="checkbox" class="term-toggle" value="${term}" ${checked} /> ${formatTermLabel(term)}</label>
-      `
-    })
-    .join('')
-
-  wrapper.querySelectorAll('.term-toggle').forEach((checkbox) => {
-    checkbox.addEventListener('change', function () {
-      onChange(this.value, this.checked)
-    })
-  })
+  hint.classList.toggle('is-visible', isVisible)
+  hint.setAttribute('aria-hidden', String(!isVisible))
 }
 
 async function fetchTerms() {
@@ -225,10 +191,8 @@ function buildTableHeader(terms) {
   if (!headerRow) return
 
   headerRow.innerHTML = `
-    <th class="name-col">\uacfc\ubaa9\uba85(\uad50\uc218\uba85)</th>
-    <th class="area-col">\uc601\uc5ed</th>
-    ${terms.map((term, index) => `<th class="rate-col term-col-${index}">${term}</th>`).join('')}
-    <th class="rate-col avg-col">\ud3c9\uade0</th>
+    <th class="name-col">\uad50\uacfc\ubaa9</th>
+    ${terms.map((term, index) => `<th class="rate-col term-col-${index}">${formatTermLabel(term)}</th>`).join('')}
     <th class="rating-col">\ud3c9\uc810</th>
   `
 }
@@ -261,7 +225,6 @@ function isInactiveInRecentTerms(item, terms) {
 async function main() {
   const termDetails = await fetchTerms()
   const terms = termDetails.map((term) => term.id)
-  const visibleTerms = new Set(terms)
   const tbody = document.getElementById('tbody')
 
   if (!tbody) return
@@ -311,10 +274,20 @@ async function main() {
     perTermMap[term].items.forEach((item) => {
       const key = `${item[FIELD_SOURCE_COURSE_NAME]}|${item[FIELD_SOURCE_PROFESSOR]}`
       if (!courses.has(key)) {
-        courses.set(key, {area: '', name: item[FIELD_SOURCE_COURSE_NAME], professor: item[FIELD_SOURCE_PROFESSOR], rates: {}})
+        courses.set(key, {
+          area: '',
+          courseNo: '',
+          name: item[FIELD_SOURCE_COURSE_NAME],
+          professor: item[FIELD_SOURCE_PROFESSOR],
+          rates: {},
+        })
       }
       const course = courses.get(key)
       course.rates[term] = Number.parseFloat(item[FIELD_COMPETITION])
+
+      if (term === terms[0]) {
+        course.courseNo = item[FIELD_COURSE_NUMBER]
+      }
 
       if (!course.area && areaResolver) {
         course.area = areaResolver(item[FIELD_SOURCE_COURSE_NAME], item[FIELD_SOURCE_PROFESSOR])
@@ -366,16 +339,23 @@ async function main() {
       const tr = document.createElement('tr')
 
       const nameTd = document.createElement('td')
+      nameTd.className = 'course-cell'
       const courseNameStyle = isInactiveInRecentTerms(item, terms)
         ? 'text-decoration:line-through; text-decoration-thickness:1.5px; color:#666;'
         : ''
-      nameTd.innerHTML = `<strong style="${courseNameStyle}">${item.name}</strong> <span style="color:#666">(${item.professor})</span>`
+      const avgValue = averageFor(item, terms)
+      const courseNoTag = item.courseNo ? `<span class="course-meta-tag">${item.courseNo}</span>` : ''
+      const averageTag = `<span class="course-meta-tag course-average-tag">\ud3c9\uade0: ${formatRate(avgValue)}</span>`
+      nameTd.innerHTML = `
+        <strong class="course-title" style="${courseNameStyle}">${item.name}</strong>
+        <span class="course-meta-tags">
+          ${courseNoTag}
+          <span class="course-meta-tag">${item.area || '-'}</span>
+          <span class="course-meta-tag">${item.professor || '-'}</span>
+          ${averageTag}
+        </span>
+      `
       tr.appendChild(nameTd)
-
-      const areaTd = document.createElement('td')
-      areaTd.className = 'area-col'
-      areaTd.innerText = item.area || '-'
-      tr.appendChild(areaTd)
 
       terms.forEach((term, index) => {
         const td = document.createElement('td')
@@ -383,19 +363,13 @@ async function main() {
         const value = item.rates[term]
 
         if (typeof value === 'number') {
-          td.innerHTML = `<span style="color:${competitionColor(value)}">${formatRate(value)}</span>`
+          td.innerHTML = `<b style="color:${competitionColor(value)}">${formatRate(value)}</b>`
         } else {
           td.innerText = 'X'
         }
 
         tr.appendChild(td)
       })
-
-      const avgTd = document.createElement('td')
-      avgTd.className = 'rate-col avg-col'
-      const avgValue = averageFor(item, terms)
-      avgTd.innerHTML = avgValue == null ? 'X' : `<b style="color:${competitionColor(avgValue)}">${formatRate(avgValue)}</b>`
-      tr.appendChild(avgTd)
 
       const ratingTd = document.createElement('td')
       ratingTd.className = 'rating-col'
@@ -407,8 +381,7 @@ async function main() {
       tbody.appendChild(tr)
     })
 
-    updateTermColumns(terms, visibleTerms)
-    updateResponsiveColumns(terms)
+    updateTableScrollHint()
   }
 
   function applyFilters() {
@@ -441,17 +414,8 @@ async function main() {
   let resizeTimer = 0
   function handleResize() {
     window.clearTimeout(resizeTimer)
-    resizeTimer = window.setTimeout(() => updateResponsiveColumns(terms), 40)
+    resizeTimer = window.setTimeout(updateTableScrollHint, 40)
   }
-
-  renderTermOptions(terms, visibleTerms, (term, checked) => {
-    if (checked) {
-      visibleTerms.add(term)
-    } else {
-      visibleTerms.delete(term)
-    }
-    updateTermColumns(terms, visibleTerms)
-  })
 
   list.sort((left, right) => (right.rates[terms[0]] || 0) - (left.rates[terms[0]] || 0))
   renderRows(list)
@@ -459,6 +423,7 @@ async function main() {
   searchEl?.addEventListener('input', applyFilters)
   sortEl?.addEventListener('change', applyFilters)
   areaFilterEl?.addEventListener('change', applyFilters)
+  document.querySelector('.table-responsive')?.addEventListener('scroll', updateTableScrollHint, {passive: true})
   window.addEventListener('resize', handleResize)
 }
 
