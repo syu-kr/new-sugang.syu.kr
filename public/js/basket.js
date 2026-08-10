@@ -175,11 +175,11 @@ function compareByCompetition(left, right) {
 }
 
 function competitionColor(value) {
-  if (value >= 4) return 'red'
-  if (value >= 3) return '#ff7070'
-  if (value >= 2) return 'orange'
-  if (value >= 1) return '#cdcd00'
-  return '#00ff00'
+  if (value >= 4) return '#ff1f1f'
+  if (value >= 3) return '#ff5270'
+  if (value >= 2) return '#ff9500'
+  if (value >= 1) return '#c4cc00'
+  return '#00c96b'
 }
 
 function convertTime(datetimeStr) {

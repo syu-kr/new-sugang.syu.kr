@@ -17,6 +17,9 @@
         max-width: 1280px;
         margin: 0 auto;
       }
+      .mobile-pc-notice {
+        display: none;
+      }
       .dropdown-menu {
         left: 50% !important;
         right: auto !important;
@@ -87,9 +90,9 @@
         border: 1px solid #e2e5ea;
         border-radius: 3px;
         background: #f8fafc;
-        color: #5f6062;
+        color: #999999;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-        font-size: 11px;
+        font-size: 14px;
         font-weight: 700;
         line-height: 1.3;
         overflow: hidden;
@@ -114,7 +117,7 @@
           font-size: 13pt;
         }
         .course-meta-tag {
-          font-size: 9px;
+          font-size: 11px;
         }
         .table > :not(caption) > * > * {
           /* padding: 60px; */
@@ -155,6 +158,17 @@
         }
       }
       @media (max-width: 550px) {
+        .mobile-pc-notice {
+          display: block;
+          padding: 7px 16px;
+          border-bottom: 1px solid #ead9aa;
+          background: #fff8e8;
+          color: #75591a;
+          font-size: 10px;
+          font-weight: 700;
+          text-align: center;
+        }
+
         /* .table-size {
           height: 918px;
         } */
@@ -624,7 +638,7 @@
         }
 
         .tools-panel {
-          padding: 14px 16px 18px;
+          padding: 15.5px 16px 18px;
         }
 
         .tools-top {
@@ -992,6 +1006,7 @@
     </style>
   </head>
   <body>
+    <div class="mobile-pc-notice" role="status">PC 화면을 권장합니다.</div>
     <header class="site-header">
       <div class="header-layout">
         <div class="brand-panel">
@@ -1006,6 +1021,7 @@
                 <i class="bi bi-chevron-down menu-chevron" aria-hidden="true"></i>
               </button>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="header-menu">
+                <li><a class="dropdown-item" href="/cse">NEW. 컴퓨터공학부 담은 인원</a></li>
                 <li><a class="dropdown-item" href="/liberalarts">NEW. 교양 경쟁률 확인하기</a></li>
                 <li><a class="dropdown-item" href="/closed">수강신청 폐강위기 확인하기</a></li>
                 <li><a class="dropdown-item" href="https://www.syu.kr">다양한 서비스 더보기</a></li>
@@ -1081,7 +1097,7 @@
     <footer class="page-footer">
       <div class="footer-inner">
         <div class="brand"><strong>SYU KR</strong></div>
-        <div class="copy">© 2023 - 2026 SYU KR (KIM SANG YUN) · All rights reserved.</div>
+        <div class="copy">© 2023 - 2026 SYU KR. All rights reserved.</div>
       </div>
       <div class="footer-disclaimer">해당 사이트는 <strong>삼육대학교(학교법인 삼육학원)</strong>와 무관한 웹 사이트입니다.</div>
     </footer>
@@ -1091,7 +1107,7 @@
         margin-top: 28px;
         padding: 14px 10px;
         border-top: 1px solid #ececec;
-        background: linear-gradient(90deg, #fafafa, #ffffff);
+        background: transparent;
       }
       .page-footer .footer-inner {
         display: flex;
@@ -1103,7 +1119,7 @@
         font-size: 13px;
       }
       .page-footer .brand strong {
-        letter-spacing: 1px;
+        letter-spacing: 0;
         color: #222;
         font-weight: 700;
       }
